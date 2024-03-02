@@ -6,7 +6,9 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Bankable.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
+        Background="{StaticResource White}"
         Icon="/Assets/avalonia-logo.ico"
+        FontFamily="{StaticResource Poppins}"
         Title="Bankable">
 
     <Design.DataContext>
@@ -14,7 +16,22 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    
+    <Window.Styles>
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="24"/>
+            <!-- <Setter Property="FontWeight" Value="Bold"/> -->
+        </Style>
+    </Window.Styles>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <DockPanel>
+        <Button DockPanel.Dock="Bottom" 
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center">Coucou</Button>
+        <TextBlock Classes="h1" Text="Overview"/>
+        <TextBlock FontFamily="Poppins" Text="Overview"/>
+        <TextBlock FontWeight="Black" Text="Overview"/>
+
+    </DockPanel>
 
 </Window>
