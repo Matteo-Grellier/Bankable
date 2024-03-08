@@ -30,19 +30,19 @@
             <!-- <Image Width="24" Height="24" Source="avares://Bankable/Assets/Icons/view_list.svg" /> -->
             <!-- <PathIcon Data="{StaticResource home_regular}"/> -->
             <StackPanel Width="305" Spacing="40" Margin="20 20 0 0">
-                <Button Classes="textAndIcon" FontSize="24">
+                <Button Classes="textAndIcon" FontSize="24" Command="{Binding Home}">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <avalonia:MaterialIcon Kind="HomeVariantOutline" Width="24" Height="24"/>
-                        <TextBlock Text="Overview"/>
+                        <TextBlock Text="Home"/>
                     </StackPanel>
                 </Button>
-                <Button Classes="textAndIcon" FontSize="24" >
+                <Button Classes="textAndIcon" FontSize="24" Command="{Binding BankAccounts}">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <avalonia:MaterialIcon Kind="BankOutline" Width="24" Height="24"/>
                         <TextBlock Text="Bank Accounts"/>
                     </StackPanel>
                 </Button>
-                <Button Classes="textAndIcon" FontSize="24" >
+                <Button Classes="textAndIcon" FontSize="24" Command="{Binding Savings}">
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <avalonia:MaterialIcon Kind="PiggyBankOutline" Width="24" Height="24"/>
                         <TextBlock Text="Savings"/>
@@ -60,7 +60,7 @@
             <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
             <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
         </StackPanel>
-        <TextBlock Classes="h1" Text="Ceci est le contenu de ma vue"/>
+        <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
     </DockPanel>
     
 
