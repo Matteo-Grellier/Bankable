@@ -37,6 +37,7 @@
         <Setter Property="CornerRadius" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource Pink}"/>
     </Style>
     
     <Style Selector="Button.textAndIcon">

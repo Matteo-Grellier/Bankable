@@ -22,5 +22,16 @@
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.6" />
+    <PackageReference Include="Material.Icons.Avalonia" Version="2.1.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Assets\Icons\account_balance.svg" />
+    <UpToDateCheckInput Remove="Assets\Icons\add.svg" />
+    <UpToDateCheckInput Remove="Assets\Icons\dashboard.svg" />
+    <UpToDateCheckInput Remove="Assets\Icons\home.svg" />
+    <UpToDateCheckInput Remove="Assets\Icons\savings.svg" />
+    <UpToDateCheckInput Remove="Assets\Icons\view_list.svg" />
   </ItemGroup>
 </Project>
