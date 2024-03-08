@@ -25,13 +25,19 @@
     </Window.Styles>
 
     <DockPanel>
-        <Button DockPanel.Dock="Bottom" 
+        <Button DockPanel.Dock="Top" 
             HorizontalAlignment="Center"
             HorizontalContentAlignment="Center">Coucou</Button>
+        <Button Classes="icon" DockPanel.Dock="Top" 
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center">Coucou</Button>
+        <Button Classes="textAndIcon" DockPanel.Dock="Top" 
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center" FontSize="32">
+            Overview
+        </Button>
         <TextBlock Classes="h1" Text="Overview"/>
-        <TextBlock FontFamily="Poppins" Text="Overview"/>
-        <TextBlock FontWeight="Black" Text="Overview"/>
-
     </DockPanel>
+    
 
 </Window>

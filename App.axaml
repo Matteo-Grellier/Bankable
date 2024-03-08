@@ -14,6 +14,7 @@
         <SolidColorBrush Color="#FFD166" x:Key="Yellow" />
         <SolidColorBrush Color="#06D6A0" x:Key="Green" />
         <SolidColorBrush Color="#FFFCF9" x:Key="White" />
+        <SolidColorBrush Color="#F0F0F0" x:Key="Gray" />
         <SolidColorBrush Color="#000" x:Key="Black" />
         
         <FontFamily x:Key="Poppins">/Assets/Fonts#Poppins</FontFamily>
