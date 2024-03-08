@@ -26,50 +26,40 @@
     </Window.Styles>
 
     <DockPanel>
-        <StackPanel DockPanel.Dock="Left" Background="{StaticResource White}" Width="305" Spacing="10">
+        <StackPanel DockPanel.Dock="Left" Background="{StaticResource White}" Width="305" Spacing="40">
             <!-- <Image Width="24" Height="24" Source="avares://Bankable/Assets/Icons/view_list.svg" /> -->
             <!-- <PathIcon Data="{StaticResource home_regular}"/> -->
+            <StackPanel Width="305" Spacing="40" Margin="20 20 0 0">
+                <Button Classes="textAndIcon" FontSize="24">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <avalonia:MaterialIcon Kind="HomeVariantOutline" Width="24" Height="24"/>
+                        <TextBlock Text="Overview"/>
+                    </StackPanel>
+                </Button>
+                <Button Classes="textAndIcon" FontSize="24" >
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <avalonia:MaterialIcon Kind="BankOutline" Width="24" Height="24"/>
+                        <TextBlock Text="Bank Accounts"/>
+                    </StackPanel>
+                </Button>
+                <Button Classes="textAndIcon" FontSize="24" >
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <avalonia:MaterialIcon Kind="PiggyBankOutline" Width="24" Height="24"/>
+                        <TextBlock Text="Savings"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
             
-            <Button Classes="textAndIcon" FontSize="24" Margin="20 0 0 0">
-                <StackPanel Orientation="Horizontal" Spacing="10">
-                    <avalonia:MaterialIcon Kind="HomeVariantOutline" Width="24" Height="24"/>
-                    <TextBlock Text="Overview"/>
-                </StackPanel>
-            </Button>
-            <Button Classes="textAndIcon" FontSize="24" Margin="20 0 0 0">
-                <StackPanel Orientation="Horizontal" Spacing="10">
-                    <avalonia:MaterialIcon Kind="BankOutline" Width="24" Height="24"/>
-                    <TextBlock Text="Bank Accounts"/>
-                </StackPanel>
-            </Button>
-            <Button Classes="textAndIcon" FontSize="24" Margin="20 0 0 0">
-                <StackPanel Orientation="Horizontal" Spacing="10">
-                    <avalonia:MaterialIcon Kind="PiggyBankOutline" Width="24" Height="24"/>
-                    <TextBlock Text="Savings"/>
-                </StackPanel>
-            </Button>
         </StackPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{StaticResource White}" Spacing="10">
-            <Button>Coucou</Button>
-            <Button>Coucou</Button>
-            <Button>Coucou</Button>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{StaticResource White}" Spacing="20">
+            <ToggleButton Margin="0 10">Compte 1</ToggleButton>
+            <ToggleButton Margin="0 10">Compte 2</ToggleButton>
+            <ToggleButton Margin="0 10">Compte commun</ToggleButton>
         </StackPanel>
         <StackPanel DockPanel.Dock="Right" Background="{StaticResource White}">
-            <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="24" Height="24"/></Button>
-            <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewListOutline" Width="24" Height="24"/></Button>
-            <Button Classes="icon">Icon</Button>
+            <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
+            <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
         </StackPanel>
-        <!-- <Button DockPanel.Dock="Top"  -->
-        <!--         HorizontalAlignment="Center" -->
-        <!--         HorizontalContentAlignment="Center">Coucou</Button> -->
-        <!-- <Button Classes="icon" DockPanel.Dock="Top"  -->
-        <!--         HorizontalAlignment="Center" -->
-        <!--         HorizontalContentAlignment="Center">Coucou</Button> -->
-        <!-- <Button Classes="textAndIcon" DockPanel.Dock="Top"  -->
-        <!--         HorizontalAlignment="Center" -->
-        <!--         HorizontalContentAlignment="Center"> -->
-        <!--     Overview -->
-        <!-- </Button> -->
         <TextBlock Classes="h1" Text="Ceci est le contenu de ma vue"/>
     </DockPanel>
     
