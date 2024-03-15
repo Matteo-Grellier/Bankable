@@ -2,7 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             x:DataType="vm:SavingsViewModel"
              x:Class="Bankable.Views.SavingsView">
-    Savings View !
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Right" Background="{StaticResource White}" Width="38">
+            <Button Classes="icon" Command="{Binding Dashboard}"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
+            <Button Classes="icon" Command="{Binding List}"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock>Savings View!</TextBlock>
+            <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
+        </StackPanel>
+    </DockPanel>
 </UserControl>
