@@ -1,17 +1,20 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="using:Bankable.ViewModels"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:BankAccountsViewModel"
              x:Class="Bankable.Views.BankAccountsView">
     <DockPanel>
         <StackPanel DockPanel.Dock="Right" Background="{StaticResource White}" Width="38">
-            <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
-            <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
+            <Button Classes="icon" Command="{Binding Dashboard}"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
+            <Button Classes="icon" Command="{Binding List}"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
         </StackPanel>
         <StackPanel>
             <TextBlock>BankAccounts View!</TextBlock>
+            <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
         </StackPanel>
     </DockPanel>
 </UserControl>
