@@ -10,7 +10,10 @@
         Background="{StaticResource Gray}"
         Icon="/Assets/avalonia-logo.ico"
         FontFamily="{StaticResource Poppins}"
-        Title="Bankable">
+        Title="Bankable"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+        xmlns:local="using:AvaloniaSample"
+        xmlns:vms="using:ViewModelsSamples.Pies.Doughnut">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -48,6 +51,7 @@
                         <TextBlock Text="Savings"/>
                     </StackPanel>
                 </Button>
+                <Button Command="{Binding Start}">Start</Button>
             </StackPanel>
             
         </StackPanel>
@@ -61,6 +65,13 @@
             <Button Classes="icon"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
         </StackPanel>
         <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
+        <!-- <lvc:CartesianChart 
+            Series="{Binding Series}"> 
+        </lvc:CartesianChart> -->
+        <lvc:PieChart 
+            Series="{Binding PieSeries}" 
+            InitialRotation="180">
+        </lvc:PieChart>
     </DockPanel>
     
 
