@@ -68,10 +68,7 @@
         <!-- <lvc:CartesianChart 
             Series="{Binding Series}"> 
         </lvc:CartesianChart> -->
-        <lvc:PieChart 
-            Series="{Binding PieSeries}" 
-            InitialRotation="180">
-        </lvc:PieChart>
+        <ContentControl Content="{Binding DonutChartViewModel}"></ContentControl>
     </DockPanel>
     
 

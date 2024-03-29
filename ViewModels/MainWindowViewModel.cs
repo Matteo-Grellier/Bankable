@@ -12,11 +12,24 @@ using LiveChartsCore.SkiaSharpView.Extensions;
 public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _contentViewModel;
-
     public ViewModelBase ContentViewModel
     {
         get => _contentViewModel;
         private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+    }
+
+    private ViewModelBase _barsChartViewModel = new BarsChartViewModel();
+    public ViewModelBase BarsChartViewModel
+    {
+        get => _barsChartViewModel;
+        private set => this.RaiseAndSetIfChanged(ref _barsChartViewModel, value);
+    }
+
+    private ViewModelBase _donutChartViewModel = new DonutChartViewModel();
+    public ViewModelBase DonutChartViewModel
+    {
+        get => _donutChartViewModel;
+        private set => this.RaiseAndSetIfChanged(ref _donutChartViewModel, value);
     }
 
     public void Home()
@@ -50,7 +63,7 @@ public class MainWindowViewModel : ViewModelBase
     private ObservableCollection<double> valuesCollection = new ObservableCollection<double>();
 
     public IEnumerable<ISeries> PieSeries { get; set; } =
-        new[] { 2, 4, 1, 4, 3 }.AsPieSeries((value, series) =>
+        new[] { 2, 4, 1, 4, 3 }.AsPieSeries( (value, series) =>
         {
             series.MaxRadialColumnWidth = 60;
         });
