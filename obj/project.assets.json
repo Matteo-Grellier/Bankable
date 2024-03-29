@@ -6612,11 +6612,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/matteog/Documents/ToDoList/ToDoList.csproj",
+      "projectUniqueName": "/home/matteog/Documents/Bankable/ToDoList.csproj",
       "projectName": "ToDoList",
-      "projectPath": "/home/matteog/Documents/ToDoList/ToDoList.csproj",
+      "projectPath": "/home/matteog/Documents/Bankable/ToDoList.csproj",
       "packagesPath": "/home/matteog/.nuget/packages/",
-      "outputPath": "/home/matteog/Documents/ToDoList/obj/",
+      "outputPath": "/home/matteog/Documents/Bankable/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/matteog/.nuget/NuGet/NuGet.Config"

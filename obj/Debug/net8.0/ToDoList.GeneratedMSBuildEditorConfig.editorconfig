@@ -20,18 +20,18 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.EnforceExtendedAnalyzerRules = 
 build_property.RootNamespace = ToDoList
-build_property.ProjectDir = /home/matteog/Documents/ToDoList/
+build_property.ProjectDir = /home/matteog/Documents/Bankable/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[/home/matteog/Documents/ToDoList/App.axaml]
+[/home/matteog/Documents/Bankable/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/matteog/Documents/ToDoList/Views/AddItemView.axaml]
+[/home/matteog/Documents/Bankable/Views/AddItemView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/matteog/Documents/ToDoList/Views/MainWindow.axaml]
+[/home/matteog/Documents/Bankable/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/matteog/Documents/ToDoList/Views/ToDoListView.axaml]
+[/home/matteog/Documents/Bankable/Views/ToDoListView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

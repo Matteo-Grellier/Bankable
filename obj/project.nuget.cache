@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nDBDozOQ43u3uKHpxNx/vmMqwZ3+dKxC7hWw3NN8NLA/7p0aRAbs+jTvCrqyyI3OPW++YQ00XXXX3VuOrfvxnQ==",
+  "dgSpecHash": "JWeSkQ/tY34jyprxTECK+dY9Kdd5kqz009juZbX1Z50qEzda2j1ZyKung9B1ulJOZbhY87oTyVJW1l6X30VdXA==",
   "success": true,
-  "projectFilePath": "/home/matteog/Documents/ToDoList/ToDoList.csproj",
+  "projectFilePath": "/home/matteog/Documents/Bankable/ToDoList.csproj",
   "expectedPackageFiles": [
     "/home/matteog/.nuget/packages/avalonia/11.0.6/avalonia.11.0.6.nupkg.sha512",
     "/home/matteog/.nuget/packages/avalonia.angle.windows.natives/2.1.0.2023020321/avalonia.angle.windows.natives.2.1.0.2023020321.nupkg.sha512",
