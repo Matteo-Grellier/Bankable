@@ -15,4 +15,11 @@
         <Setter Property="Foreground" Value="{StaticResource White}"/>
         
     </Style>
+    <Style Selector="MenuItem">
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style Selector="MenuItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Foreground" Value="{StaticResource Pink}"/>   
+    </Style>
 </Styles>
