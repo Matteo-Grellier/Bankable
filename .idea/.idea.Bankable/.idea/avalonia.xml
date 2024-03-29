@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="Bankable.csproj" />
+        <entry key="Styles/AddButton.axaml" value="Bankable.csproj" />
         <entry key="Styles/AppStyle.axaml" value="Bankable.csproj" />
         <entry key="Styles/AppStyles.axaml" value="Bankable.csproj" />
         <entry key="Views/BankAccounts.axaml" value="Bankable.csproj" />

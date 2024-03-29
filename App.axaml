@@ -25,6 +25,7 @@
      <Application.Styles>
          <FluentTheme />
          <StyleInclude Source="Styles/AppStyles.axaml"/>
+         <StyleInclude Source="Styles/AddButton.axaml"/>
          <materialIcons:MaterialIconStyles />
      </Application.Styles>
 </Application>
