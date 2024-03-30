@@ -1,45 +1,27 @@
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.IO;
-using Path = System.IO.Path;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bankable.Models;
 
-public partial class SavingProjectContext : DbContext
-{
-    public DbSet<SavingProject> SavingProjects { get; set; }
-
-    public string DbPath { get; }
-
-    public SavingProjectContext()
-    {
-        // string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "bankable");
-
-        // Directory.CreateDirectory(folder);
-        
-        DbPath = Path.Join("/home/matteog/Documents/Bankable/Models/", "test.db");
-    }
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
-    
-}
 public class SavingProject
 {
-    public Guid Id { get; set; }
-    
-    public Guid userId { get; set; }
+	public Guid Id { get; set; }
+	public Guid UserId { get; set; }
 
-    public DateTime createdAt { get; set; }
+	[MaxLength(50)]
+	public string Title { get; set; } = null!;
 
-    public DateTime updateAt { get; set; }
-    
-    public DateTime willEndAt { get; set; }
-    
-    public float finalAmount { get; set; }
-    
-    public float currentAmountSaved { get; set; }
+	public DateTime CreatedAt { get; set; }
 
-    public string firstName { get; set; }
+	public DateTime UpdatedAt { get; set; }
 
-    public string lastName { get; set; }
+	public DateTime WillEndAt { get; set; }
+
+	public float FinalAmount { get; set; }
+
+	public float CurrentAmountSaved { get; set; }
+	public User User { get; set; } = null!;
+
+	public ICollection<SparedSpending> SparedSpendings { get; } = new List<SparedSpending>();
 }
