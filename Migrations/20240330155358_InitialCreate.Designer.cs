@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bankable.Migrations
 {
     [DbContext(typeof(BankableContext))]
-    [Migration("20240330141418_IncomingCreate")]
-    partial class IncomingCreate
+    [Migration("20240330155358_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,22 @@ namespace Bankable.Migrations
                     b.ToTable("BankAccounts");
                 });
 
+            modelBuilder.Entity("Bankable.Models.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("Bankable.Models.Incoming", b =>
                 {
                     b.Property<Guid>("Id")
@@ -86,6 +102,8 @@ namespace Bankable.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BankAccountId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Incomings");
                 });
@@ -148,6 +166,49 @@ namespace Bankable.Migrations
                     b.ToTable("SparedSpendings");
                 });
 
+            modelBuilder.Entity("Bankable.Models.Spending", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<float>("Amount")
+                        .HasColumnType("REAL");
+
+                    b.Property<Guid>("BankAccountId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsRecurrent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsUseful")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BankAccountId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Spendings");
+                });
+
             modelBuilder.Entity("Bankable.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -194,7 +255,15 @@ namespace Bankable.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Bankable.Models.Category", "Category")
+                        .WithMany("incomings")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("BankAccount");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Bankable.Models.SavingProject", b =>
@@ -219,9 +288,37 @@ namespace Bankable.Migrations
                     b.Navigation("SavingProject");
                 });
 
+            modelBuilder.Entity("Bankable.Models.Spending", b =>
+                {
+                    b.HasOne("Bankable.Models.BankAccount", "BankAccount")
+                        .WithMany("Spendings")
+                        .HasForeignKey("BankAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bankable.Models.Category", "Category")
+                        .WithMany("spendings")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BankAccount");
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Bankable.Models.BankAccount", b =>
                 {
                     b.Navigation("Incomings");
+
+                    b.Navigation("Spendings");
+                });
+
+            modelBuilder.Entity("Bankable.Models.Category", b =>
+                {
+                    b.Navigation("incomings");
+
+                    b.Navigation("spendings");
                 });
 
             modelBuilder.Entity("Bankable.Models.SavingProject", b =>
