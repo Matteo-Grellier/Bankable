@@ -6,12 +6,13 @@ namespace Bankable.Models;
 public class BankableContext : DbContext
 {
 	public DbSet<SavingProject> SavingProjects { get; set; }
-
 	public DbSet<BankAccount> BankAccounts { get; set; }
-
 	public DbSet<SparedSpending> SparedSpendings { get; set; }
-
 	public DbSet<User> Users { get; set; }
+	public DbSet<Incoming> Incomings { get; set; }
+	public DbSet<Spending> Spendings { get; set; }
+	public DbSet<Category> Categories { get; set; }
+
 	public string DbPath { get; }
 
 	public BankableContext()
@@ -36,8 +37,23 @@ public class BankableContext : DbContext
 			.HasMany(e => e.SparedSpendings)
 			.WithOne(e => e.SavingProject)
 			.HasForeignKey(e => e.SavingProjectId);
+		modelBuilder.Entity<BankAccount>()
+			.HasMany(e => e.Incomings)
+			.WithOne(e => e.BankAccount)
+			.HasForeignKey(e => e.BankAccountId);
+		modelBuilder.Entity<BankAccount>()
+			.HasMany(e => e.Spendings)
+			.WithOne(e => e.BankAccount)
+			.HasForeignKey(e => e.BankAccountId);
+		modelBuilder.Entity<Category>()
+			.HasMany(e => e.incomings)
+			.WithOne(e => e.Category)
+			.HasForeignKey(e => e.CategoryId);
+		modelBuilder.Entity<Category>()
+			.HasMany(e => e.spendings)
+			.WithOne(e => e.Category)
+			.HasForeignKey(e => e.CategoryId);
 	}
-
 
 	protected override void OnConfiguring(DbContextOptionsBuilder options)
 		=> options.UseSqlite($"Data Source={DbPath}");
