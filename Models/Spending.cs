@@ -6,7 +6,7 @@ namespace Bankable.Models;
 
 public class Spending
 {
-	public Guid Id { get; set; }
+	public Guid Id { get; set; } = Guid.NewGuid();
 
 	public Guid BankAccountId { get; set; }
 

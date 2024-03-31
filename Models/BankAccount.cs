@@ -6,12 +6,12 @@ namespace Bankable.Models;
 
 public class BankAccount
 {
-	public Guid Id { get; set; }
+	public Guid Id { get; set; } = Guid.NewGuid();
 	public Guid UserId { get; set; }
 
-	public DateTime CreatedAt { get; set; }
+	public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-	public DateTime UpdatedAt { get; set; }
+	public DateTime UpdatedAt { get; private set; } = DateTime.UtcNow;
 
 	[MaxLength(50)]
 	public string Name { get; set; } = null!;
@@ -23,7 +23,7 @@ public class BankAccount
 
 	public User User { get; set; } = null!;
 
-	public ICollection<Incoming> Incomings { get; } = new List<Incoming>();
-	public ICollection<Spending> Spendings { get; } = new List<Spending>();
+	public ICollection<Incoming> Incomings { get; set; } = new List<Incoming>();
+	public ICollection<Spending> Spendings { get; set; } = new List<Spending>();
 
 }

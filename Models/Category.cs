@@ -6,7 +6,7 @@ namespace Bankable.Models;
 
 public class Category
 {
-	public Guid Id { get; set; }
+	public Guid Id { get; set; } = Guid.NewGuid();
 
 	[MaxLength(50)]
 	public string Name { get; set; } = null!;

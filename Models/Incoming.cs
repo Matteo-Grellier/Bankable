@@ -7,7 +7,7 @@ namespace Bankable.Models;
 
 public class Incoming
 {
-	public Guid Id { get; set; }
+	public Guid Id { get; set; } = Guid.NewGuid();
 
 	public Guid BankAccountId { get; set; }
 

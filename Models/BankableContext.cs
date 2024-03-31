@@ -54,7 +54,6 @@ public class BankableContext : DbContext
 			.WithOne(e => e.Category)
 			.HasForeignKey(e => e.CategoryId);
 	}
-
 	protected override void OnConfiguring(DbContextOptionsBuilder options)
 		=> options.UseSqlite($"Data Source={DbPath}");
 }

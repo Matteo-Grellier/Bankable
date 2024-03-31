@@ -5,7 +5,7 @@ namespace Bankable.Models;
 
 public class SparedSpending
 {
-	public Guid Id { get; set; }
+	public Guid Id { get; set; } = Guid.NewGuid();
 
 	public Guid SavingProjectId { get; set; }
 
