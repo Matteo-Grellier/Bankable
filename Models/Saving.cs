@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Bankable.Models;
 
-public class SparedSpending
+public class Saving
 {
 	public Guid Id { get; set; } = Guid.NewGuid();
 

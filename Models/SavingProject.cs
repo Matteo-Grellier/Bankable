@@ -23,5 +23,5 @@ public class SavingProject
 	public float CurrentAmountSaved { get; set; }
 	public User User { get; set; } = null!;
 
-	public ICollection<SparedSpending> SparedSpendings { get; set; } = new List<SparedSpending>();
+	public ICollection<Saving> Savings { get; set; } = new List<Saving>();
 }

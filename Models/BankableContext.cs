@@ -7,7 +7,7 @@ public class BankableContext : DbContext
 {
 	public DbSet<SavingProject> SavingProjects { get; set; }
 	public DbSet<BankAccount> BankAccounts { get; set; }
-	public DbSet<SparedSpending> SparedSpendings { get; set; }
+	public DbSet<Saving> Savings { get; set; }
 	public DbSet<User> Users { get; set; }
 	public DbSet<Incoming> Incomings { get; set; }
 	public DbSet<Spending> Spendings { get; set; }
@@ -21,7 +21,7 @@ public class BankableContext : DbContext
 
 		// Directory.CreateDirectory(folder);
 
-		DbPath = Path.Join("/home/matteog/Documents/Bankable/Models/", "database.db");
+		DbPath = Path.Join("/home/lanayr/Documents/Bankable/Models/", "database.db");
 	}
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
@@ -34,7 +34,7 @@ public class BankableContext : DbContext
 			.WithOne(e => e.User)
 			.HasForeignKey(e => e.UserId);
 		modelBuilder.Entity<SavingProject>()
-			.HasMany(e => e.SparedSpendings)
+			.HasMany(e => e.Savings)
 			.WithOne(e => e.SavingProject)
 			.HasForeignKey(e => e.SavingProjectId);
 		modelBuilder.Entity<BankAccount>()

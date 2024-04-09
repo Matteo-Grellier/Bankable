@@ -105,6 +105,28 @@ namespace Bankable.Migrations
                     b.ToTable("Incomings");
                 });
 
+            modelBuilder.Entity("Bankable.Models.Saving", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<float>("Amount")
+                        .HasColumnType("REAL");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("SavingProjectId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SavingProjectId");
+
+                    b.ToTable("Savings");
+                });
+
             modelBuilder.Entity("Bankable.Models.SavingProject", b =>
                 {
                     b.Property<Guid>("Id")
@@ -139,28 +161,6 @@ namespace Bankable.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("SavingProjects");
-                });
-
-            modelBuilder.Entity("Bankable.Models.SparedSpending", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<float>("Amount")
-                        .HasColumnType("REAL");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("SavingProjectId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SavingProjectId");
-
-                    b.ToTable("SparedSpendings");
                 });
 
             modelBuilder.Entity("Bankable.Models.Spending", b =>
@@ -263,6 +263,17 @@ namespace Bankable.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Bankable.Models.Saving", b =>
+                {
+                    b.HasOne("Bankable.Models.SavingProject", "SavingProject")
+                        .WithMany("Savings")
+                        .HasForeignKey("SavingProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SavingProject");
+                });
+
             modelBuilder.Entity("Bankable.Models.SavingProject", b =>
                 {
                     b.HasOne("Bankable.Models.User", "User")
@@ -272,17 +283,6 @@ namespace Bankable.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Bankable.Models.SparedSpending", b =>
-                {
-                    b.HasOne("Bankable.Models.SavingProject", "SavingProject")
-                        .WithMany("SparedSpendings")
-                        .HasForeignKey("SavingProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SavingProject");
                 });
 
             modelBuilder.Entity("Bankable.Models.Spending", b =>
@@ -320,7 +320,7 @@ namespace Bankable.Migrations
 
             modelBuilder.Entity("Bankable.Models.SavingProject", b =>
                 {
-                    b.Navigation("SparedSpendings");
+                    b.Navigation("Savings");
                 });
 
             modelBuilder.Entity("Bankable.Models.User", b =>

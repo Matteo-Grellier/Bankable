@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Bankable.Migrations
 {
     /// <inheritdoc />
-    public partial class initialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -146,7 +146,7 @@ namespace Bankable.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SparedSpendings",
+                name: "Savings",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -156,9 +156,9 @@ namespace Bankable.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SparedSpendings", x => x.Id);
+                    table.PrimaryKey("PK_Savings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SparedSpendings_SavingProjects_SavingProjectId",
+                        name: "FK_Savings_SavingProjects_SavingProjectId",
                         column: x => x.SavingProjectId,
                         principalTable: "SavingProjects",
                         principalColumn: "Id",
@@ -186,8 +186,8 @@ namespace Bankable.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SparedSpendings_SavingProjectId",
-                table: "SparedSpendings",
+                name: "IX_Savings_SavingProjectId",
+                table: "Savings",
                 column: "SavingProjectId");
 
             migrationBuilder.CreateIndex(
@@ -208,7 +208,7 @@ namespace Bankable.Migrations
                 name: "Incomings");
 
             migrationBuilder.DropTable(
-                name: "SparedSpendings");
+                name: "Savings");
 
             migrationBuilder.DropTable(
                 name: "Spendings");
