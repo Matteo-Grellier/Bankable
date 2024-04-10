@@ -1,11 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bankable.Models;
 
 public class Saving
 {
-	public Guid Id { get; set; } = Guid.NewGuid();
+	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+	public Guid Id { get; set; }
 
 	public Guid SavingProjectId { get; set; }
 

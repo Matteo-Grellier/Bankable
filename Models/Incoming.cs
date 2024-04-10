@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Bankable.ViewModels;
 
 namespace Bankable.Models;
 
 public class Incoming
 {
-	public Guid Id { get; set; } = Guid.NewGuid();
+	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+	public Guid Id { get; set; }
 
 	public Guid BankAccountId { get; set; }
 

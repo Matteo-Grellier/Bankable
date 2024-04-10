@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bankable.Models;
 
 public class Spending
 {
-	public Guid Id { get; set; } = Guid.NewGuid();
+	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+	public Guid Id { get; set; }
 
 	public Guid BankAccountId { get; set; }
 
