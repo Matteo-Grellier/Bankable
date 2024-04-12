@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Bankable.ViewModels.BankAccounts;
 
 namespace Bankable.Models;
 
@@ -32,4 +33,8 @@ public class Spending
 
 	public Category Category { get; } = null!;
 
+	public static implicit operator Spending(BankAccountsListViewModel v)
+	{
+		throw new NotImplementedException();
+	}
 }

@@ -21,7 +21,7 @@ public class BankableContext : DbContext
 
 		// Directory.CreateDirectory(folder);
 
-		DbPath = Path.Join("/home/lanayr/Documents/Bankable/Models/", "database.db");
+		DbPath = Path.Join("/home/matteog/Documents/Bankable/Models", "database.db");
 	}
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

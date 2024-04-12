@@ -2,18 +2,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Bankable.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Bankable.Views.BankAccounts.BankAccountsListView">
+             x:Class="Bankable.Views.BankAccounts.BankAccountsListView"
+             x:DataType="viewModels:BankAccountsViewModel">
     <DataGrid Margin="20" ItemsSource="{Binding Spending}"
               AutoGenerateColumns="True" IsReadOnly="True"
               GridLinesVisibility="All"
               BorderThickness="1" BorderBrush="Gray">
         <DataGrid.Columns>
-            <DataGridTextColumn Header="Account" />
-            <DataGridTextColumn Header="Date" />
-            <DataGridTextColumn Header="Name" />
-            <DataGridTemplateColumn Header="Useful" />
-            <DataGridTemplateColumn Header="Recurrent" />
+            <DataGridTextColumn Header="Account" Binding="{Binding BankAccount}"/>
+            <DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+            <DataGridTextColumn Header="Name" Binding="{Binding Title}"/>
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>

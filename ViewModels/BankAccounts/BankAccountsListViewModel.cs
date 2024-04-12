@@ -1,21 +1,27 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Bankable.Models;
-using Bankable.ViewModels;
+using Bankable.Services;
 
-namespace AvaloniaControls.ViewModels
-{
+namespace Bankable.ViewModels.BankAccounts;
+
 public class BankAccountsListViewModel : ViewModelBase
-    {
-        public ObservableCollection<Spending> People { get; }
+{
+	public ObservableCollection<Spending> People { get; }
 
-    public BankAccountsListViewModel()
-        {
-            var spending = new List<Spending>
-            {
-                new Spending(),
-            };
-            People = new ObservableCollection<Spending>(spending);
-        }
-    }
+	private SpendingService spendingService = new();
+
+	public BankAccountsListViewModel()
+	{
+	}
+
+	public IEnumerable<Spending> GetItems()
+	{
+		IEnumerable<Spending> spendings = spendingService.GetAllItems().Result;
+		return spendings;
+	}
+
 }
+

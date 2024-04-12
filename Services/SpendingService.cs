@@ -19,7 +19,7 @@ public class SpendingService
 		return Spendings;
 	}
 
-		public async Task<Spending> GetItemByID(Guid id)
+	public async Task<Spending> GetItemByID(Guid id)
 	{
 		var spending = await bankableContext.Spendings.SingleAsync(e => e.Id == id);
 		return spending;
