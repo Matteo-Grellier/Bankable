@@ -19,6 +19,18 @@ public class IncomingService
 		return Incomings;
 	}
 
+	public async Task<Incoming> GetItemByID(Guid id)
+	{
+		var incoming = await bankableContext.Incomings.SingleAsync(e => e.Id == id);
+		return incoming;
+	}
+
+	public async Task<List<Incoming>> GetItemsByCategory(Category category)
+	{
+		Console.WriteLine(category.Id);
+		return await bankableContext.Incomings.Where(e => category.Id == e.CategoryId).ToListAsync();
+	}
+
 	public async Task<EntityEntry<Incoming>> AddItem(Incoming incoming)
 	{
 		var addedIncoming = bankableContext.Add(incoming);
@@ -40,15 +52,4 @@ public class IncomingService
 		return "Item has been removed";
 	}
 
-	public async Task<Incoming> GetItemByID(Guid id)
-	{
-		var incoming = await bankableContext.Incomings.SingleAsync(e => e.Id == id);
-		return incoming;
-	}
-
-	public async Task<List<Incoming>> GetItemsByCategory(Category category)
-	{
-		Console.WriteLine(category.Id);
-		return await bankableContext.Incomings.Where(e => category.Id == e.CategoryId).ToListAsync();
-	}
 }

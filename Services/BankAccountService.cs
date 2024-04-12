@@ -18,6 +18,11 @@ public class BankAccountService
 		return bankAccounts;
 	}
 
+	public async Task<BankAccount> GetItemByID(Guid id)
+	{
+		var bankAccount = await bankableContext.BankAccounts.SingleAsync(e => e.Id == id);
+		return bankAccount;
+	}
 	public async Task<EntityEntry<BankAccount>> AddItem(BankAccount bankAccount)
 	{
 		var addedBankAccount = bankableContext.Add(bankAccount);
@@ -39,9 +44,5 @@ public class BankAccountService
 		return "Item has been removed";
 	}
 
-	public async Task<BankAccount> GetItemByID(Guid id)
-	{
-		var bankAccount = await bankableContext.BankAccounts.SingleAsync(e => e.Id == id);
-		return bankAccount;
-	}
+
 }

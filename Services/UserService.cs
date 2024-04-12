@@ -12,6 +12,19 @@ public class UserService
 {
 	BankableContext bankableContext = new();
 
+	public async Task<IEnumerable<User>> GetAllItems()
+	{
+		IEnumerable<User> categories;
+		categories = await bankableContext.Users.ToListAsync();
+		return categories;
+	}
+
+	public async Task<User> GetItemByID(Guid id)
+	{
+		var user = await bankableContext.Users.SingleAsync(e => e.Id == id);
+		return user;
+	}
+
 	public async Task<EntityEntry<User>> AddItem(User user)
 	{
 		EntityEntry<User> addedCategory = bankableContext.Add(user);
@@ -33,17 +46,6 @@ public class UserService
 		return "Item has been removed";
 	}
 
-	public async Task<User> GetItemByID(Guid id)
-	{
-		var user = await bankableContext.Users.SingleAsync(e => e.Id == id);
-		return user;
-	}
 
-	public async Task<IEnumerable<User>> GetAllItems()
-	{
-		IEnumerable<User> categories;
-		categories = await bankableContext.Users.ToListAsync();
-		return categories;
-	}
 
 }

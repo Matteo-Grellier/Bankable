@@ -12,6 +12,19 @@ public class CategoryService
 {
 	BankableContext bankableContext = new();
 
+	public async Task<IEnumerable<Category>> GetAllItems()
+	{
+		IEnumerable<Category> categories;
+		categories = await bankableContext.Categories.ToListAsync();
+		return categories;
+	}
+
+	public async Task<Category> GetItemByID(Guid id)
+	{
+		var category = await bankableContext.Categories.SingleAsync(e => e.Id == id);
+		return category;
+	}
+
 	public async Task<EntityEntry<Category>> AddItem(Category category)
 	{
 		EntityEntry<Category> addedCategory = bankableContext.Add(category);
@@ -33,17 +46,5 @@ public class CategoryService
 		return "Item has been removed";
 	}
 
-	public async Task<Category> GetItemByID(Guid id)
-	{
-		var category = await bankableContext.Categories.SingleAsync(e => e.Id == id);
-		return category;
-	}
-
-	public async Task<IEnumerable<Category>> GetAllItems()
-	{
-		IEnumerable<Category> categories;
-		categories = await bankableContext.Categories.ToListAsync();
-		return categories;
-	}
 
 }

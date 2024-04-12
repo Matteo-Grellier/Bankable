@@ -19,6 +19,17 @@ public class SpendingService
 		return Spendings;
 	}
 
+		public async Task<Spending> GetItemByID(Guid id)
+	{
+		var spending = await bankableContext.Spendings.SingleAsync(e => e.Id == id);
+		return spending;
+	}
+
+	public async Task<List<Spending>> GetItemsByCategory(Category category)
+	{
+		return await bankableContext.Spendings.Where(e => category.Id == e.CategoryId).ToListAsync();
+	}
+
 	public async Task<EntityEntry<Spending>> AddItem(Spending Spending)
 	{
 		var addedSpending = bankableContext.Add(Spending);
@@ -38,16 +49,5 @@ public class SpendingService
 		bankableContext.Remove(Spending);
 		await bankableContext.SaveChangesAsync();
 		return "Item has been removed";
-	}
-
-	public async Task<Spending> GetItemByID(Guid id)
-	{
-		var spending = await bankableContext.Spendings.SingleAsync(e => e.Id == id);
-		return spending;
-	}
-
-	public async Task<List<Spending>> GetItemsByCategory(Category category)
-	{
-		return await bankableContext.Spendings.Where(e => category.Id == e.CategoryId).ToListAsync();
 	}
 }
