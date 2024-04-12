@@ -3,6 +3,7 @@
         xmlns:vm="using:Bankable.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="Bankable.Views.MainWindow"
@@ -31,16 +32,17 @@
                     <avalonia:MaterialIcon Kind="Add" Width="24" Height="24"/>
                     <Button.Flyout>
                         <MenuFlyout Placement="TopEdgeAlignedRight">
-                            <MenuItem Header="Add Incoming"></MenuItem>
-                            <MenuItem Header="Add Spending"></MenuItem>
-                            <MenuItem Header="Add a Spared spending"></MenuItem>
-                            <MenuItem Header="Add a Saving"></MenuItem>
+                            <MenuItem Header="Add Bank account" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddBankAccountViewModel}"></MenuItem>
+                            <MenuItem Header="Add Incoming" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddIncomingViewModel}"></MenuItem>
+                            <!-- <MenuItem Header="Add Spending" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=OpenDialogCommand}"></MenuItem> -->
+                            <MenuItem Header="Add Spending" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddSpendingViewModel}"></MenuItem>
+                            <MenuItem Header="Add a Saving Project" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddSavingProjectViewModel}"></MenuItem>
+                            <MenuItem Header="Add a Saving" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddSavingViewModel}"></MenuItem>
                         </MenuFlyout>                          
                     </Button.Flyout>
                 </Button>  
                 <StackPanel></StackPanel>
             </DockPanel>
-
             <StackPanel DockPanel.Dock="Top" Spacing="40" Margin="20 20 0 0" >
                 <Button Classes="textAndIcon" FontSize="24" Command="{Binding Home}">
                     <StackPanel Orientation="Horizontal" Spacing="10">
@@ -68,6 +70,15 @@
             <ToggleButton Margin="0 10">Compte 2</ToggleButton>
             <ToggleButton Margin="0 10">Compte commun</ToggleButton>
         </StackPanel>
-        <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
+        <dialogHost:DialogHost CloseOnClickAway="True" Identifier="AddDialog">
+            <dialogHost:DialogHost.DialogContent>
+                
+            </dialogHost:DialogHost.DialogContent>
+            <!-- put the content over which the dialog is shown here (e.g. your main window grid)-->
+            
+            <!-- Main content of the app -->
+            <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
+
+        </dialogHost:DialogHost>
     </DockPanel>
 </Window>

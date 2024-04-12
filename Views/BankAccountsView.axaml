@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="using:Bankable.ViewModels"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:DataType="vm:BankAccountsViewModel"
@@ -14,6 +15,15 @@
         </StackPanel>
         <StackPanel>
             <TextBlock>BankAccounts View!</TextBlock>
+            <!-- <dialogHost:DialogHost CloseOnClickAway="True" IsOpen="True"> -->
+            <!--     <dialogHost:DialogHost.DialogContent> -->
+            <!--         <StackPanel Orientation="Horizontal" Spacing="10"> -->
+            <!--             <avalonia:MaterialIcon Kind="BankOutline" Width="24" Height="24"/> -->
+            <!--             <TextBlock Text="Bank Accounts"/> -->
+            <!--         </StackPanel> -->
+            <!--     </dialogHost:DialogHost.DialogContent> -->
+            <!--     ~1~ put the content over which the dialog is shown here (e.g. your main window grid)@1@ -->
+            <!-- </dialogHost:DialogHost> -->
             <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
         </StackPanel>
     </DockPanel>

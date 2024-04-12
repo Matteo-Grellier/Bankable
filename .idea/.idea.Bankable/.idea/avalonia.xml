@@ -7,11 +7,18 @@
         <entry key="Styles/AddButton.axaml" value="Bankable.csproj" />
         <entry key="Styles/AppStyle.axaml" value="Bankable.csproj" />
         <entry key="Styles/AppStyles.axaml" value="Bankable.csproj" />
+        <entry key="Views/AddIncomingView.axaml" value="Bankable.csproj" />
         <entry key="Views/BankAccounts.axaml" value="Bankable.csproj" />
         <entry key="Views/BankAccounts/BankAccountsDashboard.axaml" value="Bankable.csproj" />
         <entry key="Views/BankAccounts/BankAccountsDashboardView.axaml" value="Bankable.csproj" />
         <entry key="Views/BankAccounts/BankAccountsListView.axaml" value="Bankable.csproj" />
         <entry key="Views/BankAccountsView.axaml" value="Bankable.csproj" />
+        <entry key="Views/Dialogs/AddBankAccountVIew.axaml" value="Bankable.csproj" />
+        <entry key="Views/Dialogs/AddIncomingView.axaml" value="Bankable.csproj" />
+        <entry key="Views/Dialogs/AddSaving.axaml" value="Bankable.csproj" />
+        <entry key="Views/Dialogs/AddSavingProjectView.axaml" value="Bankable.csproj" />
+        <entry key="Views/Dialogs/AddSavingView.axaml" value="Bankable.csproj" />
+        <entry key="Views/Dialogs/AddSpendingView.axaml" value="Bankable.csproj" />
         <entry key="Views/Home/HomeDashboard.axaml" value="Bankable.csproj" />
         <entry key="Views/Home/HomeDashboardView.axaml" value="Bankable.csproj" />
         <entry key="Views/Home/HomeListView.axaml" value="Bankable.csproj" />
