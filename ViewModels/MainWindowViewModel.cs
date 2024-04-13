@@ -8,9 +8,17 @@ using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Extensions;
+using Bankable.Services;
+using System.Linq;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    private UserService userService = new();
+    private CategoryService categoryService = new();
+    private BankAccountService bankAccountService = new();
+    private SpendingService spendingService = new();
+
+
     private ViewModelBase _contentViewModel;
     public ViewModelBase ContentViewModel
     {
@@ -32,9 +40,21 @@ public class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref _donutChartViewModel, value);
     }
 
-    public void Home()
+    public async void Home()
     {
         ContentViewModel = new HomeViewModel();
+        await userService.AddItem(new Models.User { CreatedAt = DateTime.UtcNow, FirstName = "Mattéo", LastName = "Grellier" });
+        var user = userService.GetAllItems().Result.First();
+        await bankAccountService.AddItem(new Models.BankAccount { CreatedAt = DateTime.UtcNow, Amount = 56000, Description = "My main bank account", Name = "Main bank account", UserId = user.Id });
+        var bankAccount = bankAccountService.GetAllItems().Result.First();
+        // await categoryService.AddItem(new Models.Category { Name = "Manger" });
+        // await categoryService.AddItem(new Models.Category { Name = "Dormir" });
+        var singleCategory = categoryService.GetAllItems().Result.First();
+        var secondCategory = categoryService.GetAllItems().Result.ElementAt(6);
+        // await spendingService.AddItem(new Models.Spending { Amount = 10, Description = "My first spending", Date = DateTime.UtcNow, BankAccountId = bankAccount.Id, CategoryId = singleCategory.Id, IsUseful = true, IsRecurrent = true, Title = "First spending" });
+        // await spendingService.AddItem(new Models.Spending { Amount = 50, Description = "My second spending", Date = DateTime.UtcNow, BankAccountId = bankAccount.Id, CategoryId = singleCategory.Id, IsUseful = true, IsRecurrent = true, Title = "Second spending" });
+        await spendingService.AddItem(new Models.Spending { Amount = 20, Description = "encore", Date = DateTime.UtcNow, BankAccountId = bankAccount.Id, CategoryId = secondCategory.Id, IsUseful = true, IsRecurrent = false, Title = "plus" });
+        await spendingService.AddItem(new Models.Spending { Amount = 20, Description = "encore mdr", Date = DateTime.UtcNow, BankAccountId = bankAccount.Id, CategoryId = secondCategory.Id, IsUseful = true, IsRecurrent = false, Title = "plus" });
     }
 
     public void BankAccounts()
