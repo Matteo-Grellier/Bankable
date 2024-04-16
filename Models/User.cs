@@ -19,8 +19,14 @@ public class User
 
 	[MaxLength(50)]
 	public string LastName { get; set; } = null!;
-	public ICollection<SavingProject> SavingProjects { get; set; } = new List<SavingProject>();
 
-	public ICollection<BankAccount> BankAccounts { get; set; } = new List<BankAccount>();
+	[MaxLength(50)]
+	public string Username { get; set; } = null!;
+	public string Password { get; set; } = null!;
+	public ICollection<SavingProject> SavingProjects { get; } = new List<SavingProject>();
 
+	public ICollection<BankAccount> BankAccounts { get; } = new List<BankAccount>();
+
+	public Token? Token { get; set; } = null!;
+	public Guid TokenId { get; set; }
 }

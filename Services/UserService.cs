@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Bankable.Models;
 using Microsoft.EntityFrameworkCore;
@@ -24,12 +26,24 @@ public class UserService
 		var user = await bankableContext.Users.SingleAsync(e => e.Id == id);
 		return user;
 	}
+	public async Task<User> GetLastCreatedItem()
+	{
+		var user = await bankableContext.Users.OrderByDescending(e => e.CreatedAt).FirstAsync();
+		return user;
+	}
 
 	public async Task<EntityEntry<User>> AddItem(User user)
 	{
-		EntityEntry<User> addedCategory = bankableContext.Add(user);
-		await bankableContext.SaveChangesAsync();
-		return addedCategory;
+		try
+		{
+			EntityEntry<User> addedCategory = bankableContext.Add(user);
+			await bankableContext.SaveChangesAsync();
+			return addedCategory;
+		}
+		catch (Exception)
+		{
+			throw;
+		}
 	}
 
 	public async Task<EntityEntry<User>> UpdateItem(User user)
@@ -46,6 +60,13 @@ public class UserService
 		return "Item has been removed";
 	}
 
+	public async Task<User> VerifyUser(string username, string password)
+	{
+		var sha256 = SHA256.Create();
+		var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-
+		var hash = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+		var user = await bankableContext.Users.SingleAsync(e => e.Username == username && e.Password == hash);
+		return user;
+	}
 }

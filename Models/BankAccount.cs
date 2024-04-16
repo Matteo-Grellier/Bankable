@@ -25,7 +25,7 @@ public class BankAccount
 
 	public User User { get; set; } = null!;
 
-	public ICollection<Incoming> Incomings { get; set; } = new List<Incoming>();
-	public ICollection<Spending> Spendings { get; set; } = new List<Spending>();
+	public ICollection<Incoming> Incomings { get; } = new List<Incoming>();
+	public ICollection<Spending> Spendings { get; } = new List<Spending>();
 
 }

@@ -206,6 +206,30 @@ namespace Bankable.Migrations
                     b.ToTable("Spendings");
                 });
 
+            modelBuilder.Entity("Bankable.Models.Token", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("Value")
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Tokens");
+                });
+
             modelBuilder.Entity("Bankable.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -225,7 +249,19 @@ namespace Bankable.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("TokenId")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -304,6 +340,17 @@ namespace Bankable.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("Bankable.Models.Token", b =>
+                {
+                    b.HasOne("Bankable.Models.User", "User")
+                        .WithOne("Token")
+                        .HasForeignKey("Bankable.Models.Token", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Bankable.Models.BankAccount", b =>
                 {
                     b.Navigation("Incomings");
@@ -328,6 +375,8 @@ namespace Bankable.Migrations
                     b.Navigation("BankAccounts");
 
                     b.Navigation("SavingProjects");
+
+                    b.Navigation("Token");
                 });
 #pragma warning restore 612, 618
         }

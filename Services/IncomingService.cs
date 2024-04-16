@@ -11,6 +11,7 @@ namespace Bankable.Services;
 public class IncomingService
 {
 	BankableContext bankableContext = new();
+	BankAccountService bankAccountService = new();
 
 	public async Task<IEnumerable<Incoming>> GetAllItems()
 	{
@@ -29,6 +30,11 @@ public class IncomingService
 	{
 		Console.WriteLine(category.Id);
 		return await bankableContext.Incomings.Where(e => category.Id == e.CategoryId).ToListAsync();
+	}
+
+	public List<Incoming> GetItemsForUser()
+	{
+		return bankableContext.Incomings.Where(e => e.BankAccount.UserId == BankableContext.CurrentConnectedUser.Id).ToList();
 	}
 
 	public async Task<EntityEntry<Incoming>> AddItem(Incoming incoming)
