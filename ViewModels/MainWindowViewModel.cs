@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
+using Bankable.Models;
+using Bankable.Services;
 using Bankable.ViewModels.Dialogs;
 using ReactiveUI;
 namespace Bankable.ViewModels;
@@ -8,6 +11,25 @@ using DialogHostAvalonia;
 public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _contentViewModel;
+
+    private UserService _userService = new();
+
+    public MainWindowViewModel()
+    {
+        // if (_userService.GetAllItems() == null)
+        // {
+        //     var newUser = new User{FirstName = "Mathéo", LastName = "LEGER"};
+        //     _userService.AddItem(newUser);
+        //
+        // }
+        
+        // UserService.CurrentUser = _userService.GetAllItems().Result.First();
+        
+        Console.WriteLine(UserService.CurrentUser);
+        
+        // var newUser = new User{FirstName = "Mathéo", LastName = "LEGER"};
+        // _userService.AddItem(newUser);
+    }
 
     public ViewModelBase ContentViewModel
     {
