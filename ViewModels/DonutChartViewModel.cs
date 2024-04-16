@@ -14,7 +14,7 @@ public class DonutChartViewModel: ViewModelBase
 {
     public DonutChartViewModel()
     {
-        SetListMonthSpending();
+        GetDataFromServices();
     }
 
     private static int _index = 0;
@@ -24,7 +24,7 @@ public class DonutChartViewModel: ViewModelBase
     public IEnumerable<ISeries> Series {get; set;}
 
 
-    private async void SetListMonthSpending()
+    private async void GetDataFromServices()
     {
         IEnumerable<Category> categories = await _categoryService.GetAllItems();
 

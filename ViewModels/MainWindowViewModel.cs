@@ -26,18 +26,11 @@ public class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
     }
 
-    private ViewModelBase _barsChartViewModel = new BarsChartViewModel();
-    public ViewModelBase BarsChartViewModel
+    private ViewModelBase _testChartViewModel = new SpendingLineChartViewModel();
+    public ViewModelBase TestChartViewModel
     {
-        get => _barsChartViewModel;
-        private set => this.RaiseAndSetIfChanged(ref _barsChartViewModel, value);
-    }
-
-    private ViewModelBase _donutChartViewModel = new DonutChartViewModel();
-    public ViewModelBase DonutChartViewModel
-    {
-        get => _donutChartViewModel;
-        private set => this.RaiseAndSetIfChanged(ref _donutChartViewModel, value);
+        get => _testChartViewModel;
+        private set => this.RaiseAndSetIfChanged(ref _testChartViewModel, value);
     }
 
     public async void Home()

@@ -73,9 +73,6 @@
             <ToggleButton Margin="0 10">Compte commun</ToggleButton>
         </StackPanel>
         <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
-        <!-- <lvc:CartesianChart 
-            Series="{Binding Series}"> 
-        </lvc:CartesianChart> -->
-        <ContentControl Content="{Binding DonutChartViewModel}"></ContentControl>
+        <ContentControl Content="{Binding TestChartViewModel}"></ContentControl>
     </DockPanel>
 </Window>

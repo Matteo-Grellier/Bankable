@@ -31,6 +31,12 @@ public class SpendingService
 		return spending;
 	}
 
+	public async Task<IEnumerable<Spending>> GetAllSpendingsInMonth(int month)
+	{
+		var spending = await bankableContext.Spendings.Where(e => e.Date.Month == month).ToListAsync();
+		return spending;
+	}
+
 	public async Task<List<Spending>> GetItemsByCategory(Category category)
 	{
 		return await bankableContext.Spendings.Where(e => category.Id == e.CategoryId).ToListAsync();
