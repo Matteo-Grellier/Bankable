@@ -1,28 +1,39 @@
-﻿using ReactiveUI;
+﻿using System;
+using System.Linq;
+using Bankable.Models;
+using Bankable.Services;
+using ReactiveUI;
 namespace Bankable.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase _contentViewModel;
+	private ViewModelBase _contentViewModel;
 
-    public ViewModelBase ContentViewModel
-    {
-        get => _contentViewModel;
-        private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
-    }
+	private BankableContext _context = new();
 
-    public void Home()
-    {
-        ContentViewModel = new HomeViewModel();
-    }
 
-    public void BankAccounts()
-    {
-        ContentViewModel = new BankAccountsViewModel();
-    }
+	public ViewModelBase ContentViewModel
+	{
+		get => _contentViewModel;
+		private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+	}
+	IncomingService incomingService = new();
+	DataFaker dataFaker = new();
+	public void Home()
+	{
+		dataFaker.GenerateData();
+		// await loginService.Login("lanayr", "zefze");
+		// Console.WriteLine(incomingService.GetItemsForUser().Count);
+		ContentViewModel = new HomeViewModel();
+	}
 
-    public void Savings()
-    {
-        ContentViewModel = new SavingsViewModel();
-    }
+	public void BankAccounts()
+	{
+		ContentViewModel = new BankAccountsViewModel();
+	}
+
+	public void Savings()
+	{
+		ContentViewModel = new SavingsViewModel();
+	}
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Bankable.Models;
 
 namespace Bankable.Services;
-public class LoginService
+public class AuthenticationService
 {
 	UserService userService = new();
 	TokenService tokenService = new();
@@ -25,20 +25,20 @@ public class LoginService
 		tokenService.DeleteToken(guid);
 	}
 
-	public async Task<Guid> Register(string username, string password, string firstName, string lastName)
+	public async Task<Guid> Register(User user)
 	{
 		var sha256 = SHA256.Create();
-		var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+		var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(user.Password));
 
 		// Get the hashed string.
 		var hash = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
 
 		User newUser = new User
 		{
-			Username = username,
+			Username = user.Username,
 			Password = hash,
-			FirstName = firstName,
-			LastName = lastName,
+			FirstName = user.FirstName,
+			LastName = user.LastName,
 			CreatedAt = DateTime.UtcNow,
 		};
 		Console.WriteLine(newUser.TokenId);

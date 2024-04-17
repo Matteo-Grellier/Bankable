@@ -29,6 +29,7 @@ public class BankAccountService
 	public async Task<List<BankAccount>> GetItemsByUser()
 	{
 		Console.WriteLine(BankableContext.CurrentConnectedUser.Id);
+		Console.WriteLine("wtf : " + await bankableContext.BankAccounts.Where(e => BankableContext.CurrentConnectedUser.Id == e.UserId).CountAsync());
 		return await bankableContext.BankAccounts.Where(e => BankableContext.CurrentConnectedUser.Id == e.UserId).ToListAsync();
 	}
 	public async Task<EntityEntry<BankAccount>> AddItem(BankAccount bankAccount)

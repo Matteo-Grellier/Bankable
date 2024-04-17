@@ -11,9 +11,9 @@ public class CategoryService
 {
 	BankableContext bankableContext = new();
 
-	public async Task<IEnumerable<Category>> GetAllItems()
+	public async Task<List<Category>> GetAllItems()
 	{
-		IEnumerable<Category> categories;
+		List<Category> categories;
 		categories = await bankableContext.Categories.ToListAsync();
 		return categories;
 	}
