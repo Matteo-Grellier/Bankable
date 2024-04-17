@@ -60,7 +60,7 @@ public class UserService
 		return "Item has been removed";
 	}
 
-	public async Task<User> VerifyUser(string username, string password)
+	public async Task<User> VerifyAndGetUser(string username, string password)
 	{
 		var sha256 = SHA256.Create();
 		var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
