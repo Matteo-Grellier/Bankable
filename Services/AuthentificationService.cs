@@ -13,7 +13,7 @@ public class LoginService
 	// login and generate token
 	public async Task<string> Login(string username, string password)
 	{
-		var user = await userService.VerifyUser(username, password);
+		var user = await userService.VerifyAndGetUser(username, password);
 		if (user != null)
 		{
 			BankableContext.CurrentConnectedUser = user;
@@ -41,10 +41,8 @@ public class LoginService
 			LastName = lastName,
 			CreatedAt = DateTime.UtcNow,
 		};
-		Console.WriteLine(newUser.TokenId);
 		await userService.AddItem(newUser);
 		userService.GetLastCreatedItem().Result.TokenId = await tokenService.CreateToken();
-		Console.WriteLine(newUser.TokenId);
 		return Guid.NewGuid();
 	}
 }
