@@ -2,6 +2,7 @@ using System;
 using System.Reactive;
 using System.Reactive.Linq;
 using Bankable.Models;
+using Bankable.Services;
 using DialogHostAvalonia;
 using ReactiveUI;
 
@@ -11,6 +12,8 @@ public class AddBankAccountViewModel: ViewModelBase
 {
     private string _name = string.Empty;
     private string _description = string.Empty;
+
+    private BankAccountService _bankAccountService = new();
     
     public ReactiveCommand<Unit, BankAccount> ConfirmationCommand { get; }
 
@@ -25,8 +28,10 @@ public class AddBankAccountViewModel: ViewModelBase
         ConfirmationCommand = ReactiveCommand.Create(
             () =>
             {
+                var newBankAccount = new BankAccount { Description = Description, Name = Name };
+                _ = _bankAccountService.AddItem(new BankAccount { Description = Description, Name = Name });
                 DialogHost.Close("AddDialog");
-                return new BankAccount { Description = Description, Name = Name };
+                return newBankAccount;
             }, isValidObservable);
         // CancelCommand = ReactiveCommand.Create(() => { })
     }

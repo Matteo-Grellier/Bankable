@@ -12,25 +12,6 @@ public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _contentViewModel;
 
-    private UserService _userService = new();
-
-    public MainWindowViewModel()
-    {
-        // if (_userService.GetAllItems() == null)
-        // {
-        //     var newUser = new User{FirstName = "Mathéo", LastName = "LEGER"};
-        //     _userService.AddItem(newUser);
-        //
-        // }
-        
-        // UserService.CurrentUser = _userService.GetAllItems().Result.First();
-        
-        Console.WriteLine(UserService.CurrentUser);
-        
-        // var newUser = new User{FirstName = "Mathéo", LastName = "LEGER"};
-        // _userService.AddItem(newUser);
-    }
-
     public ViewModelBase ContentViewModel
     {
         get => _contentViewModel;
