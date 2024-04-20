@@ -13,7 +13,7 @@ public class AuthenticationService
 	// login and generate token
 	public async Task<string> Login(string username, string password)
 	{
-		var user = await userService.VerifyUser(username, password);
+		var user = await userService.VerifyAndGetUser(username, password);
 		if (user != null)
 		{
 			BankableContext.CurrentConnectedUser = user;

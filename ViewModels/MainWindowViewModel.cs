@@ -22,8 +22,6 @@ public class MainWindowViewModel : ViewModelBase
 	public void Home()
 	{
 		dataFaker.GenerateData();
-		// await loginService.Login("lanayr", "zefze");
-		// Console.WriteLine(incomingService.GetItemsForUser().Count);
 		ContentViewModel = new HomeViewModel();
 	}
 
