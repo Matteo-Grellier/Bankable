@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Bankable.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bankable.Services;
 
@@ -27,10 +29,10 @@ public class TokenService
 		}
 	}
 
-	public async Task<Guid> GetToken(Guid index)
+	public async Task<Token> GetToken()
 	{
-		var token = await bankableContext.Tokens.FindAsync(index);
-		return token!.Value;
+		var token = await bankableContext.Tokens.FirstAsync();
+		return token!;
 	}
 
 	public void DeleteToken(Guid index)
