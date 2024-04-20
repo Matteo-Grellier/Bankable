@@ -41,10 +41,8 @@ public class AuthenticationService
 			LastName = user.LastName,
 			CreatedAt = DateTime.UtcNow,
 		};
-		Console.WriteLine(newUser.TokenId);
 		await userService.AddItem(newUser);
 		userService.GetLastCreatedItem().Result.TokenId = await tokenService.CreateToken();
-		Console.WriteLine(newUser.TokenId);
 		return Guid.NewGuid();
 	}
 }

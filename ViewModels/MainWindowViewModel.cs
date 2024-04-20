@@ -17,7 +17,6 @@ public class MainWindowViewModel : ViewModelBase
 		get => _contentViewModel;
 		private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
 	}
-	IncomingService incomingService = new();
 	DataFaker dataFaker = new();
 	public void Home()
 	{

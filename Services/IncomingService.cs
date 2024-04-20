@@ -28,7 +28,6 @@ public class IncomingService
 
 	public async Task<List<Incoming>> GetItemsByCategory(Category category)
 	{
-		Console.WriteLine(category.Id);
 		return await bankableContext.Incomings.Where(e => category.Id == e.CategoryId).ToListAsync();
 	}
 

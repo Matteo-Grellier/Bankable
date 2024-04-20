@@ -8,7 +8,7 @@ namespace Bankable.Models;
 public class Category
 {
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	public Guid Id { get; set; }
+	public Guid Id { get; private set; }
 
 	[MaxLength(50)]
 	public required string Name { get; set; }
