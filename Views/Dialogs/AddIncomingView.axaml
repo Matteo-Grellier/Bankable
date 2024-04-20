@@ -14,12 +14,16 @@
         <TextBox 
             Text="{Binding Title}" 
             Watermark="Please enter the title of the income" 
-            AcceptsReturn="False"/>
+            AcceptsReturn="False"
+            MaxLength="50"/>
         <StackPanel Orientation="Horizontal">
-            <SplitButton Content="Category">
+            <SplitButton Content="{Binding SelectedCategory.Name, FallbackValue=Category}">
                 <SplitButton.Flyout>
-                    <Flyout>
-                        <ListBox ItemsSource="{Binding AvailableCategories}">
+                    <Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
+                        <ListBox 
+                            Height="150" 
+                            ItemsSource="{Binding AvailableCategories}" 
+                            SelectedItem="{Binding SelectedCategory}">
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -34,14 +38,13 @@
                     </Flyout>
                 </SplitButton.Flyout>
             </SplitButton>
-            <SplitButton Content="Bank account">
+            <SplitButton Content="{Binding SelectedBankAccount.Name, FallbackValue=Bank Account}">
                 <SplitButton.Flyout>
-                    <!-- <MenuFlyout Placement="Bottom"> -->
-                    <!--     <MenuItem Header="Compte 1"/> -->
-                    <!--     <MenuItem Header="Compte 2"/> -->
-                    <!-- </MenuFlyout>                      -->
                     <Flyout>
-                        <ListBox ItemsSource="{Binding AvailableBankAccounts}">
+                        <ListBox 
+                            Height="150" 
+                            ItemsSource="{Binding AvailableBankAccounts}"
+                            SelectedItem="{Binding SelectedBankAccount}">
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -57,13 +60,17 @@
                 </SplitButton.Flyout>
             </SplitButton>
         </StackPanel>
+        <Label>Amount</Label>
+        <NumericUpDown Value="{Binding Amount}" Watermark="Amount of the income" Minimum="0"/>
         <Label>Description</Label>
         <TextBox 
             Width="500" 
             Height="200" 
             Text="{Binding Description}" 
             Watermark="Describe your income." 
-            TextWrapping="Wrap" AcceptsReturn="True"/>
+            TextWrapping="Wrap" 
+            AcceptsReturn="True"
+            MaxLength="50"/>
         <Button 
             HorizontalAlignment="Center" 
             Command="{Binding ConfirmationCommand}" 
