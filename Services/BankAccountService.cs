@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Bankable.Models;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ public class BankAccountService
 {
 	BankableContext bankableContext = new();
 
+	// Get all bank accounts for a user
 	public async Task<IEnumerable<BankAccount>> GetAllItems()
 	{
 		IEnumerable<BankAccount> bankAccounts;
@@ -22,6 +24,11 @@ public class BankAccountService
 	{
 		var bankAccount = await bankableContext.BankAccounts.SingleAsync(e => e.Id == id);
 		return bankAccount;
+	}
+
+	public async Task<List<BankAccount>> GetItemsByUser()
+	{
+		return await bankableContext.BankAccounts.Where(e => BankableContext.CurrentConnectedUser.Id == e.UserId).ToListAsync();
 	}
 	public async Task<EntityEntry<BankAccount>> AddItem(BankAccount bankAccount)
 	{
@@ -43,6 +50,4 @@ public class BankAccountService
 		await bankableContext.SaveChangesAsync();
 		return "Item has been removed";
 	}
-
-
 }

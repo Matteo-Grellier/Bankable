@@ -9,7 +9,7 @@ namespace Bankable.Models;
 public class Incoming
 {
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	public Guid Id { get; set; }
+	public Guid Id { get; private set; }
 
 	public Guid BankAccountId { get; set; }
 
