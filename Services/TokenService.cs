@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bankable.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace Bankable.Services;
 
 public class TokenService

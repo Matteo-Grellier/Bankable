@@ -33,6 +33,7 @@ public class BankAccountService
 	public async Task<EntityEntry<BankAccount>> AddItem(BankAccount bankAccount)
 	{
 		var addedBankAccount = bankableContext.Add(bankAccount);
+		Console.WriteLine(bankAccount.Id);
 		await bankableContext.SaveChangesAsync();
 		return addedBankAccount;
 	}
