@@ -28,10 +28,24 @@ public class AddBankAccountViewModel: ViewModelBase
         ConfirmationCommand = ReactiveCommand.Create(
             () =>
             {
-                var newBankAccount = new BankAccount { Description = Description, Name = Name };
-                _ = _bankAccountService.AddItem(new BankAccount { Description = Description, Name = Name });
-                DialogHost.Close("AddDialog");
-                return newBankAccount;
+                try
+                {
+                    var newBankAccount = _bankAccountService.AddItem(
+                        new BankAccount {
+                            Description = Description, 
+                            Name = Name, 
+                            UserId = BankableContext.CurrentConnectedUser.Id 
+                        }
+                    ).Result.Entity;
+                    
+                    DialogHost.Close("AddDialog");
+                    return newBankAccount;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw;
+                }
             }, isValidObservable);
         // CancelCommand = ReactiveCommand.Create(() => { })
     }

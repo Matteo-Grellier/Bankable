@@ -81,10 +81,10 @@ public class AddIncomingViewModel: ViewModelBase
     private async void SetAvailableProperties()
     {
         // await _categoryService.AddItem(new Category { Name = "Loisirs" });
-        var availableCategories = await _categoryService.GetAllItems();
-        AvailableCategories = availableCategories.ToList();
+        // var availableCategories = await _categoryService.GetAllItems();
+        AvailableCategories = await _categoryService.GetAllItems();
 
-        var availableBankAccounts = await _bankAccountService.GetAllItems();
-        AvailableBankAccounts = availableBankAccounts.ToList();
+        // var availableBankAccounts = await _bankAccountService.GetItemsByUser();
+        AvailableBankAccounts = await _bankAccountService.GetItemsByUser();
     }
 }

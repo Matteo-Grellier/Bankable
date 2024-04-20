@@ -14,11 +14,9 @@ public class MainWindowViewModel : ViewModelBase
 
 	private BankableContext _context = new();
 
-    public AddBankAccountViewModel AddBankAccountViewModel { get; } = new();
-    public AddIncomingViewModel AddIncomingViewModel { get; } = new();
-    public AddSavingViewModel AddSavingViewModel { get; } = new();
-    public AddSavingProjectViewModel AddSavingProjectViewModel { get; } = new();
-    public AddSpendingViewModel AddSpendingViewModel { get; } = new();
+	private UserService _userService = new();
+
+	private TokenService _tokenService = new();
 
 	public ViewModelBase ContentViewModel
 	{
@@ -26,11 +24,39 @@ public class MainWindowViewModel : ViewModelBase
 		private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
 	}
 
+	public MainWindowViewModel()
+	{
+		SetCurrentUser();
+	}
+
+	private async void SetCurrentUser()
+	{
+		try
+		{
+			var currentToken = await _tokenService.GetToken();
+			Console.WriteLine(currentToken);
+			BankableContext.CurrentConnectedUser = await _userService.GetItemByToken(currentToken.Id);
+			Console.WriteLine(BankableContext.CurrentConnectedUser.Username);
+		}
+		catch (Exception exception)
+		{
+			Console.WriteLine(exception.Message);
+		}
+
+	}
+	
+	private async void ShowAddDialog(ViewModelBase addDialogViewModel)
+	{
+		if(DialogHost.IsDialogOpen("AddDialog"))
+			DialogHost.Close("AddDialog");
+		await DialogHost.Show(addDialogViewModel, "AddDialog");
+	}
+
     // Change the content of the ContentControl with the corresponding Navbar buttons (Home, BankAccounts, Savings)
-	DataFaker dataFaker = new();
+	DataFaker _dataFaker = new();
 	public void Home()
 	{
-		dataFaker.GenerateData();
+		// _dataFaker.GenerateData();
 		ContentViewModel = new HomeViewModel();
 	}
 
@@ -44,11 +70,30 @@ public class MainWindowViewModel : ViewModelBase
 		ContentViewModel = new SavingsViewModel();
 	}
     
-    // Commands
-    public async void ShowAddDialog(ViewModelBase addDialogViewModel)
+    // Commands to show add dialogs according to view models
+    public void ShowAddBankAccountViewModel()
     {
-        if(DialogHost.IsDialogOpen("AddDialog"))
-            DialogHost.Close("AddDialog");
-        await DialogHost.Show(addDialogViewModel, "AddDialog");
+	    ShowAddDialog(new AddBankAccountViewModel());
     }
+
+    public void ShowAddIncomingViewModel()
+    {
+	    ShowAddDialog(new AddIncomingViewModel());
+    }
+    
+    public void ShowAddSavingProjectViewModel()
+    {
+	    ShowAddDialog(new AddSavingProjectViewModel());
+    }
+    
+    public void ShowAddSavingViewModel()
+    {
+	    ShowAddDialog(new AddSavingViewModel());
+    }
+    
+    public void ShowAddSpendingViewModel()
+    {
+	    ShowAddDialog(new AddSpendingViewModel());
+    }
+    
 }

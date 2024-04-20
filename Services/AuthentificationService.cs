@@ -22,7 +22,7 @@ public class AuthenticationService
 	}
 	public void Logout(Guid guid)
 	{
-		tokenService.DeleteToken(guid);
+		tokenService.DeleteToken();
 	}
 
 	public async Task<Guid> Register(User user)
@@ -41,8 +41,12 @@ public class AuthenticationService
 			LastName = user.LastName,
 			CreatedAt = DateTime.UtcNow,
 		};
+		
 		await userService.AddItem(newUser);
+		
 		userService.GetLastCreatedItem().Result.TokenId = await tokenService.CreateToken();
+		await userService.UpdateItem(userService.GetLastCreatedItem().Result);
+		
 		return Guid.NewGuid();
 	}
 }

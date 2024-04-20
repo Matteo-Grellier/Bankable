@@ -32,12 +32,12 @@
                     <avalonia:MaterialIcon Kind="Add" Width="24" Height="24"/>
                     <Button.Flyout>
                         <MenuFlyout Placement="TopEdgeAlignedRight">
-                            <MenuItem Header="Add Bank account" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddBankAccountViewModel}"></MenuItem>
-                            <MenuItem Header="Add Incoming" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddIncomingViewModel}"></MenuItem>
+                            <MenuItem Header="Add Bank account" Command="{Binding ShowAddBankAccountViewModel}"></MenuItem>
+                            <MenuItem Header="Add Incoming" Command="{Binding ShowAddIncomingViewModel}"></MenuItem>
                             <!-- <MenuItem Header="Add Spending" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=OpenDialogCommand}"></MenuItem> -->
-                            <MenuItem Header="Add Spending" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddSpendingViewModel}"></MenuItem>
-                            <MenuItem Header="Add a Saving Project" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddSavingProjectViewModel}"></MenuItem>
-                            <MenuItem Header="Add a Saving" Command="{Binding ShowAddDialog}" CommandParameter="{Binding AddSavingViewModel}"></MenuItem>
+                            <MenuItem Header="Add Spending" Command="{Binding ShowAddSpendingViewModel}"></MenuItem>
+                            <MenuItem Header="Add a Saving Project" Command="{Binding ShowAddSavingProjectViewModel}"></MenuItem>
+                            <MenuItem Header="Add a Saving" Command="{Binding ShowAddSavingViewModel}"></MenuItem>
                         </MenuFlyout>                          
                     </Button.Flyout>
                 </Button>  
