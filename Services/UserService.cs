@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Bankable.Services;
-
 public class UserService
 {
 	BankableContext bankableContext = new();
@@ -29,6 +28,12 @@ public class UserService
 	public async Task<User> GetLastCreatedItem()
 	{
 		var user = await bankableContext.Users.OrderByDescending(e => e.CreatedAt).FirstAsync();
+		return user;
+	}
+
+	public async Task<User> GetItemByToken(Guid token)
+	{
+		var user = await bankableContext.Users.SingleAsync(e => e.TokenId == token);
 		return user;
 	}
 
