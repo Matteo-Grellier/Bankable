@@ -26,7 +26,7 @@ public class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
     }
 
-    private ViewModelBase _testChartViewModel = new SpendingLineChartViewModel();
+    private ViewModelBase _testChartViewModel = new GaugeChartViewModel();
     public ViewModelBase TestChartViewModel
     {
         get => _testChartViewModel;
