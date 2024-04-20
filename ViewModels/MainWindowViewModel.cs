@@ -17,30 +17,29 @@ using System.Linq;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private UserService userService = new();
-    private CategoryService categoryService = new();
-    private BankAccountService bankAccountService = new();
-    private SpendingService spendingService = new();
+	private UserService userService = new();
+	private CategoryService categoryService = new();
+	private BankAccountService bankAccountService = new();
+	private SpendingService spendingService = new();
 
 
-    private ViewModelBase _contentViewModel;
-    public ViewModelBase ContentViewModel
-    {
-        get => _contentViewModel;
-        private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
-    }
+	private ViewModelBase _contentViewModel;
+	public ViewModelBase ContentViewModel
+	{
+		get => _contentViewModel;
+		private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+	}
 
-    private ViewModelBase _testChartViewModel = new GaugeChartViewModel();
-    public ViewModelBase TestChartViewModel
-    {
-        get => _testChartViewModel;
-        private set => this.RaiseAndSetIfChanged(ref _testChartViewModel, value);
-    }
-
+	private ViewModelBase _testChartViewModel = new GaugeChartViewModel();
+	public ViewModelBase TestChartViewModel
+	{
+		get => _testChartViewModel;
+		private set => this.RaiseAndSetIfChanged(ref _testChartViewModel, value);
+	}
 	DataFaker dataFaker = new();
+
 	public void Home()
 	{
-		dataFaker.GenerateData();
 		ContentViewModel = new HomeViewModel();
 	}
 
