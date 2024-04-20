@@ -8,7 +8,7 @@ namespace Bankable.Models;
 public class BankAccount
 {
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	public Guid Id { get; set; }
+	public Guid Id { get; private set; }
 	public Guid UserId { get; set; }
 
 	public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
@@ -25,7 +25,7 @@ public class BankAccount
 
 	public User User { get; set; } = null!;
 
-	public ICollection<Incoming> Incomings { get; set; } = new List<Incoming>();
-	public ICollection<Spending> Spendings { get; set; } = new List<Spending>();
+	public ICollection<Incoming> Incomings { get; } = new List<Incoming>();
+	public ICollection<Spending> Spendings { get; } = new List<Spending>();
 
 }

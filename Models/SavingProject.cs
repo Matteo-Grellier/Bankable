@@ -8,7 +8,7 @@ namespace Bankable.Models;
 public class SavingProject
 {
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	public Guid Id { get; set; }
+	public Guid Id { get; private set; }
 	public Guid UserId { get; set; }
 
 	[MaxLength(50)]
@@ -23,7 +23,7 @@ public class SavingProject
 	public float FinalAmount { get; set; }
 
 	public float CurrentAmountSaved { get; set; }
-	public User User { get; set; } = null!;
+	public User User { get; } = null!;
 
-	public ICollection<Saving> Savings { get; set; } = new List<Saving>();
+	public ICollection<Saving> Savings { get; } = new List<Saving>();
 }

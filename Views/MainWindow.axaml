@@ -63,7 +63,6 @@
                         <TextBlock Text="Savings"/>
                     </StackPanel>
                 </Button>
-                <Button Command="{Binding Start}">Start</Button>
             </StackPanel>
            
         </DockPanel>

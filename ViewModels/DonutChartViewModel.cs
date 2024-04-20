@@ -26,7 +26,7 @@ public class DonutChartViewModel: ViewModelBase
 
     private async void GetDataFromServices()
     {
-        IEnumerable<Category> categories = await _categoryService.GetAllItems();
+        List<Category> categories = await _categoryService.GetAllItems();
 
         List<float> categoriesValues = new List<float>();
         List<string> categoriesNames = new List<string>();

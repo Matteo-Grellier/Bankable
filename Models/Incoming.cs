@@ -9,7 +9,7 @@ namespace Bankable.Models;
 public class Incoming
 {
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	public Guid Id { get; set; }
+	public Guid Id { get; private set; }
 
 	public Guid BankAccountId { get; set; }
 
@@ -25,8 +25,8 @@ public class Incoming
 
 	public Guid CategoryId { get; set; }
 
-	public BankAccount BankAccount { get; } = null!;
+	public BankAccount BankAccount { get; set; } = null!;
 
-	public Category Category { get; } = null!;
+	public Category Category { get; set; } = null!;
 
 }

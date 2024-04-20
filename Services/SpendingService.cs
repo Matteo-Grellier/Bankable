@@ -42,6 +42,11 @@ public class SpendingService
 		return await bankableContext.Spendings.Where(e => category.Id == e.CategoryId).ToListAsync();
 	}
 
+	public List<Spending> GetItemsForUser()
+	{
+		return bankableContext.Spendings.Where(e => e.BankAccount.UserId == BankableContext.CurrentConnectedUser.Id).ToList();
+	}
+
 	public async Task<EntityEntry<Spending>> AddItem(Spending Spending)
 	{
 		var addedSpending = bankableContext.Add(Spending);

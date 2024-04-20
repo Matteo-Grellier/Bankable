@@ -7,11 +7,14 @@ public class BankableContext : DbContext
 {
 	public DbSet<SavingProject> SavingProjects { get; set; }
 	public DbSet<BankAccount> BankAccounts { get; set; }
+	public DbSet<Token> Tokens { get; set; }
 	public DbSet<Saving> Savings { get; set; }
 	public DbSet<User> Users { get; set; }
 	public DbSet<Incoming> Incomings { get; set; }
 	public DbSet<Spending> Spendings { get; set; }
 	public DbSet<Category> Categories { get; set; }
+
+	public static User CurrentConnectedUser { get; set; } = null!;
 
 	public string DbPath { get; }
 
@@ -54,6 +57,10 @@ public class BankableContext : DbContext
 			.HasMany(e => e.spendings)
 			.WithOne(e => e.Category)
 			.HasForeignKey(e => e.CategoryId);
+		modelBuilder.Entity<User>()
+			.HasOne(e => e.Token)
+			.WithOne(e => e.User)
+			.HasForeignKey<Token>(e => e.UserId);
 	}
 	protected override void OnConfiguring(DbContextOptionsBuilder options)
 		=> options.UseSqlite($"Data Source={DbPath}");

@@ -1,4 +1,8 @@
-﻿using ReactiveUI;
+﻿using System;
+using System.Linq;
+using Bankable.Models;
+using Bankable.Services;
+using ReactiveUI;
 namespace Bankable.ViewModels;
 
 using System;
@@ -33,39 +37,20 @@ public class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref _testChartViewModel, value);
     }
 
-    public async void Home()
-    {
-        ContentViewModel = new HomeViewModel();
-    }
+	DataFaker dataFaker = new();
+	public void Home()
+	{
+		dataFaker.GenerateData();
+		ContentViewModel = new HomeViewModel();
+	}
 
-    public void BankAccounts()
-    {
-        ContentViewModel = new BankAccountsViewModel();
-    }
+	public void BankAccounts()
+	{
+		ContentViewModel = new BankAccountsViewModel();
+	}
 
-    public void Savings()
-    {
-        ContentViewModel = new SavingsViewModel();
-    }
-
-    public void Start()
-    {
-        Series[0].Name = "Catégorie";
-        Series[0].Values = valuesCollection;
-        Random rnd = new Random();
-        for (int i = 0; i < rnd.Next(5, 13); i++)
-        {
-            valuesCollection.Add(rnd.Next(1, 13));
-        }
-    }
-
-    public ISeries[] Series {get; set;} = new ISeries[] { new LineSeries<double>() };
-
-    private ObservableCollection<double> valuesCollection = new ObservableCollection<double>();
-
-    public IEnumerable<ISeries> PieSeries { get; set; } =
-        new[] { 2, 4, 1, 4, 3 }.AsPieSeries( (value, series) =>
-        {
-            series.MaxRadialColumnWidth = 60;
-        });
+	public void Savings()
+	{
+		ContentViewModel = new SavingsViewModel();
+	}
 }
