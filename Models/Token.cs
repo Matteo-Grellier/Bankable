@@ -5,15 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bankable.Models;
 
-public class Category
+public class Token
 {
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	public Guid Id { get; private set; }
+	public Guid UserId { get; set; }
+	public DateTime CreatedAt
+	{ get; set; } = DateTime.UtcNow;
 
 	[MaxLength(50)]
-	public required string Name { get; set; }
-
-	public ICollection<Incoming> incomings { get; } = [];
-
-	public ICollection<Spending> spendings { get; } = [];
+	public Guid Value { get; set; }
+	public User User { get; }
 }

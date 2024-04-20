@@ -8,7 +8,7 @@ namespace Bankable.Models;
 public class User
 {
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	public Guid Id { get; set; }
+	public Guid Id { get; private set; }
 
 	public DateTime CreatedAt { get; set; } = DateTime.Now;
 
@@ -19,8 +19,15 @@ public class User
 
 	[MaxLength(50)]
 	public string LastName { get; set; } = null!;
-	public ICollection<SavingProject> SavingProjects { get; set; } = new List<SavingProject>();
 
-	public ICollection<BankAccount> BankAccounts { get; set; } = new List<BankAccount>();
+	[MaxLength(50)]
+	public string Username { get; set; } = null!;
+	public string Password { get; set; } = null!;
 
+	public Guid TokenId { get; set; }
+
+	public Token? Token { get; } = null!;
+	public ICollection<SavingProject> SavingProjects { get; } = new List<SavingProject>();
+
+	public ICollection<BankAccount> BankAccounts { get; } = new List<BankAccount>();
 }

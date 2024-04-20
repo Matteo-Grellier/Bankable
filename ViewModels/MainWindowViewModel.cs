@@ -10,13 +10,9 @@ using DialogHostAvalonia;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase _contentViewModel;
+	private ViewModelBase _contentViewModel;
 
-    public ViewModelBase ContentViewModel
-    {
-        get => _contentViewModel;
-        private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
-    }
+	private BankableContext _context = new();
 
     public AddBankAccountViewModel AddBankAccountViewModel { get; } = new();
     public AddIncomingViewModel AddIncomingViewModel { get; } = new();
@@ -24,24 +20,31 @@ public class MainWindowViewModel : ViewModelBase
     public AddSavingProjectViewModel AddSavingProjectViewModel { get; } = new();
     public AddSpendingViewModel AddSpendingViewModel { get; } = new();
 
+	public ViewModelBase ContentViewModel
+	{
+		get => _contentViewModel;
+		private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+	}
+
     // Change the content of the ContentControl with the corresponding Navbar buttons (Home, BankAccounts, Savings)
-    public void Home()
-    {
-        ContentViewModel = new HomeViewModel();
-    }
+	DataFaker dataFaker = new();
+	public void Home()
+	{
+		dataFaker.GenerateData();
+		ContentViewModel = new HomeViewModel();
+	}
 
-    public void BankAccounts()
-    {
-        ContentViewModel = new BankAccountsViewModel();
-    }
+	public void BankAccounts()
+	{
+		ContentViewModel = new BankAccountsViewModel();
+	}
 
-    public void Savings()
-    {
-        ContentViewModel = new SavingsViewModel();
-    }
+	public void Savings()
+	{
+		ContentViewModel = new SavingsViewModel();
+	}
     
     // Commands
-
     public async void ShowAddDialog(ViewModelBase addDialogViewModel)
     {
         if(DialogHost.IsDialogOpen("AddDialog"))
