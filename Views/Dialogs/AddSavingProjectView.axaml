@@ -2,7 +2,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels.Dialogs"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Bankable.Views.Dialogs.AddSavingProjectView">
-    Welcome to Add Saving project!
+             x:Class="Bankable.Views.Dialogs.AddSavingProjectView"
+             x:DataType="vm:AddSavingProjectViewModel">
+    <StackPanel Width="500" Height="500" Spacing="20">
+        <TextBlock 
+            HorizontalAlignment="Center" 
+            FontWeight="Bold">Add a new saving project</TextBlock>
+        <StackPanel>
+            <Label>Title</Label>
+            <TextBox 
+                Text="{Binding Title}" 
+                Watermark="Please enter the name of the saving project" 
+                AcceptsReturn="False"/>           
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+            <StackPanel>
+                <Label>End date</Label>
+                <DatePicker 
+                    DayVisible="True" 
+                    MonthVisible="True" 
+                    YearVisible="True"
+                    SelectedDate="{Binding WillEndAt}"/>               
+            </StackPanel>
+            <StackPanel Width="150">
+                <Label>Final amount</Label>
+                <NumericUpDown Height="20" Value="{Binding FinalAmount}" Watermark="Amount of the income" Minimum="0" Increment="100"/>              
+            </StackPanel>
+        </StackPanel>
+        <Button 
+            HorizontalAlignment="Center" 
+            Command="{Binding ConfirmationCommand}" 
+            Margin="0 10 0 0" 
+            FontWeight="Bold">Add saving project</Button>
+    </StackPanel>
 </UserControl>

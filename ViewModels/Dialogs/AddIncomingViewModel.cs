@@ -77,7 +77,7 @@ public class AddIncomingViewModel: ViewModelBase
             x => x.Title,
             x => x.Description,
             x => x.Amount,
-            (title, description, amount) => !string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description)
+            (title, description, amount) => !string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description) && float.IsPositive(amount)
         );
         
         ConfirmationCommand = ReactiveCommand.Create(
