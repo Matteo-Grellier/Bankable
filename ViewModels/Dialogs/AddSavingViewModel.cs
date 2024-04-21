@@ -15,7 +15,7 @@ public class AddSavingViewModel: ViewModelBase
 
     private string _name;
     private DateTimeOffset _date;
-    private float _amount;
+    private float? _amount; // Nullable float due to NumericUpDown from AddSavingView
     private SavingProject _selectedSavingProject;
 
     public ReactiveCommand<Unit, Saving> ConfirmationCommand { get; }
@@ -31,7 +31,7 @@ public class AddSavingViewModel: ViewModelBase
         var isValidObservable = this.WhenAnyValue(
             x => x.Name,
             x => x.Amount,
-            (name, amount) => !string.IsNullOrEmpty(name) && float.IsPositive(amount)
+            (name, amount) => !string.IsNullOrEmpty(name) && float.IsPositive(amount ?? -1.0f)
         );
         
         ConfirmationCommand = ReactiveCommand.Create(
@@ -44,7 +44,7 @@ public class AddSavingViewModel: ViewModelBase
                         {
                             // Name = Name, 
                             Date = Date.DateTime,
-                            Amount = Amount,
+                            Amount = Amount ?? 0,
                             SavingProjectId = SelectedSavingProject.Id
                         }
                     ).Result.Entity;
@@ -77,7 +77,7 @@ public class AddSavingViewModel: ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _date, value);
     }
 
-    public float Amount     
+    public float? Amount     
     {         
         get => _amount; 
         set => this.RaiseAndSetIfChanged(ref _amount, value); 

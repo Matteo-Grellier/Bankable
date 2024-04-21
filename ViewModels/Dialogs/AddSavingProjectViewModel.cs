@@ -13,7 +13,7 @@ public class AddSavingProjectViewModel: ViewModelBase
 
     private string _title;
     private DateTimeOffset _willEndAt;
-    private float _finalAmount;
+    private float? _finalAmount; // Nullable float due to NumericUpDown from AddIncomingView
     
     public ReactiveCommand<Unit, SavingProject> ConfirmationCommand { get; }
 
@@ -25,7 +25,7 @@ public class AddSavingProjectViewModel: ViewModelBase
         var isValidObservable = this.WhenAnyValue(
             x => x.Title,
             x => x.FinalAmount,
-            (title, finalAmount) => !string.IsNullOrEmpty(title) && float.IsPositive(finalAmount)
+            (title, finalAmount) => !string.IsNullOrEmpty(title) && float.IsPositive(finalAmount ?? -1.0f)
         );
         
         ConfirmationCommand = ReactiveCommand.Create(
@@ -38,7 +38,7 @@ public class AddSavingProjectViewModel: ViewModelBase
                         {
                             Title = Title, 
                             WillEndAt = WillEndAt.DateTime,
-                            FinalAmount = FinalAmount,
+                            FinalAmount = FinalAmount ?? 0,
                             CurrentAmountSaved = 0, 
                             UserId = BankableContext.CurrentConnectedUser.Id
                         }
@@ -68,7 +68,7 @@ public class AddSavingProjectViewModel: ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _willEndAt, value);
     }
 
-    public float FinalAmount     
+    public float? FinalAmount     
     {         
         get => _finalAmount; 
         set => this.RaiseAndSetIfChanged(ref _finalAmount, value); 
