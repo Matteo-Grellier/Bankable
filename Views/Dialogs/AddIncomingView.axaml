@@ -3,14 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Bankable.ViewModels.Dialogs"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Bankable.Views.Dialogs.AddIncomingView"
-             x:DataType="vm:AddIncomingViewModel">
+             x:DataType="vm:AddIncomingViewModel"
+             Padding="20">
     <StackPanel Width="500" MinHeight="500" Spacing="10">
         <TextBlock 
-            HorizontalAlignment="Center" 
-            FontSize="18"
-            FontWeight="Bold">
+            Classes="h2"
+            HorizontalAlignment="Center" >
             Add a new income
         </TextBlock>
         <StackPanel>
@@ -19,21 +20,28 @@
                 Text="{Binding Title}" 
                 Watermark="Please enter the title of the income" 
                 AcceptsReturn="False"
-                MaxLength="50"/>
+                MaxLength="50"
+                Classes="InlineTextBox"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Spacing="10">
             <StackPanel>
                 <Label>Amount</Label>
                 <NumericUpDown 
                     Value="{Binding Amount}" 
-                    Watermark="Amount of the income" 
+                    Watermark="Amount" 
                     Minimum="0"
                     Width="200"/>                  
             </StackPanel>
             <StackPanel>
                 <Label>Category</Label>
-                <SplitButton Content="{Binding SelectedCategory.Name, FallbackValue=Category}">
-                    <SplitButton.Flyout>
+                <Button Width="120">
+                    <Button.Content>
+                        <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="100">
+                            <avalonia:MaterialIcon DockPanel.Dock="Right" Kind="ChevronDown" Width="24" Height="24"/>                                
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding SelectedCategory.Name, FallbackValue=Category}"/>
+                        </DockPanel>
+                    </Button.Content>
+                    <Button.Flyout>
                         <Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
                             <ListBox 
                                 MaxHeight="150"  
@@ -43,26 +51,46 @@
                                     <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
                                         <Setter Property="Background" Value="Transparent"/>
                                     </Style>
+                                    <Style Selector="ListBoxItem:pointerover /template/ MenuItem">
+                                        <Setter Property="Foreground" Value="{StaticResource Pink}"/>
+                                    </Style>
+                                    <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="Foreground" Value="{StaticResource Pink}"/>
+                                    </Style>
                                 </ListBox.Styles>
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <MenuItem Header="{Binding Name}" Margin="0" Padding="0"/>
+                                        <MenuItem Header="{Binding Name}" Margin="0" Padding="0">
+                                            <MenuItem.Styles >
+                                                <!-- <Style Selector="MenuItem:selected /template/ FlyoutPresenter"> -->
+                                                <!--     <Setter Property="Foreground" Value="{StaticResource Pink}"/> -->
+                                                <!-- </Style> -->
+                                            </MenuItem.Styles>
+                                        </MenuItem>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Flyout>
-                    </SplitButton.Flyout>
-                </SplitButton>                
+                    </Button.Flyout>
+                </Button>                
             </StackPanel>
             <StackPanel>
                 <Label>Bank account</Label>
-                <SplitButton Content="{Binding SelectedBankAccount.Name, FallbackValue=Bank Account}">
-                    <SplitButton.Flyout>
+                <Button Width="150">
+                    <Button.Content>
+                        <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="120">
+                            <TextBlock DockPanel.Dock="Left" Width="100" Text="{Binding SelectedBankAccount.Name, FallbackValue=Bank account}"/>
+                            <avalonia:MaterialIcon DockPanel.Dock="Right" Kind="ChevronDown" Width="24" Height="24"/>                                
+                        </DockPanel>
+                    </Button.Content>
+                    <Button.Flyout>
                         <Flyout>
                             <ListBox 
                                 MaxHeight="150" 
                                 ItemsSource="{Binding AvailableBankAccounts}"
-                                SelectedItem="{Binding SelectedBankAccount}">
+                                SelectedItem="{Binding SelectedBankAccount}"
+                                Classes="FlyoutListBox">
                                 <ListBox.Styles>
                                     <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
                                         <Setter Property="Background" Value="Transparent"/>
@@ -75,11 +103,11 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Flyout>
-                    </SplitButton.Flyout>
-                </SplitButton>                
+                    </Button.Flyout>
+                </Button>                
             </StackPanel>
         </StackPanel>
-        <StackPanel>
+        <StackPanel HorizontalAlignment="Center">
             <Label>Date</Label>
             <DatePicker 
                 DayVisible="True" 

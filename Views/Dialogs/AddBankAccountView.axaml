@@ -5,13 +5,17 @@
              xmlns:vm="using:Bankable.ViewModels.Dialogs"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Bankable.Views.Dialogs.AddBankAccountView"
-             x:DataType="vm:AddBankAccountViewModel">
+             x:DataType="vm:AddBankAccountViewModel"
+             Padding="20">
     <StackPanel Width="500" Height="500">
         <TextBlock 
-            HorizontalAlignment="Center" 
-            FontWeight="Bold">Add a new bank account</TextBlock>
+            Classes="h2"
+            HorizontalAlignment="Center">
+            Add a new bank account
+        </TextBlock>
         <Label>Name</Label>
         <TextBox 
+            Classes="InlineTextBox"
             Text="{Binding Name}" 
             Watermark="Please enter the name of the bank account" 
             AcceptsReturn="False"/>

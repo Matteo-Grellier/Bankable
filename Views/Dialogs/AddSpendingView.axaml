@@ -3,19 +3,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Bankable.ViewModels.Dialogs"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Bankable.Views.Dialogs.AddSpendingView"
-             x:DataType="vm:AddSpendingViewModel">
+             x:DataType="vm:AddSpendingViewModel"
+             Padding="20">
     <StackPanel Width="500" MinHeight="500" Spacing="10">
         <TextBlock 
-            HorizontalAlignment="Center" 
-            FontSize="18"
-            FontWeight="Bold">
+            Classes="h2"
+            HorizontalAlignment="Center" >
             Add a new spending
         </TextBlock>
         <StackPanel>
             <Label>Title</Label>
             <TextBox 
+                Classes="InlineTextBox"
                 Text="{Binding Title}" 
                 Watermark="Please enter the title of the spending" 
                 AcceptsReturn="False"
@@ -26,14 +28,20 @@
                 <Label>Amount</Label>
                 <NumericUpDown 
                     Value="{Binding Amount}" 
-                    Watermark="Amount of the spending" 
+                    Watermark="Amount" 
                     Minimum="0.01"
                     Width="200"/>                  
             </StackPanel>
             <StackPanel>
                 <Label>Category</Label>
-                <SplitButton Content="{Binding SelectedCategory.Name, FallbackValue=Category}">
-                    <SplitButton.Flyout>
+                <Button>
+                    <Button.Content>
+                        <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="100">
+                            <avalonia:MaterialIcon DockPanel.Dock="Right" Kind="ChevronDown" Width="24" Height="24"/>                                
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding SelectedCategory.Name, FallbackValue=Category}"/>
+                        </DockPanel>
+                    </Button.Content>
+                    <Button.Flyout>
                         <Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
                             <ListBox 
                                 MaxHeight="150"  
@@ -51,13 +59,19 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Flyout>
-                    </SplitButton.Flyout>
-                </SplitButton>                
+                    </Button.Flyout>
+                </Button>                
             </StackPanel>
             <StackPanel>
                 <Label>Bank account</Label>
-                <SplitButton Content="{Binding SelectedBankAccount.Name, FallbackValue=Bank Account}">
-                    <SplitButton.Flyout>
+                <Button>
+                    <Button.Content>
+                        <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="120">
+                            <TextBlock DockPanel.Dock="Left" Width="100" Text="{Binding SelectedBankAccount.Name, FallbackValue=Bank account}"/>
+                            <avalonia:MaterialIcon DockPanel.Dock="Right" Kind="ChevronDown" Width="24" Height="24"/>                                
+                        </DockPanel>
+                    </Button.Content>
+                    <Button.Flyout>
                         <Flyout>
                             <ListBox 
                                 MaxHeight="150" 
@@ -75,8 +89,8 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Flyout>
-                    </SplitButton.Flyout>
-                </SplitButton>                
+                    </Button.Flyout>
+                </Button>                
             </StackPanel>
         </StackPanel>
         <StackPanel>

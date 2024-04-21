@@ -12,6 +12,12 @@
         <Setter Property="FontFamily" Value="Poppins"/>
     </Style>
     
+    <Style Selector="TextBlock.h2">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Black"/>
+        <Setter Property="FontFamily" Value="Poppins"/>
+    </Style>
+    
     <Style Selector="Button">
         <Setter Property="CornerRadius" Value="50"/>
         <Setter Property="BorderThickness" Value="1"/>

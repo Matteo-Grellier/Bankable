@@ -5,19 +5,23 @@
              xmlns:vm="using:Bankable.ViewModels.Dialogs"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Bankable.Views.Dialogs.AddSavingProjectView"
-             x:DataType="vm:AddSavingProjectViewModel">
+             x:DataType="vm:AddSavingProjectViewModel"
+             Padding="20">
     <StackPanel Width="500" Height="500" Spacing="20">
         <TextBlock 
-            HorizontalAlignment="Center" 
-            FontWeight="Bold">Add a new saving project</TextBlock>
+            Classes="h2"
+            HorizontalAlignment="Center" >
+            Add a new saving project
+        </TextBlock>
         <StackPanel>
             <Label>Title</Label>
             <TextBox 
+                Classes="InlineTextBox"
                 Text="{Binding Title}" 
                 Watermark="Please enter the name of the saving project" 
                 AcceptsReturn="False"/>           
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="20">
             <StackPanel>
                 <Label>End date</Label>
                 <DatePicker 
@@ -28,7 +32,12 @@
             </StackPanel>
             <StackPanel Width="150">
                 <Label>Final amount</Label>
-                <NumericUpDown Height="20" Value="{Binding FinalAmount}" Watermark="Amount of the saving project" Minimum="0" Increment="100"/>              
+                <NumericUpDown 
+                    Height="20" 
+                    Value="{Binding FinalAmount}" 
+                    Watermark="Amount" 
+                    Minimum="0" 
+                    Increment="100"/>              
             </StackPanel>
         </StackPanel>
         <Button 

@@ -4,7 +4,7 @@
              xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              x:Class="Bankable.App"
              xmlns:local="using:Bankable"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
@@ -21,12 +21,19 @@
         
         <FontFamily x:Key="Poppins">/Assets/Fonts#Poppins</FontFamily>
         
+        <!-- <ColorPaletteResources x:Key="Light" Accent="#EF476F"/> -->
     </Application.Resources>
              
+             
      <Application.Styles>
-         <FluentTheme />
+         <FluentTheme>
+             <FluentTheme.Palettes>
+                 <ColorPaletteResources x:Key="Light" Accent="#EF476F"></ColorPaletteResources>
+             </FluentTheme.Palettes>
+         </FluentTheme>
          <StyleInclude Source="Styles/AppStyles.axaml"/>
          <StyleInclude Source="Styles/AddButton.axaml"/>
+         <StyleInclude Source="Styles/DialogElementsStyles.axaml"/>
          <materialIcons:MaterialIconStyles />
          <dialogHostAvalonia:DialogHostStyles />
      </Application.Styles>

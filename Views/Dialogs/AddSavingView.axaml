@@ -3,17 +3,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Bankable.ViewModels.Dialogs"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Bankable.Views.Dialogs.AddSavingView"
-             x:DataType="vm:AddSavingViewModel">
+             x:DataType="vm:AddSavingViewModel"
+             Padding="20">
     <StackPanel Width="500" Height="500" Spacing="20">
-        <TextBlock 
-            HorizontalAlignment="Center" 
-            FontWeight="Bold">Add a new saving</TextBlock>
+        <TextBlock
+            Classes="h2"
+            HorizontalAlignment="Center" >
+            Add a new saving
+        </TextBlock>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
             <StackPanel>
                 <Label>Name</Label>
                 <TextBox 
+                    Classes="InlineTextBox"
                     Width="270"
                     Text="{Binding Name}" 
                     Watermark="Please enter the name of the saving" 
@@ -21,8 +26,14 @@
             </StackPanel>
             <StackPanel>
                 <Label>Saving project</Label>
-                <SplitButton Content="{Binding SelectedSavingProject.Title, FallbackValue=Saving project}">
-                    <SplitButton.Flyout>
+                <Button>
+                    <Button.Content>
+                        <DockPanel LastChildFill="True" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="160">
+                            <avalonia:MaterialIcon DockPanel.Dock="Right" Kind="ChevronDown" Width="24" Height="24"/>                                
+                            <TextBlock DockPanel.Dock="Left" Text="{Binding SelectedSavingProject.Title, FallbackValue=Saving project}"/>
+                        </DockPanel>
+                    </Button.Content>
+                    <Button.Flyout>
                         <Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
                             <ListBox 
                                 MaxHeight="150" 
@@ -40,8 +51,8 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Flyout>
-                    </SplitButton.Flyout>
-                </SplitButton>  
+                    </Button.Flyout>
+                </Button>  
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
@@ -55,7 +66,7 @@
             </StackPanel>
             <StackPanel Width="150">
                 <Label>Amount</Label>
-                <NumericUpDown Height="20" Value="{Binding Amount}" Watermark="Amount of the saving" Minimum="0" Increment="100"/>              
+                <NumericUpDown Height="20" Value="{Binding Amount}" Watermark="Amount" Minimum="0" Increment="100"/>              
             </StackPanel>
         </StackPanel>
         <Button 

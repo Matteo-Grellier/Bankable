@@ -19,12 +19,6 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <Window.Styles>
-        <Style Selector="TextBlock.h1">
-            <Setter Property="FontSize" Value="24"/>
-        </Style>
-    </Window.Styles>
-
     <DockPanel>
         <DockPanel DockPanel.Dock="Left" Background="{StaticResource White}" Width="305">
             <DockPanel DockPanel.Dock="Bottom">
@@ -33,8 +27,7 @@
                     <Button.Flyout>
                         <MenuFlyout Placement="TopEdgeAlignedRight">
                             <MenuItem Header="Add Bank account" Command="{Binding ShowAddBankAccountViewModel}"></MenuItem>
-                            <MenuItem Header="Add Incoming" Command="{Binding ShowAddIncomingViewModel}"></MenuItem>
-                            <!-- <MenuItem Header="Add Spending" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=OpenDialogCommand}"></MenuItem> -->
+                            <MenuItem Header="Add Income" Command="{Binding ShowAddIncomingViewModel}"></MenuItem>
                             <MenuItem Header="Add Spending" Command="{Binding ShowAddSpendingViewModel}"></MenuItem>
                             <MenuItem Header="Add a Saving Project" Command="{Binding ShowAddSavingProjectViewModel}"></MenuItem>
                             <MenuItem Header="Add a Saving" Command="{Binding ShowAddSavingViewModel}"></MenuItem>
