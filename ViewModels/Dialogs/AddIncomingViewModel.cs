@@ -17,7 +17,7 @@ public class AddIncomingViewModel: ViewModelBase
     private string _title;
     private string _description;
     private float _amount;
-    private List<BankAccount> _avalaibleBankAccounts;
+    private List<BankAccount> _availableBankAccounts;
     private List<Category> _availableCategories;
 
     private Category _selectedCategory;
@@ -53,8 +53,8 @@ public class AddIncomingViewModel: ViewModelBase
 
     public List<BankAccount> AvailableBankAccounts
     {
-        get => _avalaibleBankAccounts; 
-        set => this.RaiseAndSetIfChanged(ref _avalaibleBankAccounts, value);
+        get => _availableBankAccounts; 
+        set => this.RaiseAndSetIfChanged(ref _availableBankAccounts, value);
     }
     
     public Category SelectedCategory    
@@ -77,7 +77,10 @@ public class AddIncomingViewModel: ViewModelBase
             x => x.Title,
             x => x.Description,
             x => x.Amount,
-            (title, description, amount) => !string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description) && float.IsPositive(amount)
+            (title, description, amount) => 
+                !string.IsNullOrEmpty(title) 
+                && !string.IsNullOrEmpty(description) 
+                && float.IsPositive(amount) 
         );
         
         ConfirmationCommand = ReactiveCommand.Create(
