@@ -21,7 +21,7 @@
                 <SplitButton.Flyout>
                     <Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
                         <ListBox 
-                            Height="150" 
+                            MaxHeight="150"  
                             ItemsSource="{Binding AvailableCategories}" 
                             SelectedItem="{Binding SelectedCategory}">
                             <ListBox.Styles>
@@ -42,7 +42,7 @@
                 <SplitButton.Flyout>
                     <Flyout>
                         <ListBox 
-                            Height="150" 
+                            MaxHeight="150" 
                             ItemsSource="{Binding AvailableBankAccounts}"
                             SelectedItem="{Binding SelectedBankAccount}">
                             <ListBox.Styles>

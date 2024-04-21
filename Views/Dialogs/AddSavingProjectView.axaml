@@ -28,7 +28,7 @@
             </StackPanel>
             <StackPanel Width="150">
                 <Label>Final amount</Label>
-                <NumericUpDown Height="20" Value="{Binding FinalAmount}" Watermark="Amount of the income" Minimum="0" Increment="100"/>              
+                <NumericUpDown Height="20" Value="{Binding FinalAmount}" Watermark="Amount of the saving project" Minimum="0" Increment="100"/>              
             </StackPanel>
         </StackPanel>
         <Button 
