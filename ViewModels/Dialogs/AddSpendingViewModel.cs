@@ -15,7 +15,7 @@ public class AddSpendingViewModel: ViewModelBase
     private readonly BankAccountService _bankAccountService = new();
     private readonly CategoryService _categoryService = new();
 
-    private float _amount;
+    private float? _amount; // Nullable float due to NumericUpDown from AddSpendingView
     private DateTimeOffset _date;
     private string _title;
     private string _description;
@@ -48,7 +48,7 @@ public class AddSpendingViewModel: ViewModelBase
             (title, description, amount, selectedBankAccount, selectedCategory) => 
                 !string.IsNullOrEmpty(title) 
                 && !string.IsNullOrEmpty(description) 
-                && float.IsPositive(amount)
+                && float.IsPositive(amount ?? -1.0f)
                 && selectedBankAccount != null
                 && selectedCategory != null
         );
@@ -63,7 +63,7 @@ public class AddSpendingViewModel: ViewModelBase
                         {
                             Description = Description, 
                             Title = Title, 
-                            Amount = Amount,
+                            Amount = Amount ?? 0,
                             Date = Date.DateTime,
                             IsUseful = IsUseful,
                             IsRecurrent = IsRecurring,
@@ -93,7 +93,7 @@ public class AddSpendingViewModel: ViewModelBase
         get => _description; 
         set => this.RaiseAndSetIfChanged(ref _description, value);
     }
-    public float Amount
+    public float? Amount
     {
         get => _amount;
         set => this.RaiseAndSetIfChanged(ref _amount, value);

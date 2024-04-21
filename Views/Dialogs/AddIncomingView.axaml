@@ -6,71 +6,98 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Bankable.Views.Dialogs.AddIncomingView"
              x:DataType="vm:AddIncomingViewModel">
-    <StackPanel Width="500" Height="500">
+    <StackPanel Width="500" MinHeight="500" Spacing="10">
         <TextBlock 
             HorizontalAlignment="Center" 
-            FontWeight="Bold">Add a new bank account</TextBlock>
-        <Label>Title</Label>
-        <TextBox 
-            Text="{Binding Title}" 
-            Watermark="Please enter the title of the income" 
-            AcceptsReturn="False"
-            MaxLength="50"/>
-        <StackPanel Orientation="Horizontal">
-            <SplitButton Content="{Binding SelectedCategory.Name, FallbackValue=Category}">
-                <SplitButton.Flyout>
-                    <Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
-                        <ListBox 
-                            MaxHeight="150"  
-                            ItemsSource="{Binding AvailableCategories}" 
-                            SelectedItem="{Binding SelectedCategory}">
-                            <ListBox.Styles>
-                                <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-                                    <Setter Property="Background" Value="Transparent"/>
-                                </Style>
-                            </ListBox.Styles>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <MenuItem Header="{Binding Name}" Margin="0" Padding="0"/>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Flyout>
-                </SplitButton.Flyout>
-            </SplitButton>
-            <SplitButton Content="{Binding SelectedBankAccount.Name, FallbackValue=Bank Account}">
-                <SplitButton.Flyout>
-                    <Flyout>
-                        <ListBox 
-                            MaxHeight="150" 
-                            ItemsSource="{Binding AvailableBankAccounts}"
-                            SelectedItem="{Binding SelectedBankAccount}">
-                            <ListBox.Styles>
-                                <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
-                                    <Setter Property="Background" Value="Transparent"/>
-                                </Style>
-                            </ListBox.Styles>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <MenuItem Header="{Binding Name}" Margin="0" Padding="0"/>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Flyout>
-                </SplitButton.Flyout>
-            </SplitButton>
+            FontSize="18"
+            FontWeight="Bold">
+            Add a new income
+        </TextBlock>
+        <StackPanel>
+            <Label>Title</Label>
+            <TextBox 
+                Text="{Binding Title}" 
+                Watermark="Please enter the title of the income" 
+                AcceptsReturn="False"
+                MaxLength="50"/>
         </StackPanel>
-        <Label>Amount</Label>
-        <NumericUpDown Value="{Binding Amount}" Watermark="Amount of the income" Minimum="0"/>
-        <Label>Description</Label>
-        <TextBox 
-            Width="500" 
-            Height="200" 
-            Text="{Binding Description}" 
-            Watermark="Describe your income." 
-            TextWrapping="Wrap" 
-            AcceptsReturn="True"
-            MaxLength="50"/>
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <StackPanel>
+                <Label>Amount</Label>
+                <NumericUpDown 
+                    Value="{Binding Amount}" 
+                    Watermark="Amount of the income" 
+                    Minimum="0"
+                    Width="200"/>                  
+            </StackPanel>
+            <StackPanel>
+                <Label>Category</Label>
+                <SplitButton Content="{Binding SelectedCategory.Name, FallbackValue=Category}">
+                    <SplitButton.Flyout>
+                        <Flyout Placement="Bottom" ShowMode="TransientWithDismissOnPointerMoveAway">
+                            <ListBox 
+                                MaxHeight="150"  
+                                ItemsSource="{Binding AvailableCategories}" 
+                                SelectedItem="{Binding SelectedCategory}">
+                                <ListBox.Styles>
+                                    <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Style>
+                                </ListBox.Styles>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <MenuItem Header="{Binding Name}" Margin="0" Padding="0"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Flyout>
+                    </SplitButton.Flyout>
+                </SplitButton>                
+            </StackPanel>
+            <StackPanel>
+                <Label>Bank account</Label>
+                <SplitButton Content="{Binding SelectedBankAccount.Name, FallbackValue=Bank Account}">
+                    <SplitButton.Flyout>
+                        <Flyout>
+                            <ListBox 
+                                MaxHeight="150" 
+                                ItemsSource="{Binding AvailableBankAccounts}"
+                                SelectedItem="{Binding SelectedBankAccount}">
+                                <ListBox.Styles>
+                                    <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Style>
+                                </ListBox.Styles>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <MenuItem Header="{Binding Name}" Margin="0" Padding="0"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Flyout>
+                    </SplitButton.Flyout>
+                </SplitButton>                
+            </StackPanel>
+        </StackPanel>
+        <StackPanel>
+            <Label>Date</Label>
+            <DatePicker 
+                DayVisible="True" 
+                MonthVisible="True" 
+                YearVisible="True"
+                SelectedDate="{Binding Date}"/>       
+        </StackPanel>
+        <StackPanel>
+            <Label>Description</Label>
+            <TextBox 
+                Width="500" 
+                Height="100" 
+                Text="{Binding Description}" 
+                Watermark="Describe your income." 
+                TextWrapping="Wrap" 
+                AcceptsReturn="True"
+                MaxLength="50"/>
+        </StackPanel>
         <Button 
             HorizontalAlignment="Center" 
             Command="{Binding ConfirmationCommand}" 

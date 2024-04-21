@@ -10,7 +10,9 @@
         <TextBlock 
             HorizontalAlignment="Center" 
             FontSize="18"
-            FontWeight="Bold">Add a new bank account</TextBlock>
+            FontWeight="Bold">
+            Add a new spending
+        </TextBlock>
         <StackPanel>
             <Label>Title</Label>
             <TextBox 
@@ -25,7 +27,7 @@
                 <NumericUpDown 
                     Value="{Binding Amount}" 
                     Watermark="Amount of the spending" 
-                    Minimum="0"
+                    Minimum="0.01"
                     Width="200"/>                  
             </StackPanel>
             <StackPanel>
