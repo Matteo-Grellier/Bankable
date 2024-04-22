@@ -7,25 +7,35 @@ using Bankable.Models;
 namespace Bankable.Services;
 public class AuthenticationService
 {
-	UserService userService = new();
-	TokenService tokenService = new();
+	private readonly UserService _userService = new();
+	private readonly TokenService _tokenService = new();
 
 	// login and generate token
-	public async Task<string> Login(string username, string password)
+	public async Task<User> Login(string username, string password)
 	{
-		var user = await userService.VerifyAndGetUser(username, password);
-		if (user != null)
+		try
 		{
+			var user = await _userService.VerifyAndGetUser(username, password);
 			BankableContext.CurrentConnectedUser = user;
+			
+			//Generate token and set to the current user
+			_userService.GetLastCreatedItem().Result.TokenId = await _tokenService.CreateToken(user);
+			await _userService.UpdateItem(_userService.GetLastCreatedItem().Result);
+			
+			return BankableContext.CurrentConnectedUser;
 		}
-		return "Invalid username or password";
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 	public void Logout(Guid guid)
 	{
-		tokenService.DeleteToken();
+		_tokenService.DeleteToken();
 	}
 
-	public async Task<Guid> Register(User user)
+	public async Task<User> Register(User user)
 	{
 		var sha256 = SHA256.Create();
 		var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(user.Password));
@@ -42,11 +52,11 @@ public class AuthenticationService
 			CreatedAt = DateTime.UtcNow,
 		};
 		
-		await userService.AddItem(newUser);
+		var addedUser = await _userService.AddItem(newUser);
 		
-		userService.GetLastCreatedItem().Result.TokenId = await tokenService.CreateToken();
-		await userService.UpdateItem(userService.GetLastCreatedItem().Result);
+		// userService.GetLastCreatedItem().Result.TokenId = await tokenService.CreateToken();
+		// await userService.UpdateItem(userService.GetLastCreatedItem().Result);
 		
-		return Guid.NewGuid();
+		return addedUser.Entity;
 	}
 }

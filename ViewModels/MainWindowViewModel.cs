@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Bankable.Models;
 using Bankable.Services;
 using Bankable.ViewModels.Dialogs;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ReactiveUI;
 namespace Bankable.ViewModels;
 using DialogHostAvalonia;
 
 public class MainWindowViewModel : ViewModelBase
 {
-	private ViewModelBase _contentViewModel;
-
+	public static MainWindowViewModel CurrentMainWindowViewModel { get; private set; }
+	
 	private BankableContext _context = new();
 
 	private UserService _userService = new();
-
 	private TokenService _tokenService = new();
+	
+	private ViewModelBase _contentViewModel;
+
+	private bool _isAuthenticated;
 
 	public ViewModelBase ContentViewModel
 	{
@@ -26,21 +31,49 @@ public class MainWindowViewModel : ViewModelBase
 
 	public MainWindowViewModel()
 	{
-		SetCurrentUser();
+		// Initialise Singleton for the mainWindow
+		CurrentMainWindowViewModel = this;
+
+		InitializeMainWindow();
+		
+		// SetCurrentUser();
+
+		if (!IsAuthenticated)
+			ContentViewModel = new NotAuthenticatedViewModel();
+		else
+			ContentViewModel = new HomeViewModel();
 	}
 
-	private async void SetCurrentUser()
+	private async void InitializeMainWindow()
+	{
+		// Initialise Singleton for the mainWindow
+		CurrentMainWindowViewModel = this;
+		
+		await SetCurrentUser();
+		SetContentViewModelAccordingToIsAuth();
+	}
+
+	private async Task SetCurrentUser()
 	{
 		try
 		{
 			var currentToken = await _tokenService.GetToken();
 			BankableContext.CurrentConnectedUser = await _userService.GetItemByToken(currentToken.Id);
+			IsAuthenticated = true;
 		}
 		catch (Exception exception)
 		{
+			IsAuthenticated = false;
 			Console.WriteLine(exception.Message);
 		}
+	}
 
+	public void SetContentViewModelAccordingToIsAuth()
+	{
+		if (!IsAuthenticated)
+			ContentViewModel = new NotAuthenticatedViewModel();
+		else
+			ContentViewModel = new HomeViewModel();
 	}
 	
 	private async void ShowAddDialog(ViewModelBase addDialogViewModel)
@@ -48,6 +81,12 @@ public class MainWindowViewModel : ViewModelBase
 		if(DialogHost.IsDialogOpen("AddDialog"))
 			DialogHost.Close("AddDialog");
 		await DialogHost.Show(addDialogViewModel, "AddDialog");
+	}
+
+	public bool IsAuthenticated
+	{
+		get => _isAuthenticated; 
+		set => this.RaiseAndSetIfChanged(ref _isAuthenticated, value);
 	}
 
     // Change the content of the ContentControl with the corresponding Navbar buttons (Home, BankAccounts, Savings)

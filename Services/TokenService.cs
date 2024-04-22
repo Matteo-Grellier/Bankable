@@ -9,21 +9,26 @@ public class TokenService
 {
 	BankableContext bankableContext = new();
 	UserService userService = new();
-	public async Task<Guid> CreateToken()
+	public async Task<Guid> CreateToken(User user)
 	{
 		try
 		{
 			Token newToken = new Token
 			{
 				Value = Guid.NewGuid(),
-				UserId = userService.GetLastCreatedItem().Result.Id
+				UserId = user.Id
 			};
+			
+			//Delete current token before create new token
+			this.DeleteToken();
+			
 			bankableContext.Tokens.Add(newToken);
 			await bankableContext.SaveChangesAsync();
 			return newToken.Id;
 		}
-		catch (Exception)
+		catch (Exception e)
 		{
+			Console.WriteLine(e);
 			throw;
 		}
 	}
@@ -36,8 +41,11 @@ public class TokenService
 
 	public async void DeleteToken()
 	{
-		var token = await bankableContext.Tokens.FirstAsync();
-		bankableContext.Tokens.Remove(token);
+		var token = await bankableContext.Tokens.FirstOrDefaultAsync();
+		
+		if(token != null)
+			bankableContext.Tokens.Remove(token);
+		
 		await bankableContext.SaveChangesAsync();
 	}
 }
