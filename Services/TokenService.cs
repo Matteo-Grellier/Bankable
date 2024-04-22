@@ -20,7 +20,7 @@ public class TokenService
 			};
 			bankableContext.Tokens.Add(newToken);
 			await bankableContext.SaveChangesAsync();
-			return newToken.Value;
+			return newToken.Id;
 		}
 		catch (Exception)
 		{
@@ -34,10 +34,10 @@ public class TokenService
 		return token!;
 	}
 
-	public void DeleteToken(Guid index)
+	public async void DeleteToken()
 	{
-		Token token = bankableContext.Tokens.Find(index)!;
+		var token = await bankableContext.Tokens.FirstAsync();
 		bankableContext.Tokens.Remove(token);
-		bankableContext.SaveChanges();
+		await bankableContext.SaveChangesAsync();
 	}
 }

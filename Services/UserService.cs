@@ -33,8 +33,15 @@ public class UserService
 
 	public async Task<User> GetItemByToken(Guid token)
 	{
-		var user = await bankableContext.Users.SingleAsync(e => e.TokenId == token);
-		return user;
+		try
+		{
+			var user = await bankableContext.Users.SingleAsync(e => e.TokenId == token);
+			return user;
+		}
+		catch (Exception)
+		{
+			throw new Exception("There is no user assigned to this token");
+		}
 	}
 
 	public async Task<EntityEntry<User>> AddItem(User user)
