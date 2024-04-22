@@ -5,22 +5,7 @@
             <!-- Add Controls for Previewer Here -->
         </Border>
     </Design.PreviewWith>
-
-    <!-- Add Styles Here -->
-    <!-- <Style Selector="ListBox.FlyoutListBox"> -->
-    <!--     <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter"> -->
-    <!--         <Setter Property="Background" Value="Transparent"/> -->
-    <!--     </Style>     -->
-    <!--     <Style Selector="ListBoxItem:pointerover /template/ MenuItem"> -->
-    <!--         <Setter Property="Foreground" Value="{StaticResource Pink}"/> -->
-    <!--     </Style> -->
-    <!--     <Style Selector="ListBoxItem:selected /template/ ContentPresenter"> -->
-    <!--         <Setter Property="Background" Value="Transparent"/> -->
-    <!--         <Setter Property="Foreground" Value="{StaticResource Pink}"/> -->
-    <!--     </Style> -->
-    <!-- </Style> -->
     
-    <!-- Style for SplitButton + Flyout -->
     <Style Selector="DatePicker">
         <Setter Property="CornerRadius" Value="50"/> 
     </Style>
@@ -36,39 +21,9 @@
         <Setter Property="BorderBrush" Value="{StaticResource Black}"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
-    
-    <!-- <Style Selector="NumericUpDown /template/ StackPanel#PART_SpinnerPanel /template/ RepeatButton#PART_DecreaseButton"> -->
-    <!--     <Setter Property="Template"> -->
-    <!--         <RepeatButton> -->
-    <!--              -->
-    <!--         </RepeatButton> -->
-    <!--     </Setter> -->
-    <!--     <Setter Property="CornerRadius" Value="0 50 50 0"/> -->
-    <!--     <Setter Property="Background" Value="Red"></Setter> -->
-    <!-- </Style> -->
-    
-    <!-- <Style Selector="NumericUpDown /template/ ContentPresenter"> -->
-    <!--     <Setter Property="CornerRadius" Value="0 50 50 0"/> -->
-    <!--     <Setter Property="Background" Value="Red"></Setter> -->
-    <!-- </Style> -->
-    
-    <!-- <Style Selector="NumericUpDown:pointerover /template/ TextBox"> -->
-    <!--     <Setter Property="CornerRadius" Value="50 0 0 50"/> -->
-    <!--     ~1~ <Setter Property="BorderBrush" Value="Transparent"/> @1@ -->
-    <!-- </Style> -->
-    
-    <!-- <Style Selector="TextBox:focus /template/ Border#PART_BorderElement"> -->
-    <!--     <Setter Property="BorderBrush" Value="{StaticResource Pink}"></Setter> -->
-    <!-- </Style> -->
-    
-    <!-- <Style Selector="NumericUpDown /template/ TextBox:focus /template/ Border#PART_BorderElement"> -->
-    <!--     <Setter Property="CornerRadius" Value="50 0 0 50"/> -->
-    <!-- </Style> -->
-    
+
     <Style Selector="NumericUpDown:pointerover /template/ Spinner">
         <Setter Property="CornerRadius" Value="0 50 50 0"/>
-        <Setter Property="Background" Value="Aqua"></Setter>
-        <!-- <Setter Property="BorderBrush" Value="Transparent"/> -->
     </Style>
     
     <Style Selector="TextBox.InlineTextBox">
@@ -79,12 +34,6 @@
         <Setter Property="CornerRadius" Value="50"/> 
     </Style>
     
-    <!-- <Style Selector=".FlyoutListBox > ListBoxItem:pointerover /template/ ContentPresenter"> -->
-    <!--     <Setter Property="Background" Value="Transparent"/> -->
-    <!-- </Style> -->
-    <!-- <Style Selector=".FlyoutListBox > ListBoxItem:pointerover /template/ MenuItem"> -->
-    <!--     <Setter Property="Foreground" Value="{StaticResource Pink}"/> -->
-    <!-- </Style> -->
     <Style Selector=".FlyoutListBox > ListBoxItem:selected /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="50"/> 
     </Style>

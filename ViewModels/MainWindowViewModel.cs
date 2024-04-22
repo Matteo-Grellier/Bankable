@@ -34,9 +34,7 @@ public class MainWindowViewModel : ViewModelBase
 		try
 		{
 			var currentToken = await _tokenService.GetToken();
-			Console.WriteLine(currentToken);
 			BankableContext.CurrentConnectedUser = await _userService.GetItemByToken(currentToken.Id);
-			Console.WriteLine(BankableContext.CurrentConnectedUser.Username);
 		}
 		catch (Exception exception)
 		{

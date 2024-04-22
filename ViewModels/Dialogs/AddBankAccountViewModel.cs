@@ -47,7 +47,6 @@ public class AddBankAccountViewModel: ViewModelBase
                     throw;
                 }
             }, isValidObservable);
-        // CancelCommand = ReactiveCommand.Create(() => { })
     }
     
     public string Name
