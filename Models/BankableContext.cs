@@ -20,12 +20,12 @@ public class BankableContext : DbContext
 
 	public BankableContext()
 	{
-		
+
 		// string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "bankable");
 
 		// Directory.CreateDirectory(folder);
 
-		DbPath = Path.Join("C:\\Users\\lewis\\Documents\\GitHub\\Bankable\\Models", "database.db");
+		DbPath = Path.Join("/home/lanayr/Documents/Bankable/Models", "database.db");
 	}
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
