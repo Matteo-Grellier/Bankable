@@ -16,8 +16,9 @@
   <lvc:CartesianChart
       Series="{Binding Series}"
       XAxes="{Binding XAxes}"
-      LegendPosition="Top"
-      TooltipPosition="Center">
+      LegendPosition="Bottom"
+      TooltipPosition="Center"
+      Title="Savings over the last 6 months">
   </lvc:CartesianChart>
 
 </UserControl>

@@ -87,7 +87,7 @@ public class SpendingLineChartViewModel: ViewModelBase
             }
             else 
             {
-                monthNames.Add("error mdr");
+                throw new Exception("Month number is out of range");
             }
         }
 

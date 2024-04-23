@@ -10,10 +10,7 @@
         Background="{StaticResource Gray}"
         Icon="/Assets/avalonia-logo.ico"
         FontFamily="{StaticResource Poppins}"
-        Title="Bankable"
-        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
-        xmlns:local="using:AvaloniaSample"
-        xmlns:vms="using:ViewModelsSamples.Pies.Doughnut">
+        Title="Bankable">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,

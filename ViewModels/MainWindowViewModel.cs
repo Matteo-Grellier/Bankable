@@ -30,7 +30,7 @@ public class MainWindowViewModel : ViewModelBase
         private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
     }
 
-    private ViewModelBase _testChartViewModel = new GaugeChartViewModel();
+    private ViewModelBase _testChartViewModel = new BarsChartViewModel();
     public ViewModelBase TestChartViewModel
     {
         get => _testChartViewModel;
