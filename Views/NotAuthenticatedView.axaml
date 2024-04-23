@@ -43,18 +43,4 @@
             </Border>
         </DockPanel>
     </dialogHostAvalonia:DialogHost>
-    <!-- <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20"> -->
-    <!--     <Image Source="../Assets/Images/secure_login.png" Width="350"/> -->
-    <!--     <TextBlock Classes="h1" TextAlignment="Center">You are not connected</TextBlock> -->
-    <!--     <TextBlock FontSize="18" TextAlignment="Center">Please log in or register</TextBlock> -->
-    <!--     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20"> -->
-    <!--         <Button  -->
-    <!--             Width="100"  -->
-    <!--             FontWeight="Bold" -->
-    <!--             FontSize="18" -->
-    <!--             HorizontalContentAlignment="Center" -->
-    <!--             Content="Login"/> -->
-    <!--         <Button Width="100" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" Content="Register"/> -->
-    <!--     </StackPanel> -->
-    <!-- </StackPanel> -->
 </UserControl>

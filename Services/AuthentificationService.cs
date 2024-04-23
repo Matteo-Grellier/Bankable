@@ -54,9 +54,6 @@ public class AuthenticationService
 		
 		var addedUser = await _userService.AddItem(newUser);
 		
-		// userService.GetLastCreatedItem().Result.TokenId = await tokenService.CreateToken();
-		// await userService.UpdateItem(userService.GetLastCreatedItem().Result);
-		
 		return addedUser.Entity;
 	}
 }

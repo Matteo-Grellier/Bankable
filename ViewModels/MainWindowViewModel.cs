@@ -23,6 +23,7 @@ public class MainWindowViewModel : ViewModelBase
 	private ViewModelBase _contentViewModel;
 
 	private bool _isAuthenticated;
+	private string _currentUsername;
 
 	public ViewModelBase ContentViewModel
 	{
@@ -36,8 +37,6 @@ public class MainWindowViewModel : ViewModelBase
 		CurrentMainWindowViewModel = this;
 
 		InitializeMainWindow();
-		
-		// SetCurrentUser();
 
 		if (!IsAuthenticated)
 			ContentViewModel = new NotAuthenticatedViewModel();
@@ -60,6 +59,7 @@ public class MainWindowViewModel : ViewModelBase
 		{
 			var currentToken = await _tokenService.GetToken();
 			BankableContext.CurrentConnectedUser = await _userService.GetItemByToken(currentToken.Id);
+			CurrentUsername = BankableContext.CurrentConnectedUser.Username;
 			IsAuthenticated = true;
 		}
 		catch (Exception exception)
@@ -95,6 +95,12 @@ public class MainWindowViewModel : ViewModelBase
 	{
 		get => _isAuthenticated; 
 		set => this.RaiseAndSetIfChanged(ref _isAuthenticated, value);
+	}
+
+	public string CurrentUsername
+	{
+		get => _currentUsername; 
+		set => this.RaiseAndSetIfChanged(ref _currentUsername, value);
 	}
 
     // Change the content of the ContentControl with the corresponding Navbar buttons (Home, BankAccounts, Savings)
