@@ -1,0 +1,41 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+    
+    <Style Selector="DatePicker">
+        <Setter Property="CornerRadius" Value="50"/> 
+    </Style>
+    
+    <Style Selector="NumericUpDown">
+        <Setter Property="CornerRadius" Value="50"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Black}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    
+    <Style Selector="NumericUpDown /template/ TextBox">
+        <Setter Property="CornerRadius" Value="50 0 0 50"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Black}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style Selector="NumericUpDown:pointerover /template/ Spinner">
+        <Setter Property="CornerRadius" Value="0 50 50 0"/>
+    </Style>
+    
+    <Style Selector="TextBox.InlineTextBox">
+        <Setter Property="CornerRadius" Value="50"/> 
+    </Style>
+    
+    <Style Selector="ButtonSpinner">
+        <Setter Property="CornerRadius" Value="50"/> 
+    </Style>
+    
+    <Style Selector=".FlyoutListBox > ListBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="CornerRadius" Value="50"/> 
+    </Style>
+    
+</Styles>

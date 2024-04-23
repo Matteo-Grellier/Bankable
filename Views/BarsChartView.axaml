@@ -17,8 +17,7 @@
       Series="{Binding Series}"
       XAxes="{Binding XAxes}"
       LegendPosition="Bottom"
-      TooltipPosition="Center"
-      Title="Savings over the last 6 months">
+      TooltipPosition="Center">
   </lvc:CartesianChart>
 
 </UserControl>

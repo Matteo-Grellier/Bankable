@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels.Dialogs"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Bankable.Views.Dialogs.AddBankAccountView"
+             x:DataType="vm:AddBankAccountViewModel"
+             Padding="20">
+    <StackPanel Width="500" Height="500">
+        <TextBlock 
+            Classes="h2"
+            HorizontalAlignment="Center">
+            Add a new bank account
+        </TextBlock>
+        <Label>Name</Label>
+        <TextBox 
+            Classes="InlineTextBox"
+            Text="{Binding Name}" 
+            Watermark="Please enter the name of the bank account" 
+            AcceptsReturn="False"/>
+        <Label>Description</Label>
+        <TextBox 
+            Width="500" 
+            Height="200" 
+            Text="{Binding Description}" 
+            Watermark="Describe your bank account." 
+            TextWrapping="Wrap" AcceptsReturn="True"/>
+        <Button 
+            HorizontalAlignment="Center" 
+            Command="{Binding ConfirmationCommand}" 
+            Margin="0 10 0 0" 
+            FontWeight="Bold">Add bank account</Button>
+    </StackPanel>
+</UserControl>

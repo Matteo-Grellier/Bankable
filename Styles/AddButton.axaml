@@ -22,4 +22,8 @@
     <Style Selector="MenuItem:pointerover /template/ ContentPresenter">
         <Setter Property="Foreground" Value="{StaticResource Pink}"/>   
     </Style>
+    <Style Selector="MenuItem:pressed">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource Pink}"/>
+    </Style>
 </Styles>
