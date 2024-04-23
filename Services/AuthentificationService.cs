@@ -30,7 +30,7 @@ public class AuthenticationService
 			throw;
 		}
 	}
-	public void Logout(Guid guid)
+	public void Logout()
 	{
 		_tokenService.DeleteToken();
 	}

@@ -16,8 +16,9 @@ public class MainWindowViewModel : ViewModelBase
 	
 	private BankableContext _context = new();
 
-	private UserService _userService = new();
-	private TokenService _tokenService = new();
+	private readonly UserService _userService = new();
+	private readonly TokenService _tokenService = new();
+	private readonly AuthenticationService _authenticationService = new();
 	
 	private ViewModelBase _contentViewModel;
 
@@ -74,6 +75,13 @@ public class MainWindowViewModel : ViewModelBase
 			ContentViewModel = new NotAuthenticatedViewModel();
 		else
 			ContentViewModel = new HomeViewModel();
+	}
+
+	public void LogOut()
+	{
+		_authenticationService.Logout();
+		IsAuthenticated = false;
+		SetContentViewModelAccordingToIsAuth();
 	}
 	
 	private async void ShowAddDialog(ViewModelBase addDialogViewModel)
