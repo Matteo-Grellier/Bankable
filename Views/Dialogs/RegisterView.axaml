@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels.Dialogs"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Bankable.Views.Dialogs.RegisterView"
+             x:DataType="vm:RegisterViewModel"
+             Padding="20">
+    <StackPanel Height="350" Width="300" HorizontalAlignment="Center" Spacing="20">
+        <TextBlock Classes="h1" TextAlignment="Center" Margin="0 0 0 20">Register</TextBlock>
+        <StackPanel>
+            <Label>Username</Label>
+            <TextBox Classes="InlineTextBox" Watermark="Username" Text="{Binding Username}"/>         
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+            <StackPanel Width="140">
+                <Label>First name</Label>
+                <TextBox Classes="InlineTextBox" Watermark="First name" Text="{Binding FirstName}"/>              
+            </StackPanel>
+            <StackPanel Width="140">
+                <Label>Last name</Label>
+                <TextBox Classes="InlineTextBox" Watermark="Last name" Text="{Binding LastName}"/>                
+            </StackPanel>
+        </StackPanel>
+        <StackPanel>
+            <Label>Password</Label>
+            <TextBox Classes="InlineTextBox" Watermark="Password" PasswordChar="⚫" Text="{Binding Password}"/>        
+        </StackPanel>
+        <Button 
+            Width="100" 
+            FontWeight="Bold" 
+            FontSize="18" 
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center" 
+            Content="Register"
+            Command="{Binding ConfirmationCommand}"/>
+    </StackPanel>
+</UserControl>
