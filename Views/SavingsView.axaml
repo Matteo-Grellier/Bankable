@@ -8,14 +8,6 @@
              x:DataType="vm:SavingsViewModel"
              x:Class="Bankable.Views.SavingsView">
     <DockPanel>
-        <DockPanel DockPanel.Dock="Top" Background="{StaticResource White}" LastChildFill="True">
-            <DatePicker 
-                DockPanel.Dock="Right" 
-                DayVisible="False" 
-                Margin="0 0 40 0" 
-                SelectedDate="{Binding ContentViewModel.SelectedDate}" />
-            <StackPanel DockPanel.Dock="Left" ></StackPanel>
-        </DockPanel>
         <StackPanel DockPanel.Dock="Right" Background="{StaticResource White}" Width="38">
             <Button Classes="icon" Command="{Binding Dashboard}"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
             <Button Classes="icon" Command="{Binding List}"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
