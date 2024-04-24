@@ -13,11 +13,10 @@ public class DataFaker
 	public async void GenerateData()
 	{
 		AuthenticationService authenticationService = new();
-
 		// Create a new user
 		User user = new()
 		{
-			Password = Faker.RandomNumber.Next(0, 10000).ToString(),
+			Password = RandomNumber.Next(0, 10000).ToString(),
 			Username = Internet.UserName(),
 			CreatedAt = DateTime.UtcNow,
 			FirstName = Name.First(),
@@ -35,6 +34,7 @@ public class DataFaker
 		// Create a new bank account
 		BankAccount bankAccount = new()
 		{
+
 			Amount = RandomNumber.Next(0, 10000),
 			Description = Lorem.Sentence(),
 			UserId = userService.GetLastCreatedItem().Result.Id,
@@ -66,7 +66,7 @@ public class DataFaker
 				Description = Lorem.Sentence(),
 				BankAccountId = bankAccountService.GetItemsByUser().Result[0].Id,
 				CategoryId = categoryService.GetAllItems().Result[i].Id,
-				Title = Faker.Name.Middle(),
+				Title = Name.Middle(),
 			};
 			await incomingService.AddItem(incoming);
 		}
@@ -82,7 +82,7 @@ public class DataFaker
 				Description = Lorem.Sentence(),
 				BankAccountId = bankAccountService.GetItemsByUser().Result[0].Id,
 				CategoryId = categoryService.GetAllItems().Result[i].Id,
-				Title = Faker.Lorem.Sentence(4),
+				Title = Lorem.Sentence(4),
 			};
 			await spendingService.AddItem(spending);
 		}
