@@ -7,8 +7,15 @@ using Bankable.Services;
 using Bankable.ViewModels.Dialogs;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ReactiveUI;
-namespace Bankable.ViewModels;
 using DialogHostAvalonia;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using LiveChartsCore;
+using LiveChartsCore.Defaults;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Extensions;
+
+namespace Bankable.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
@@ -19,16 +26,23 @@ public class MainWindowViewModel : ViewModelBase
 	private readonly UserService _userService = new();
 	private readonly TokenService _tokenService = new();
 	private readonly AuthenticationService _authenticationService = new();
-	
-	private ViewModelBase _contentViewModel;
 
 	private bool _isAuthenticated;
 	private string _currentUsername;
 
+	
+	private ViewModelBase _contentViewModel;
 	public ViewModelBase ContentViewModel
 	{
 		get => _contentViewModel;
 		private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+	}
+	
+	private ViewModelBase _testChartViewModel = new BarsChartViewModel();
+	public ViewModelBase TestChartViewModel
+	{
+		get => _testChartViewModel;
+		private set => this.RaiseAndSetIfChanged(ref _testChartViewModel, value);
 	}
 
 	public MainWindowViewModel()
@@ -102,7 +116,7 @@ public class MainWindowViewModel : ViewModelBase
 	DataFaker _dataFaker = new();
 	public void Home()
 	{
-		// _dataFaker.GenerateData();
+		//_dataFaker.GenerateData();
 		ContentViewModel = new HomeViewModel();
 	}
 

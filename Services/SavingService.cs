@@ -24,6 +24,11 @@ public class SavingService
             throw;
         }
     }
+    
+    public async Task<IEnumerable<Saving>> GetAllSavingsInMonthBySavingProject(int month, Guid savingProjectId)
+    {
+        return await _bankableContext.Savings.Where(e => e.Date.Month == month && e.SavingProjectId == savingProjectId).ToListAsync();
+    }
 
     public async Task<Saving> GetById(Guid id)
     {

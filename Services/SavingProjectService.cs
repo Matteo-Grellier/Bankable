@@ -12,6 +12,12 @@ public class SavingProjectService
 {
     private readonly BankableContext _bankableContext = new();
     
+    
+    public async Task<List<SavingProject>> GetAll()
+    {
+        return await _bankableContext.SavingProjects.ToListAsync();
+    }
+    
     public async Task<List<SavingProject>> GetItemsForUser()
     {
         try
