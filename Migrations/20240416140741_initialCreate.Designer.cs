@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bankable.Migrations
 {
     [DbContext(typeof(BankableContext))]
+
     [Migration("20240416140741_initialCreate")]
     partial class initialCreate
     {
