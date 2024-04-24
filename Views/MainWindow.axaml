@@ -20,7 +20,7 @@
     </Design.DataContext>
     
     <DockPanel>
-        <DockPanel DockPanel.Dock="Left" Background="{StaticResource White}" Width="305">
+        <DockPanel DockPanel.Dock="Left" Background="{StaticResource White}" Width="305" IsVisible="{Binding IsAuthenticated}">
             <DockPanel DockPanel.Dock="Bottom">
                 <Button Classes="addButton" DockPanel.Dock="Right" Margin="10">
                     <avalonia:MaterialIcon Kind="Add" Width="24" Height="24"/>
@@ -36,8 +36,40 @@
                 </Button>  
                 <StackPanel></StackPanel>
             </DockPanel>
-            <StackPanel DockPanel.Dock="Top" Spacing="40" Margin="20 20 0 0" >
-                <Button Classes="textAndIcon" FontSize="24" Command="{Binding Home}">
+            <StackPanel DockPanel.Dock="Top" Spacing="40" Margin="0 0 0 0">
+                <Border BorderBrush="{StaticResource Black}" BorderThickness="0 0 0 1" Padding="10 0 0 0">
+                    <DockPanel Width="305" Height="80" LastChildFill="True">
+                        <Button Classes="icon" DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" Margin="0 0 10 0" >
+                            <avalonia:MaterialIcon Kind="DotsHorizontal" Width="24" Height="24"/>
+                            <Button.Flyout>
+                                <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                    <MenuItem Header="Log out" Command="{Binding LogOut}"/> 
+                                </MenuFlyout>
+                            </Button.Flyout>
+                        </Button>
+                        <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 10" Spacing="10">
+                            <Border                                 
+                                Width="40" 
+                                Height="40" 
+                                Background="{StaticResource Yellow}" 
+                                CornerRadius="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 0 0 0">
+                                <TextBlock 
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Classes="h1" 
+                                    Text="{Binding CurrentUsername[0]}"/>
+                            </Border>
+                            <TextBlock 
+                                TextAlignment="Center" 
+                                VerticalAlignment="Center" 
+                                FontWeight="Bold"
+                                Text="{Binding CurrentUsername}"/>
+                        </StackPanel>   
+                    </DockPanel>                   
+                </Border>
+
+
+                <Button Classes="textAndIcon" FontSize="24" Command="{Binding Home}" >
                     <StackPanel Orientation="Horizontal" Spacing="10">
                         <avalonia:MaterialIcon Kind="HomeVariantOutline" Width="24" Height="24"/>
                         <TextBlock Text="Home"/>
@@ -58,7 +90,7 @@
             </StackPanel>
            
         </DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{StaticResource White}" Spacing="20">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{StaticResource White}" Spacing="20" IsVisible="{Binding IsAuthenticated}">
             <ToggleButton Margin="0 10">Compte 1</ToggleButton>
             <ToggleButton Margin="0 10">Compte 2</ToggleButton>
             <ToggleButton Margin="0 10">Compte commun</ToggleButton>

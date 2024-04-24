@@ -13,7 +13,7 @@ public class BarsChartViewModel: ViewModelBase
 {
     public BarsChartViewModel()
     {
-        GetDataFromServices();
+        //GetDataFromServices();
     }
 
     private SolidColorPaint[] _colors =

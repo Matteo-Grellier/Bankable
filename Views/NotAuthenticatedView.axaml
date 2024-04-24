@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels"
+             xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Bankable.Views.NotAuthenticatedView"
+             x:DataType="vm:NotAuthenticatedViewModel">
+    <dialogHostAvalonia:DialogHost CloseOnClickAway="True" Identifier="UserDialog">
+        <dialogHostAvalonia:DialogHost.DialogContent>
+                
+        </dialogHostAvalonia:DialogHost.DialogContent>
+        <!-- put the content over which the dialog is shown here (e.g. your main window grid)-->
+            
+        <!-- Main content of the app -->
+        <DockPanel HorizontalAlignment="Stretch" LastChildFill="True">
+            <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20" Width="800">
+                <Image Source="../Assets/Images/secure_login.png" Width="350"/>
+                <TextBlock Classes="h1" TextAlignment="Center">You are not connected</TextBlock>
+                <TextBlock FontSize="18" TextAlignment="Center">Please log in or register</TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+                    <Button 
+                        Width="100" 
+                        FontWeight="Bold"
+                        FontSize="18"
+                        HorizontalContentAlignment="Center"
+                        Content="Login"
+                        Command="{Binding Login}"/>
+                    <Button 
+                        Width="100" 
+                        FontWeight="Bold" 
+                        FontSize="18" 
+                        HorizontalContentAlignment="Center" 
+                        Content="Register"
+                        Command="{Binding Register}"/>
+                </StackPanel>
+            </StackPanel>
+            <Border DockPanel.Dock="Left" HorizontalAlignment="Stretch" Background="{StaticResource Green}" Padding="40">
+                <StackPanel VerticalAlignment="Center">
+                    <Image Source="../Assets/Images/logo-w-text.png" Width="350"/>
+                </StackPanel>                
+            </Border>
+        </DockPanel>
+    </dialogHostAvalonia:DialogHost>
+</UserControl>
