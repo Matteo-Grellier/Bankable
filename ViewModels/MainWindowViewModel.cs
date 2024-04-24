@@ -37,13 +37,8 @@ public class MainWindowViewModel : ViewModelBase
 		CurrentMainWindowViewModel = this;
 
 		InitializeMainWindow();
-
-		if (!IsAuthenticated)
-			ContentViewModel = new NotAuthenticatedViewModel();
-		else
-			ContentViewModel = new HomeViewModel();
 	}
-
+	
 	private async void InitializeMainWindow()
 	{
 		// Initialise Singleton for the mainWindow
