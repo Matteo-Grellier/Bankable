@@ -8,7 +8,6 @@ namespace Bankable.Services;
 public class TokenService
 {
 	BankableContext bankableContext = new();
-	UserService userService = new();
 	public async Task<Guid> CreateToken(User user)
 	{
 		try
@@ -18,10 +17,10 @@ public class TokenService
 				Value = Guid.NewGuid(),
 				UserId = user.Id
 			};
-			
+
 			//Delete current token before create new token
 			this.DeleteToken();
-			
+
 			bankableContext.Tokens.Add(newToken);
 			await bankableContext.SaveChangesAsync();
 			return newToken.Id;
@@ -35,17 +34,35 @@ public class TokenService
 
 	public async Task<Token> GetToken()
 	{
-		var token = await bankableContext.Tokens.FirstAsync();
-		return token!;
+		try
+		{
+			var token = await bankableContext.Tokens.FirstAsync();
+			return token!;
+		}
+		catch (Exception err)
+		{
+			Console.WriteLine(err);
+			throw;
+		}
+
 	}
 
 	public async void DeleteToken()
 	{
-		var token = await bankableContext.Tokens.FirstOrDefaultAsync();
-		
-		if(token != null)
-			bankableContext.Tokens.Remove(token);
-		
-		await bankableContext.SaveChangesAsync();
+		try
+		{
+			var token = await bankableContext.Tokens.FirstOrDefaultAsync();
+
+			if (token != null)
+				bankableContext.Tokens.Remove(token);
+
+			await bankableContext.SaveChangesAsync();
+		}
+		catch (Exception err)
+		{
+			Console.WriteLine(err);
+			throw;
+		}
+
 	}
 }
