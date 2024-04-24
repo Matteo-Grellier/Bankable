@@ -24,6 +24,19 @@ public class SavingService
 			throw;
 		}
 	}
+	
+	public async Task<List<Saving>> GetAllByUser()
+	{
+		try
+		{
+			return await _bankableContext.Savings.Where(e => e.SavingProject.UserId == BankableContext.CurrentConnectedUser.Id).ToListAsync();
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
+	}
 
 	public async Task<IEnumerable<Saving>> GetAllSavingsInMonthBySavingProject(int month, Guid savingProjectId)
 	{

@@ -15,15 +15,12 @@ public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewMo
     private readonly IncomingService _incomingService = new();
     
     private DateTimeOffset _selectedDate;
-    // private List<BankAccount> _selectedBankAccounts;
-    // private List<BankAccount> _allBankAccounts;
     private List<Spending> _spendings;
     private List<Incoming> _incomes;
 
     public BankAccountsDashboardViewModel()
     {
         _selectedDate = new DateTimeOffset(DateTime.Now);
-        
         SetValues(_selectedDate);
     }
     public DateTimeOffset SelectedDate 
@@ -35,14 +32,6 @@ public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewMo
             this.RaiseAndSetIfChanged(ref _selectedDate, value);
         }
     }
-
-    // public List<BankAccount> SelectedBankAccounts { get; set; }
-    //
-    // public List<BankAccount> AllBankAccounts
-    // {
-    //     get => _allBankAccounts; 
-    //     set => this.RaiseAndSetIfChanged(ref _allBankAccounts, value);
-    // }
     
     public List<Spending> Spendings 
     {
@@ -64,14 +53,7 @@ public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewMo
 
     private async void SetValues(DateTimeOffset date)
     {
-        // var bankAccounts = await _bankAccountService.GetItemsByUser();
-        // AllBankAccounts = bankAccounts;
-        // SelectedBankAccounts = bankAccounts;
-
         Spendings = await _spendingService.GetAllInMonth(date.DateTime);
         Incomes = await _incomingService.GetAllInMonth(date.DateTime);
-        
-        Console.WriteLine(Spendings.Count);
-        Console.WriteLine(Incomes.Count);
     }
 }
