@@ -13,37 +13,75 @@ public class CategoryService
 
 	public async Task<List<Category>> GetAllItems()
 	{
-		List<Category> categories;
-		categories = await bankableContext.Categories.ToListAsync();
-		return categories;
+		try
+		{
+			List<Category> categories;
+			categories = await bankableContext.Categories.ToListAsync();
+			return categories;
+		}
+		catch (Exception err)
+		{
+			Console.WriteLine(err);
+			throw;
+		}
 	}
 
 	public async Task<Category> GetItemByID(Guid id)
 	{
-		var category = await bankableContext.Categories.SingleAsync(e => e.Id == id);
-		return category;
+		try
+		{
+			var category = await bankableContext.Categories.SingleAsync(e => e.Id == id);
+			return category;
+		}
+		catch (Exception err)
+		{
+			Console.WriteLine(err);
+			throw;
+		}
 	}
 
 	public async Task<EntityEntry<Category>> AddItem(Category category)
 	{
-		EntityEntry<Category> addedCategory = bankableContext.Add(category);
-		await bankableContext.SaveChangesAsync();
-		return addedCategory;
+		try
+		{
+			EntityEntry<Category> addedCategory = bankableContext.Add(category);
+			await bankableContext.SaveChangesAsync();
+			return addedCategory;
+		}
+		catch (Exception err)
+		{
+			Console.WriteLine(err);
+			throw;
+		}
 	}
 
 	public async Task<EntityEntry<Category>> UpdateItem(Category category)
 	{
-		var updatedIncoming = bankableContext.Update(category);
-		await bankableContext.SaveChangesAsync();
-		return updatedIncoming;
+		try
+		{
+			var updatedIncoming = bankableContext.Update(category);
+			await bankableContext.SaveChangesAsync();
+			return updatedIncoming;
+		}
+		catch (Exception err)
+		{
+			Console.WriteLine(err);
+			throw;
+		}
 	}
 
 	public async Task<string> RemoveItem(Category category)
 	{
-		bankableContext.Remove(category);
-		await bankableContext.SaveChangesAsync();
-		return "Item has been removed";
+		try
+		{
+			bankableContext.Remove(category);
+			await bankableContext.SaveChangesAsync();
+			return "Item has been removed";
+		}
+		catch (Exception err)
+		{
+			Console.WriteLine(err);
+			throw;
+		}
 	}
-
-
 }

@@ -14,57 +14,129 @@ public class SpendingService
 
 	public async Task<IEnumerable<Spending>> GetAllItems()
 	{
-		IEnumerable<Spending> Spendings;
-		Spendings = await bankableContext.Spendings.ToListAsync();
-		return Spendings;
+		try
+		{
+			IEnumerable<Spending> Spendings;
+			Spendings = await bankableContext.Spendings.ToListAsync();
+			return Spendings;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 
 	public async Task<Spending> GetItemByID(Guid id)
 	{
-		var spending = await bankableContext.Spendings.SingleAsync(e => e.Id == id);
-		return spending;
+		try
+		{
+			var spending = await bankableContext.Spendings.SingleAsync(e => e.Id == id);
+			return spending;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 
 	public async Task<IEnumerable<Spending>> GetAllSpendingsByCategorInMonth(Category category, DateTime? month)
 	{
-		var spending = await bankableContext.Spendings.Where(e => e.Date.Month == month.Value.Month && category.Id == e.CategoryId).ToListAsync();
-		return spending;
+		try
+		{
+			var spending = await bankableContext.Spendings.Where(e => e.Date.Month == month.Value.Month && category.Id == e.CategoryId).ToListAsync();
+			return spending;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 
 	public async Task<IEnumerable<Spending>> GetAllSpendingsInMonth(int month)
 	{
-		var spending = await bankableContext.Spendings.Where(e => e.Date.Month == month).ToListAsync();
-		return spending;
+		try
+		{
+			var spending = await bankableContext.Spendings.Where(e => e.Date.Month == month).ToListAsync();
+			return spending;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 
 	public async Task<List<Spending>> GetItemsByCategory(Category category)
 	{
-		return await bankableContext.Spendings.Where(e => category.Id == e.CategoryId).ToListAsync();
+		try
+		{
+			return await bankableContext.Spendings.Where(e => category.Id == e.CategoryId).ToListAsync();
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 
 	public List<Spending> GetItemsForUser()
 	{
-		return bankableContext.Spendings.Where(e => e.BankAccount.UserId == BankableContext.CurrentConnectedUser.Id).ToList();
+		try
+		{
+			return bankableContext.Spendings.Where(e => e.BankAccount.UserId == BankableContext.CurrentConnectedUser.Id).ToList();
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 
 	public async Task<EntityEntry<Spending>> AddItem(Spending Spending)
 	{
-		var addedSpending = bankableContext.Add(Spending);
-		await bankableContext.SaveChangesAsync();
-		return addedSpending;
+		try
+		{
+			var addedSpending = bankableContext.Add(Spending);
+			await bankableContext.SaveChangesAsync();
+			return addedSpending;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 
 	public async Task<EntityEntry<Spending>> UpdateItem(Spending Spending)
 	{
-		var updatedSpending = bankableContext.Update(Spending);
-		await bankableContext.SaveChangesAsync();
-		return updatedSpending;
+		try
+		{
+			var updatedSpending = bankableContext.Update(Spending);
+			await bankableContext.SaveChangesAsync();
+			return updatedSpending;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 
 	public async Task<string> RemoveItem(Spending Spending)
 	{
-		bankableContext.Remove(Spending);
-		await bankableContext.SaveChangesAsync();
-		return "Item has been removed";
+		try
+		{
+			bankableContext.Remove(Spending);
+			await bankableContext.SaveChangesAsync();
+			return "Item has been removed";
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
 	}
 }
