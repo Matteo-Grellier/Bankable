@@ -2,7 +2,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels.BankAccounts"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Bankable.Views.BankAccounts.BankAccountsListView">
-    Bank accounts list view
+             x:Class="Bankable.Views.BankAccounts.BankAccountsListView"
+             x:DataType="vm:BankAccountsListViewModel"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             >
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="{StaticResource White}" Spacing="20">
+            <Button Classes="icon" Command="{Binding Spendings}">Spendings</Button>
+            <Button Classes="icon" Command="{Binding Incomings}">Incomings</Button>
+        </StackPanel>
+        <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
+    </DockPanel>
 </UserControl>

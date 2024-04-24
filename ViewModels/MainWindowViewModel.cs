@@ -92,7 +92,7 @@ public class MainWindowViewModel : ViewModelBase
 		IsAuthenticated = false;
 		SetContentViewModelAccordingToIsAuth();
 	}
-	
+
 	private async void ShowAddDialog(ViewModelBase addDialogViewModel)
 	{
 		if(DialogHost.IsDialogOpen("AddDialog"))
@@ -129,7 +129,7 @@ public class MainWindowViewModel : ViewModelBase
 	{
 		ContentViewModel = new SavingsViewModel();
 	}
-    
+
     // Commands to show add dialogs according to view models
     public void ShowAddBankAccountViewModel()
     {
@@ -140,20 +140,20 @@ public class MainWindowViewModel : ViewModelBase
     {
 	    ShowAddDialog(new AddIncomingViewModel());
     }
-    
+
     public void ShowAddSavingProjectViewModel()
     {
 	    ShowAddDialog(new AddSavingProjectViewModel());
     }
-    
+
     public void ShowAddSavingViewModel()
     {
 	    ShowAddDialog(new AddSavingViewModel());
     }
-    
+
     public void ShowAddSpendingViewModel()
     {
 	    ShowAddDialog(new AddSpendingViewModel());
     }
-    
+
 }

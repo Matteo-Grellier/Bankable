@@ -14,7 +14,7 @@
             <Button Classes="icon" Command="{Binding List}"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
         </StackPanel>
         <StackPanel>
-            <TextBlock>BankAccounts View!</TextBlock>
+            <!-- <TextBlock>BankAccounts View!</TextBlock> -->
             <!-- <dialogHost:DialogHost CloseOnClickAway="True" IsOpen="True"> -->
             <!--     <dialogHost:DialogHost.DialogContent> -->
             <!--         <StackPanel Orientation="Horizontal" Spacing="10"> -->
