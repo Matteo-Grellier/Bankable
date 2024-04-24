@@ -19,6 +19,13 @@ public class IncomingService
 		Incomings = await bankableContext.Incomings.ToListAsync();
 		return Incomings;
 	}
+	
+	public async Task<List<Incoming>> GetAllInMonth(DateTime date)
+	{
+		List<Incoming> incomings;
+		incomings = await bankableContext.Incomings.Where(e => e.Date.Month == date.Date.Month && e.Date.Year == date.Date.Year).ToListAsync();
+		return incomings;
+	}
 
 	public async Task<Incoming> GetItemByID(Guid id)
 	{

@@ -15,11 +15,7 @@
                 DayVisible="False" 
                 Margin="0 0 40 0" 
                 SelectedDate="{Binding ContentViewModel.SelectedDate}" />
-            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Spacing="20">
-                <ToggleButton Margin="0 10">Compte 1</ToggleButton>
-                <ToggleButton Margin="0 10">Compte 2</ToggleButton>
-                <ToggleButton Margin="0 10">Compte commun</ToggleButton>             
-            </StackPanel>
+            <StackPanel DockPanel.Dock="Left" ></StackPanel>
         </DockPanel>
         <StackPanel DockPanel.Dock="Right" Background="{StaticResource White}" Width="38">
             <Button Classes="icon" Command="{Binding Dashboard}"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>

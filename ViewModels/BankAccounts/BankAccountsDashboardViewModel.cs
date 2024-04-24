@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Avalonia.Controls;
+using Bankable.Models;
+using Bankable.Services;
 using Bankable.Views;
 using ReactiveUI;
 
@@ -8,24 +11,67 @@ namespace Bankable.ViewModels.BankAccounts;
 
 public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewModel
 {
-    private DateTimeOffset _date;
+    private readonly SpendingService _spendingService = new();
+    private readonly IncomingService _incomingService = new();
+    
+    private DateTimeOffset _selectedDate;
+    // private List<BankAccount> _selectedBankAccounts;
+    // private List<BankAccount> _allBankAccounts;
+    private List<Spending> _spendings;
+    private List<Incoming> _incomes;
 
     public BankAccountsDashboardViewModel()
     {
-        SelectedDate = new DateTimeOffset(DateTime.Now);
+        _selectedDate = new DateTimeOffset(DateTime.Now);
+        
+        SetValues(_selectedDate);
     }
     public DateTimeOffset SelectedDate 
     { 
-        get => _date;
+        get => _selectedDate;
         set
         {
             OnDateChanged(value);
-            this.RaiseAndSetIfChanged(ref _date, value);
+            this.RaiseAndSetIfChanged(ref _selectedDate, value);
         }
+    }
+
+    // public List<BankAccount> SelectedBankAccounts { get; set; }
+    //
+    // public List<BankAccount> AllBankAccounts
+    // {
+    //     get => _allBankAccounts; 
+    //     set => this.RaiseAndSetIfChanged(ref _allBankAccounts, value);
+    // }
+    
+    public List<Spending> Spendings 
+    {
+        get => _spendings; 
+        set => this.RaiseAndSetIfChanged(ref _spendings, value);
+    }
+    
+    public List<Incoming> Incomes 
+    {
+        get => _incomes; 
+        set => this.RaiseAndSetIfChanged(ref _incomes, value);
     }
 
     private void OnDateChanged(DateTimeOffset date)
     {
         Console.WriteLine(date);
+        SetValues(date);
+    }
+
+    private async void SetValues(DateTimeOffset date)
+    {
+        // var bankAccounts = await _bankAccountService.GetItemsByUser();
+        // AllBankAccounts = bankAccounts;
+        // SelectedBankAccounts = bankAccounts;
+
+        Spendings = await _spendingService.GetAllInMonth(date.DateTime);
+        Incomes = await _incomingService.GetAllInMonth(date.DateTime);
+        
+        Console.WriteLine(Spendings.Count);
+        Console.WriteLine(Incomes.Count);
     }
 }
