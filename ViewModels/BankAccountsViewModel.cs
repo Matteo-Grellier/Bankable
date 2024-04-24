@@ -1,13 +1,19 @@
 using Bankable.ViewModels.BankAccounts;
+using Bankable.Views;
 using ReactiveUI;
 
 namespace Bankable.ViewModels;
 
 public class BankAccountsViewModel: ViewModelBase
 {
-    private ViewModelBase _contentViewModel;
+    private IDashboardListViewModel _contentViewModel;
 
-    public ViewModelBase ContentViewModel
+    public BankAccountsViewModel()
+    {
+        ContentViewModel = new BankAccountsDashboardViewModel();
+    }
+
+    public IDashboardListViewModel ContentViewModel
     {
         get => _contentViewModel;
         private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);

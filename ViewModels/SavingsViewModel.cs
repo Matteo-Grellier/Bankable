@@ -5,9 +5,14 @@ namespace Bankable.ViewModels;
 
 public class SavingsViewModel: ViewModelBase
 {
-    private ViewModelBase _contentViewModel;
+    private IDashboardListViewModel _contentViewModel;
 
-    public ViewModelBase ContentViewModel
+    public SavingsViewModel()
+    {
+        ContentViewModel = new SavingsDashboardViewModel();
+    }
+
+    public IDashboardListViewModel ContentViewModel
     {
         get => _contentViewModel;
         private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);

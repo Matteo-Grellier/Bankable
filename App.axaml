@@ -20,8 +20,6 @@
         <SolidColorBrush Color="#000" x:Key="Black" />
         
         <FontFamily x:Key="Poppins">/Assets/Fonts#Poppins</FontFamily>
-        
-        <!-- <ColorPaletteResources x:Key="Light" Accent="#EF476F"/> -->
     </Application.Resources>
              
              

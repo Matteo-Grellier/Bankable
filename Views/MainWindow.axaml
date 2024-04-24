@@ -90,11 +90,6 @@
             </StackPanel>
            
         </DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="{StaticResource White}" Spacing="20" IsVisible="{Binding IsAuthenticated}">
-            <ToggleButton Margin="0 10">Compte 1</ToggleButton>
-            <ToggleButton Margin="0 10">Compte 2</ToggleButton>
-            <ToggleButton Margin="0 10">Compte commun</ToggleButton>
-        </StackPanel>
         <dialogHost:DialogHost CloseOnClickAway="True" Identifier="AddDialog">
             <dialogHost:DialogHost.DialogContent>
                 

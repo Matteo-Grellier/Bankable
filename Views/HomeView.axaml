@@ -8,6 +8,18 @@
              x:DataType="vm:HomeViewModel"
              x:Class="Bankable.Views.HomeView">
     <DockPanel>
+        <DockPanel DockPanel.Dock="Top" Background="{StaticResource White}" LastChildFill="True">
+            <DatePicker 
+                DockPanel.Dock="Right" 
+                DayVisible="False" 
+                Margin="0 0 40 0" 
+                SelectedDate="{Binding ContentViewModel.SelectedDate}" />
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Spacing="20">
+                <ToggleButton Margin="0 10">Compte 1</ToggleButton>
+                <ToggleButton Margin="0 10">Compte 2</ToggleButton>
+                <ToggleButton Margin="0 10">Compte commun</ToggleButton>             
+            </StackPanel>
+        </DockPanel>
         <StackPanel DockPanel.Dock="Right" Background="{StaticResource White}" Width="38">
             <Button Classes="icon" Command="{Binding Dashboard}"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
             <Button Classes="icon" Command="{Binding List}"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
