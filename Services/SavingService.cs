@@ -10,20 +10,20 @@ namespace Bankable.Services;
 
 public class SavingService
 {
-	private readonly BankableContext _bankableContext = new();
-
-	public async Task<List<Saving>> GetItemsBySavingProject(Guid savingProjectId)
-	{
-		try
-		{
-			return await _bankableContext.Savings.Where(e => e.SavingProjectId == savingProjectId).ToListAsync();
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine(e);
-			throw;
-		}
-	}
+    private readonly BankableContext _bankableContext = new();
+    
+    public async Task<List<Saving>> GetItemsBySavingProject(Guid savingProjectId)
+    {
+        try
+        {
+            return await _bankableContext.Savings.Where(e => e.SavingProjectId == savingProjectId).ToListAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 
 	public async Task<IEnumerable<Saving>> GetAllSavingsInMonthBySavingProject(int month, Guid savingProjectId)
 	{
