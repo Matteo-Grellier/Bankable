@@ -12,7 +12,7 @@ public class BankAccountsListViewModel: ViewModelBase, IDashboardListViewModel
     private readonly SpendingService _spendingService = new();
     private readonly IncomingService _incomingService = new();
     
-    private ViewModelBase _contentViewModel;
+    private IListVIewModel _contentViewModel;
     
     private DateTimeOffset _selectedDate;
 
@@ -33,7 +33,7 @@ public class BankAccountsListViewModel: ViewModelBase, IDashboardListViewModel
         }
     }
 
-    public ViewModelBase ContentViewModel
+    public IListVIewModel ContentViewModel
     {
         get => _contentViewModel;
         private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
@@ -42,15 +42,9 @@ public class BankAccountsListViewModel: ViewModelBase, IDashboardListViewModel
     private void OnDateChanged(DateTimeOffset date)
     {
         Console.WriteLine(date);
-        // ContentViewModel.SelectedDate = 
-        // SetValues(date);
-    }
 
-    // private async void SetValues(DateTimeOffset date)
-    // {
-    //     Spendings = await _spendingService.GetAllInMonth(date.DateTime);
-    //     Incomes = await _incomingService.GetAllInMonth(date.DateTime);
-    // }
+        if (ContentViewModel != null) ContentViewModel.SelectedDate = date;
+    }
     
     public void Spendings()
     {
@@ -59,6 +53,6 @@ public class BankAccountsListViewModel: ViewModelBase, IDashboardListViewModel
 
     public void Incomes()
     {
-        ContentViewModel = new ListIncomesViewModel();
+        ContentViewModel = new ListIncomesViewModel(SelectedDate);
     }
 }

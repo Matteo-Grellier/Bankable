@@ -30,7 +30,10 @@ public class IncomingService
 	public async Task<List<Incoming>> GetAllInMonth(DateTime date)
 	{
 		List<Incoming> incomings;
-		incomings = await bankableContext.Incomings.Where(e => e.Date.Month == date.Date.Month && e.Date.Year == date.Date.Year).ToListAsync();
+		incomings = await bankableContext.Incomings.Where(e => 
+			e.Date.Month == date.Date.Month 
+			&& e.Date.Year == date.Date.Year
+			&& e.BankAccount.UserId == BankableContext.CurrentConnectedUser.Id).ToListAsync();
 		return incomings;
 	}
 

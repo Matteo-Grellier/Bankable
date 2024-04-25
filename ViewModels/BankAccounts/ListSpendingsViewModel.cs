@@ -6,7 +6,7 @@ using Models;
 using Services;
 using ReactiveUI;
 
-public class ListSpendingsViewModel: ViewModelBase
+public class ListSpendingsViewModel: ViewModelBase, IListVIewModel
 {
 
     private readonly SpendingService _spendingService = new();
@@ -16,11 +16,9 @@ public class ListSpendingsViewModel: ViewModelBase
     private IEnumerable<Spending> _spendings;
     private DateTimeOffset _selectedDate;
 
-
-
     public ListSpendingsViewModel(DateTimeOffset selectedDate)
     {
-        //Define instance 
+        // Set the SelectedDate to filter by month
         SelectedDate = selectedDate;
         
         // Get categories and bank accounts when we instantiate the AddIncomingViewModel
@@ -45,8 +43,6 @@ public class ListSpendingsViewModel: ViewModelBase
 
     private async void GetSpendings(DateTimeOffset selectedDate)
     {
-        Console.WriteLine("triggered");
-        
         // Get Spendings for one month and for the current user
         Spendings = await _spendingService.GetAllInMonth(selectedDate.DateTime);
 
