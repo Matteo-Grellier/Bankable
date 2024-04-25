@@ -13,7 +13,7 @@ public class BarsChartViewModel: ViewModelBase
 {
     public BarsChartViewModel()
     {
-        //GetDataFromServices();
+        GetDataFromServices();
     }
 
     private SolidColorPaint[] _colors =
@@ -75,7 +75,7 @@ public class BarsChartViewModel: ViewModelBase
         last6MonthsList.Reverse();
 
         List<SavingProject> savingsProjectList;
-        //List<SavingProject> savingsProjectList = await _savingProjectsService.GetItemsForUser();
+        //savingsProjectList = await _savingProjectsService.GetItemsForUser();
         savingsProjectList = await _savingProjectsService.GetAll();
         
         List<string> monthNames = new ();
