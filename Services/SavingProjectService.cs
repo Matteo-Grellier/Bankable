@@ -10,7 +10,8 @@ namespace Bankable.Services;
 
 public class SavingProjectService
 {
-	private readonly BankableContext _bankableContext = new();
+    private readonly BankableContext _bankableContext = new();
+    
 
 	public async Task<List<SavingProject>> GetAll()
 	{

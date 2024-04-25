@@ -24,7 +24,7 @@ public class SavingService
 			throw;
 		}
 	}
-	
+
 	public async Task<List<Saving>> GetAllByUser()
 	{
 		try
