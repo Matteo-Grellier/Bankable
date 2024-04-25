@@ -27,7 +27,7 @@ public class InitializationService
     {
         var categories = await _categoryService.GetAllItems();
 
-        if (categories == null) return;
+        if (categories.Count > 0) return;
         
         foreach (var categoryName in _categoriesNames)
         {
