@@ -1,26 +1,26 @@
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
-using Bankable.Models;
+using Avalonia.Platform;
 using Bankable.Services;
-using Bankable.Views;
-using ReactiveUI;
 
 namespace Bankable.ViewModels.BankAccounts;
+using ReactiveUI;
 
 public class BankAccountsListViewModel: ViewModelBase, IDashboardListViewModel
 {
     private readonly SpendingService _spendingService = new();
     private readonly IncomingService _incomingService = new();
     
+    private ViewModelBase _contentViewModel;
+    
     private DateTimeOffset _selectedDate;
-    private List<Spending> _spendings;
-    private List<Incoming> _incomes;
+
 
     public BankAccountsListViewModel()
     {
-        SelectedDate = new DateTimeOffset(DateTime.Now);
+        SelectedDate = DateTime.Now;
+        ContentViewModel = new ListSpendingsViewModel(DateTime.Now);
     }
     
     public DateTimeOffset SelectedDate 
@@ -32,28 +32,33 @@ public class BankAccountsListViewModel: ViewModelBase, IDashboardListViewModel
             this.RaiseAndSetIfChanged(ref _selectedDate, value);
         }
     }
-    
-    public List<Spending> Spendings 
-    {
-        get => _spendings; 
-        set => this.RaiseAndSetIfChanged(ref _spendings, value);
-    }
-    
-    public List<Incoming> Incomes 
-    {
-        get => _incomes; 
-        set => this.RaiseAndSetIfChanged(ref _incomes, value);
-    }
 
+    public ViewModelBase ContentViewModel
+    {
+        get => _contentViewModel;
+        private set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+    }
+    
     private void OnDateChanged(DateTimeOffset date)
     {
         Console.WriteLine(date);
-        SetValues(date);
+        // ContentViewModel.SelectedDate = 
+        // SetValues(date);
     }
 
-    private async void SetValues(DateTimeOffset date)
+    // private async void SetValues(DateTimeOffset date)
+    // {
+    //     Spendings = await _spendingService.GetAllInMonth(date.DateTime);
+    //     Incomes = await _incomingService.GetAllInMonth(date.DateTime);
+    // }
+    
+    public void Spendings()
     {
-        Spendings = await _spendingService.GetAllInMonth(date.DateTime);
-        Incomes = await _incomingService.GetAllInMonth(date.DateTime);
+        ContentViewModel = new ListSpendingsViewModel(SelectedDate);
+    }
+
+    public void Incomes()
+    {
+        ContentViewModel = new ListIncomesViewModel();
     }
 }

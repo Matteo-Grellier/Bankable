@@ -45,7 +45,7 @@ public class SpendingService
 	{
 		var spending = await bankableContext.Spendings.Where(
 			e => e.Date.Month == date.Date.Month 
-			     && e.Date.Year == date.Date.Year).ToListAsync();
+			     && e.Date.Year == date.Date.Year && e.BankAccount.UserId == BankableContext.CurrentConnectedUser.Id).ToListAsync();
 		return spending;
 	}
 	

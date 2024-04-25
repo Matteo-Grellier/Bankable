@@ -1,0 +1,131 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels.BankAccounts"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Bankable.Views.BankAccounts.ListSpendingsView"
+             x:DataType="vm:ListSpendingsViewModel"
+             >
+    <Border Height="600" Margin="20" Padding="10" Background="{StaticResource White}" CornerRadius="20">
+
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Spacing="5" VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+        <TextBlock
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            FontWeight="Black"
+            >Spendings</TextBlock>
+        <DataGrid Margin="20" ItemsSource="{Binding Spendings}"
+                  Padding="10"
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  GridLinesVisibility="Horizontal"
+                  CanUserResizeColumns="True"
+                  CanUserReorderColumns="True"
+                  MaxWidth="1000"
+                  MinColumnWidth="130"
+                  Height="500"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Background="{StaticResource White}"
+        >
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Header="Account" MinWidth="90" SortMemberPath="BankAccount.Name" >
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border Background="{StaticResource Yellow}"
+                                BorderBrush="{StaticResource Black}"
+                                BorderThickness="1"
+                                CornerRadius="15"
+                                Margin="5 "
+                                ToolTip.Tip="{Binding BankAccount.Name}"
+                                >
+                            <TextBlock FontSize="10" Text="{Binding BankAccount.Name}" FontWeight="Bold"
+
+                            VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Padding="5 "/>
+                        </Border>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=d}" FontSize="12" MinWidth="75" />
+            <DataGridTemplateColumn Header="Name" SortMemberPath="Title" CanUserResize="True">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="10" Text="{Binding Title}"
+                                   TextWrapping="Wrap"
+                                   MaxHeight="40"
+                                   MinWidth="80"
+                                   MaxWidth="200"
+                                   Padding="5 0"
+                                   VerticalAlignment="Center"
+                                   ToolTip.Tip="{Binding Title}"/>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Description" CanUserResize="True" SortMemberPath="Description" >
+                <DataGridTemplateColumn.CellTemplate >
+                    <DataTemplate>
+                            <TextBlock FontSize="10" Text="{Binding Description}"
+                                       ToolTip.Tip="{Binding Description}"
+                                       Padding="5 0"
+                                       TextWrapping="Wrap"
+                                       MaxHeight="40"
+                                       MinWidth="80"
+                                       MaxWidth="200"
+                                       VerticalAlignment="Center" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Category" SortMemberPath="Category.Name" MinWidth="110" >
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border Background="{StaticResource White}"
+                                BorderBrush="{StaticResource Pink}"
+                                BorderThickness="1"
+                                CornerRadius="15" Margin="5 "
+                                ToolTip.Tip="{Binding Category.Name}">
+                            <TextBlock FontSize="10" Text="{Binding Category.Name}" FontWeight="Bold"
+                                       Foreground="{StaticResource Pink}"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Padding="5 "/>
+                        </Border>
+
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Amount" SortMemberPath="Amount" MinWidth="90">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="10" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" >
+
+                            <Run Text="{Binding Amount, StringFormat={}{0:F2}}"/>
+                            <Run Text="€"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridCheckBoxColumn Header="Useful" IsThreeState="True" Binding="{Binding IsUseful}" MinWidth="30" />
+            <DataGridCheckBoxColumn Header="Recurrent" IsThreeState="True" Binding="{Binding IsRecurrent}" MinWidth="30"/>
+
+            <!-- DO NOT DELETE : THIS CODE IS FOR EDIT AND DELETE BUTTONS NOT IMPLEMENTED YET             -->
+            <!-- <DataGridTemplateColumn Header="" Width="20" MinWidth="60"> -->
+            <!--     <DataGridTemplateColumn.CellTemplate> -->
+            <!--         <DataTemplate> -->
+            <!--             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="1"> -->
+            <!--                 <Button Classes="icon"><avalonia:MaterialIcon Kind="SquareEditOutline" Width="20" Height="20" Foreground="{StaticResource Green}"/></Button> -->
+            <!--                 <Button Classes="icon"><avalonia:MaterialIcon Kind="DeleteOutline" Width="20" Height="20" Foreground="{StaticResource Pink}"/></Button> -->
+            <!--             </StackPanel> -->
+            <!--         </DataTemplate> -->
+            <!--     </DataGridTemplateColumn.CellTemplate> -->
+            <!-- </DataGridTemplateColumn> -->
+
+        </DataGrid.Columns>
+    </DataGrid>
+    </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

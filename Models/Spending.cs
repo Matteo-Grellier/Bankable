@@ -28,8 +28,8 @@ public class Spending
 
 	public bool IsRecurrent { get; set; }
 
-	public BankAccount BankAccount { get; } = null!;
+	public BankAccount BankAccount { get; set; } = null!;
 
-	public Category Category { get; } = null!;
+	public Category Category { get; set; } = null!;
 
 }

@@ -5,9 +5,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Bankable.Views.BankAccounts;
 
-public partial class BankAccountsListView : UserControl
+public partial class ListIncomesView : UserControl
 {
-    public BankAccountsListView()
+    public ListIncomesView()
     {
         InitializeComponent();
     }
