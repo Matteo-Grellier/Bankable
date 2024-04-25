@@ -1,6 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia" 
+             xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              x:Class="Bankable.App"
              xmlns:local="using:Bankable"
@@ -10,7 +10,7 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-             
+
     <Application.Resources>
         <SolidColorBrush Color="#EF476F" x:Key="Pink" />
         <SolidColorBrush Color="#FFD166" x:Key="Yellow" />
@@ -18,13 +18,13 @@
         <SolidColorBrush Color="#FFFCF9" x:Key="White" />
         <SolidColorBrush Color="#F0F0F0" x:Key="Gray" />
         <SolidColorBrush Color="#000" x:Key="Black" />
-        
+
         <FontFamily x:Key="Poppins">/Assets/Fonts#Poppins</FontFamily>
-        
+
         <!-- <ColorPaletteResources x:Key="Light" Accent="#EF476F"/> -->
     </Application.Resources>
-             
-             
+
+
      <Application.Styles>
          <FluentTheme>
              <FluentTheme.Palettes>
@@ -34,6 +34,7 @@
          <StyleInclude Source="Styles/AppStyles.axaml"/>
          <StyleInclude Source="Styles/AddButton.axaml"/>
          <StyleInclude Source="Styles/DialogElementsStyles.axaml"/>
+         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
          <materialIcons:MaterialIconStyles />
          <dialogHostAvalonia:DialogHostStyles />
      </Application.Styles>
