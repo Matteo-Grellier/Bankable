@@ -26,6 +26,7 @@ public class MainWindowViewModel : ViewModelBase
 	private readonly UserService _userService = new();
 	private readonly TokenService _tokenService = new();
 	private readonly AuthenticationService _authenticationService = new();
+	private readonly InitializationService _initializationService = new();
 
 	private bool _isAuthenticated;
 	private string _currentUsername;
@@ -42,15 +43,16 @@ public class MainWindowViewModel : ViewModelBase
 	{
 		// Initialise Singleton for the mainWindow
 		CurrentMainWindowViewModel = this;
-
+		
 		InitializeMainWindow();
 	}
 	
 	private async void InitializeMainWindow()
 	{
-		// Initialise Singleton for the mainWindow
-		CurrentMainWindowViewModel = this;
 		
+		// Initialize default data (e.g. Categories) when there is no default data in Database.
+		await _initializationService.InitializeData();
+
 		await SetCurrentUser();
 		SetContentViewModelAccordingToIsAuth();
 	}
@@ -60,7 +62,7 @@ public class MainWindowViewModel : ViewModelBase
 		try
 		{
 			var currentToken = await _tokenService.GetToken();
-			BankableContext.CurrentConnectedUser = await _userService.GetItemByToken(currentToken.Id);
+			BankableContext.CurrentConnectedUser = await _userService.GetItemByID(currentToken.UserId);
 			CurrentUsername = BankableContext.CurrentConnectedUser.Username;
 			IsAuthenticated = true;
 		}
@@ -76,7 +78,10 @@ public class MainWindowViewModel : ViewModelBase
 		if (!IsAuthenticated)
 			ContentViewModel = new NotAuthenticatedViewModel();
 		else
+		{
 			ContentViewModel = new HomeViewModel();
+			CurrentUsername = BankableContext.CurrentConnectedUser.Username;
+		}
 	}
 
 	public void LogOut()

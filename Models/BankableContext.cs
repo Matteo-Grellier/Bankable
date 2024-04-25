@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,11 +22,13 @@ public class BankableContext : DbContext
 	public BankableContext()
 	{
 
-		// string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "bankable");
+		string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "bankable");
+		Directory.CreateDirectory(folder);
 
-		// Directory.CreateDirectory(folder);
-
-		DbPath = Path.Join("C:\\Users\\lewis\\Documents\\GitHub\\Bankable\\Models", "database.db");
+		DbPath = Path.Join(folder, "database.db");
+		
+		//Migrate the database because of ApplicationData storage
+		Database.Migrate();
 	}
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

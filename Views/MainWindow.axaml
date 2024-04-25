@@ -9,7 +9,7 @@
         x:Class="Bankable.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Background="{StaticResource Gray}"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/bankable.ico"
         FontFamily="{StaticResource Poppins}"
         Title="Bankable">
 
