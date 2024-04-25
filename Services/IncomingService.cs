@@ -49,7 +49,7 @@ public class IncomingService
 	{
 		try
 		{
-			var incomings = await bankableContext.Incomings.Where(e => e.RecurringDate.Month == month || e.IsRecurring).ToListAsync();
+			var incomings = await bankableContext.Incomings.Where(e => e.Date.Month == month || e.IsRecurring).ToListAsync();
 			return incomings;
 		}
 		catch (Exception e)

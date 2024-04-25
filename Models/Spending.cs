@@ -15,7 +15,6 @@ public class Spending
 	public float Amount { get; set; }
 
 	public DateTime Date { get; set; }
-	public DateTime RecurringDate { get; set; }
 
 	public bool IsRecurring { get; set; }
 
@@ -28,8 +27,6 @@ public class Spending
 	public Guid CategoryId { get; set; }
 
 	public bool IsUseful { get; set; }
-
-	public bool IsRecurrent { get; set; }
 
 	public BankAccount BankAccount { get; set; } = null!;
 

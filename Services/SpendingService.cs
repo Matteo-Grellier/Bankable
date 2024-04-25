@@ -80,7 +80,7 @@ public class SpendingService
 	{
 		try
 		{
-			var spendings = await bankableContext.Spendings.Where(e => e.RecurringDate.Month == month || e.IsRecurring).ToListAsync();
+			var spendings = await bankableContext.Spendings.Where(e => e.Date.Month == month || e.IsRecurring).ToListAsync();
 			return spendings;
 		}
 		catch (Exception e)
