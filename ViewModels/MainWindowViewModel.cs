@@ -50,17 +50,15 @@ public class MainWindowViewModel : ViewModelBase
 	{
 		// Initialise Singleton for the mainWindow
 		CurrentMainWindowViewModel = this;
-
-		// Initialize default data (e.g. Categories) when there is no default data in Database.
-		_ = _initializationService.InitializeData();
-			
+		
 		InitializeMainWindow();
 	}
 	
 	private async void InitializeMainWindow()
 	{
-		// Initialise Singleton for the mainWindow
-		CurrentMainWindowViewModel = this;
+		
+		// Initialize default data (e.g. Categories) when there is no default data in Database.
+		await _initializationService.InitializeData();
 
 		await SetCurrentUser();
 		SetContentViewModelAccordingToIsAuth();

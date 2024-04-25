@@ -40,11 +40,11 @@ public class CategoryService
 		}
 	}
 
-	public async Task<EntityEntry<Category>> AddItem(Category category)
+	public async Task<Category> AddItem(Category category)
 	{
 		try
 		{
-			EntityEntry<Category> addedCategory = bankableContext.Add(category);
+			var addedCategory = bankableContext.AddAsync(category).Result.Entity;
 			await bankableContext.SaveChangesAsync();
 			return addedCategory;
 		}
