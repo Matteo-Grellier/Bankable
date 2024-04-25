@@ -17,6 +17,10 @@ public class Incoming
 
 	public DateTime Date { get; set; }
 
+	public DateTime RecurringDate { get; set; }
+
+	public bool IsRecurring { get; set; }
+
 	[MaxLength(50)]
 	public string Title { get; set; } = null!;
 
