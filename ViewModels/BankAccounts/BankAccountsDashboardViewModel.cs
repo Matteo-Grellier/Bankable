@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Avalonia.Controls;
 using Bankable.Models;
 using Bankable.Services;
+using Bankable.ViewModels.Home;
 using Bankable.Views;
 using ReactiveUI;
 
@@ -23,6 +24,53 @@ public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewMo
         _selectedDate = new DateTimeOffset(DateTime.Now);
         SetValues(_selectedDate);
     }
+    
+    
+    private ViewModelBase _donutChartViewModel = new DonutChartViewModel();
+    public ViewModelBase DonutChartViewModel
+    {
+        get => _donutChartViewModel;
+        private set => this.RaiseAndSetIfChanged(ref _donutChartViewModel, value);
+    }
+    
+    private ViewModelBase _spendingLineViewModel = new SpendingLineChartViewModel();
+    public ViewModelBase SpendingLineViewModel
+    {
+        get => _spendingLineViewModel;
+        private set => this.RaiseAndSetIfChanged(ref _spendingLineViewModel, value);
+    }
+    
+    private ViewModelBase _gaugeChartViewModel = new GaugeChartViewModel();
+    public ViewModelBase GaugeChartViewModel
+    {
+        get => _gaugeChartViewModel;
+        private set => this.RaiseAndSetIfChanged(ref _gaugeChartViewModel, value);
+    }
+
+    private double _totalIncomings = 1700;
+    public string TotalIncomings 
+    {
+        get => _totalIncomings + "€";
+    }
+    
+    private double _totalUsefull = 650;
+    public string TotalUsefull 
+    {
+        get => _totalUsefull + "€";
+    }
+    
+    private double _totalUseless = 128.91;
+    public string TotalUseless 
+    {
+        get => _totalUseless + "€";
+    }
+    
+    private double[] _last3spendings = {13.99, 25.00, 102.75};
+    public List<string> Last3spendings 
+    {
+        get => new List<string>() {"Courses" + " " + _last3spendings[0] + "€", "Boite de nuit" + " " + _last3spendings[1] + "€", "Medecin" + " " + _last3spendings[2] + "€" };
+    }
+    
     public DateTimeOffset SelectedDate 
     { 
         get => _selectedDate;

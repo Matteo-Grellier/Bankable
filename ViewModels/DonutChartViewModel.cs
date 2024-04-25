@@ -5,6 +5,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using System.Drawing;
+using System.Linq;
 using Bankable.Models;
 using Bankable.Services;
 
@@ -21,7 +22,11 @@ public class DonutChartViewModel: ViewModelBase
     private SpendingService _spendingService = new SpendingService();
     private CategoryService _categoryService = new CategoryService();
 
-    public IEnumerable<ISeries> Series {get; set;}
+    public IEnumerable<ISeries> Series { get; set; } =
+        new[] { 2, 4, 1, 4, 3 }.AsPieSeries((value, series) =>
+        {
+            series.MaxRadialColumnWidth = 60;
+        });
 
 
     private async void GetDataFromServices()
@@ -64,7 +69,7 @@ public class DonutChartViewModel: ViewModelBase
                 };
                 series.DataLabelsSize = 15;
                 series.DataLabelsFormatter = point => $"{point.StackedValue!.Share:P2}";
-                series.MaxRadialColumnWidth = 100;
+                series.MaxRadialColumnWidth = 50;
                 series.ToolTipLabelFormatter = point => $"{point.Coordinate.PrimaryValue}€ ({point.StackedValue!.Share:P2})";
             });
         }

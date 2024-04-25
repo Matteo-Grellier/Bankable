@@ -97,7 +97,7 @@
             <!-- put the content over which the dialog is shown here (e.g. your main window grid)-->
 
             <!-- Main content of the app -->
-            <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
+                <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
         </dialogHost:DialogHost>
     </DockPanel>
 </Window>
