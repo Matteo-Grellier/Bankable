@@ -38,7 +38,7 @@ public class GaugeChartViewModel : ViewModelBase
 		try
 		{
 			IEnumerable<BankAccount> actualBankAccount = await _banAccountService.GetAllItems();
-			GetDataFromServices(actualBankAccount.First().Id, 200000);
+			GetDataFromServices(actualBankAccount.First().Id, 2000);
 		}
 		catch (Exception e)
 		{
@@ -62,7 +62,7 @@ public class GaugeChartViewModel : ViewModelBase
 			new GaugeItem(percentage, series =>
 			{
 				series.Fill = new SolidColorPaint(gaugeColor);
-				series.DataLabelsSize = 50;
+				series.DataLabelsSize = 20;
 				series.DataLabelsPaint = new SolidColorPaint(SKColors.Black);
 				series.DataLabelsPosition = PolarLabelsPosition.ChartCenter;
 				series.InnerRadius = 100;
@@ -71,7 +71,7 @@ public class GaugeChartViewModel : ViewModelBase
 			}),
 			new GaugeItem(GaugeItem.Background, series =>
 			{
-				series.InnerRadius = 100;
+				series.InnerRadius = 60;
 				series.Fill = new SolidColorPaint(new SKColor(100, 181, 246, 90));
 			})
 		);
