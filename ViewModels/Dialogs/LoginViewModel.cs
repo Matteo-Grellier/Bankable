@@ -34,7 +34,7 @@ public class LoginViewModel: ViewModelBase
                 {
                     var currentUser = _authenticationService.Login(Username, Password).Result;
                     MainWindowViewModel.CurrentMainWindowViewModel.IsAuthenticated = true;
-                    _ = MainWindowViewModel.CurrentMainWindowViewModel.SetContentViewModelAccordingToIsAuth();
+                    MainWindowViewModel.CurrentMainWindowViewModel.SetContentViewModelAccordingToIsAuth();
                     return currentUser;
                 }
                 catch (Exception e)
