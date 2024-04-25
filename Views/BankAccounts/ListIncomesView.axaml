@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Bankable.ViewModels.BankAccounts"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Bankable.Views.BankAccounts.ListIncomingsView"
-             x:DataType="vm:ListIncomingsViewModel"
+             x:Class="Bankable.Views.BankAccounts.ListIncomesView"
+             x:DataType="vm:ListIncomesViewModel"
              >
     <Border Height="600" Padding="10" Margin="20" Background="{StaticResource White}" CornerRadius="20">
 
@@ -17,8 +17,8 @@
             HorizontalAlignment="Center"
             FontSize="20"
             FontWeight="Black"
-            >Incomings</TextBlock>
-        <DataGrid Margin="20" ItemsSource="{Binding Incomings}"
+            >Incomes</TextBlock>
+        <DataGrid Margin="20" ItemsSource="{Binding Incomes}"
                   Padding="10"
                   AutoGenerateColumns="False" IsReadOnly="True"
                   GridLinesVisibility="Horizontal"

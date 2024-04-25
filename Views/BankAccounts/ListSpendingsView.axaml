@@ -111,6 +111,7 @@
             <DataGridCheckBoxColumn Header="Useful" IsThreeState="True" Binding="{Binding IsUseful}" MinWidth="30" />
             <DataGridCheckBoxColumn Header="Recurrent" IsThreeState="True" Binding="{Binding IsRecurrent}" MinWidth="30"/>
 
+            <!-- DO NOT DELETE : THIS CODE IS FOR EDIT AND DELETE BUTTONS NOT IMPLEMENTED YET             -->
             <!-- <DataGridTemplateColumn Header="" Width="20" MinWidth="60"> -->
             <!--     <DataGridTemplateColumn.CellTemplate> -->
             <!--         <DataTemplate> -->
