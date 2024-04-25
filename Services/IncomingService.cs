@@ -104,6 +104,9 @@ public class IncomingService
 		try
 		{
 			var addedIncoming = bankableContext.Add(incoming);
+            var bankAccount = bankableContext.BankAccounts.SingleAsync(e => e.Id == incoming.BankAccountId).Result;
+            bankAccount.Amount += incoming.Amount;
+            bankableContext.Update(bankAccount);
 			await bankableContext.SaveChangesAsync();
 			return addedIncoming;
 		}

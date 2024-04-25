@@ -70,6 +70,9 @@ public class SavingService
 		try
 		{
 			var addedSpending = _bankableContext.Add(saving);
+            var savingProject = _bankableContext.SavingProjects.SingleAsync(e => e.Id == saving.SavingProjectId).Result;
+            savingProject.CurrentAmountSaved += saving.Amount;
+            _bankableContext.Update(savingProject);
 			await _bankableContext.SaveChangesAsync();
 			return addedSpending;
 		}
