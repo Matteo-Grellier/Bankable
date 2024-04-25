@@ -57,7 +57,7 @@ public class MainWindowViewModel : ViewModelBase
 	{
 		// Initialise Singleton for the mainWindow
 		CurrentMainWindowViewModel = this;
-		
+
 		await SetCurrentUser();
 		SetContentViewModelAccordingToIsAuth();
 	}
@@ -67,7 +67,8 @@ public class MainWindowViewModel : ViewModelBase
 		try
 		{
 			var currentToken = await _tokenService.GetToken();
-			BankableContext.CurrentConnectedUser = await _userService.GetItemByToken(currentToken.Id);
+			var user = await _userService.GetItemByID(currentToken.UserId);
+			BankableContext.CurrentConnectedUser = user;
 			CurrentUsername = BankableContext.CurrentConnectedUser.Username;
 			IsAuthenticated = true;
 		}
@@ -83,7 +84,10 @@ public class MainWindowViewModel : ViewModelBase
 		if (!IsAuthenticated)
 			ContentViewModel = new NotAuthenticatedViewModel();
 		else
+		{
 			ContentViewModel = new HomeViewModel();
+			CurrentUsername = BankableContext.CurrentConnectedUser.Username;
+		}
 	}
 
 	public void LogOut()
