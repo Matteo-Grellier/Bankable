@@ -27,6 +27,38 @@ public class IncomingService
 		}
 	}
 
+	public async Task<List<Incoming>> GetAllInMonth(DateTime date)
+	{
+		try
+		{
+			List<Incoming> incomings;
+			incomings = await bankableContext.Incomings.Where(e =>
+				e.Date.Month == date.Date.Month
+				&& e.Date.Year == date.Date.Year
+				&& e.BankAccount.UserId == BankableContext.CurrentConnectedUser.Id).ToListAsync();
+			return incomings;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
+	}
+
+	public async Task<IEnumerable<Incoming>> GetAllRecurringSpendingsInMonth(int month)
+	{
+		try
+		{
+			var incomings = await bankableContext.Incomings.Where(e => e.Date.Month == month || e.IsRecurring).ToListAsync();
+			return incomings;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
+	}
+
 	public async Task<Incoming> GetItemByID(Guid id)
 	{
 		try

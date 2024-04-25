@@ -41,6 +41,14 @@ public class SpendingService
 		}
 	}
 
+	public async Task<List<Spending>> GetAllInMonth(DateTime date)
+	{
+		var spending = await bankableContext.Spendings.Where(
+			e => e.Date.Month == date.Date.Month
+				 && e.Date.Year == date.Date.Year && e.BankAccount.UserId == BankableContext.CurrentConnectedUser.Id).ToListAsync();
+		return spending;
+	}
+
 	public async Task<IEnumerable<Spending>> GetAllSpendingsByCategorInMonth(Category category, DateTime? month)
 	{
 		try
@@ -61,6 +69,19 @@ public class SpendingService
 		{
 			var spending = await bankableContext.Spendings.Where(e => e.Date.Month == month).ToListAsync();
 			return spending;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
+	}
+	public async Task<IEnumerable<Spending>> GetAllRecurringSpendingsInMonth(int month)
+	{
+		try
+		{
+			var spendings = await bankableContext.Spendings.Where(e => e.Date.Month == month || e.IsRecurring).ToListAsync();
+			return spendings;
 		}
 		catch (Exception e)
 		{

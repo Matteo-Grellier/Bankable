@@ -10,8 +10,8 @@
              >
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="{StaticResource White}" Spacing="20">
-            <Button Classes="icon" Command="{Binding Spendings}">Spendings</Button>
-            <Button Classes="icon" Command="{Binding Incomes}">Incomes</Button>
+            <Button Command="{Binding Spendings}">Spendings</Button>
+            <Button Command="{Binding Incomes}">Incomes</Button>
         </StackPanel>
         <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
     </DockPanel>

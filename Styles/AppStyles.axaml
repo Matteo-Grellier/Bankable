@@ -9,13 +9,11 @@
     <Style Selector="TextBlock.h1">
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Black"/>
-        <Setter Property="FontFamily" Value="Poppins"/>
     </Style>
     
     <Style Selector="TextBlock.h2">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Black"/>
-        <Setter Property="FontFamily" Value="Poppins"/>
     </Style>
     
     <Style Selector="Button">
@@ -70,7 +68,6 @@
     </Style>
     
     <Style Selector="Button.textAndIcon">
-        <Setter Property="FontFamily" Value="Poppins"/>
         <Setter Property="FontWeight" Value="ExtraBlack"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="CornerRadius" Value="0"/>

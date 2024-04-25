@@ -16,6 +16,8 @@ public class Spending
 
 	public DateTime Date { get; set; }
 
+	public bool IsRecurring { get; set; }
+
 	[MaxLength(50)]
 	public string Title { get; set; } = null!;
 
@@ -25,8 +27,6 @@ public class Spending
 	public Guid CategoryId { get; set; }
 
 	public bool IsUseful { get; set; }
-
-	public bool IsRecurrent { get; set; }
 
 	public BankAccount BankAccount { get; set; } = null!;
 

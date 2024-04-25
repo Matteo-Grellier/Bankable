@@ -1,19 +1,13 @@
 using System;
 using System.Threading.Tasks;
 using Avalonia.Controls;
-using Bankable.Views;
 
-namespace Bankable.ViewModels.Home;
+namespace Bankable.ViewModels;
 
-public class HomeListViewModel: ViewModelBase, IDashboardListViewModel
+public interface IDashboardListViewModel
 {
     public DateTimeOffset SelectedDate { get; set; }
 
-    public HomeListViewModel()
-    {
-        SelectedDate = new DateTimeOffset(DateTime.Now);
-    }
-    
     private void OnDateChanged(DateTimeOffset date)
     {
         throw new NotImplementedException();

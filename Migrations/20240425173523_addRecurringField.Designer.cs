@@ -3,6 +3,7 @@ using System;
 using Bankable.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bankable.Migrations
 {
     [DbContext(typeof(BankableContext))]
-    partial class BankableContextModelSnapshot : ModelSnapshot
+    [Migration("20240425173523_addRecurringField")]
+    partial class addRecurringField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
@@ -93,6 +96,9 @@ namespace Bankable.Migrations
 
                     b.Property<bool>("IsRecurring")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("RecurringDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -189,11 +195,17 @@ namespace Bankable.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsRecurrent")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("IsRecurring")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsUseful")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("RecurringDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
