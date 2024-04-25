@@ -121,6 +121,9 @@ public class SpendingService
 		try
 		{
 			var addedSpending = bankableContext.Add(Spending);
+            var bankAccount = bankableContext.BankAccounts.SingleAsync(e => e.Id == Spending.BankAccountId).Result;
+            bankAccount.Amount -= Spending.Amount;
+            bankableContext.Update(bankAccount);
 			await bankableContext.SaveChangesAsync();
 			return addedSpending;
 		}
