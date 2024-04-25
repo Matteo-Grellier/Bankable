@@ -104,6 +104,5 @@
             <!-- Main content of the app -->
             <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
         </dialogHost:DialogHost>
-        <ContentControl Content="{Binding TestChartViewModel}"></ContentControl>
     </DockPanel>
 </Window>
