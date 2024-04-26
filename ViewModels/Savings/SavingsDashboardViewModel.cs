@@ -143,7 +143,5 @@ public class SavingsDashboardViewModel: ViewModelBase, IDashboardListViewModel
             NextSavingProject = new SavingProject();
             RemainingMonths = "No project";
         }
-
-
     }
 }
