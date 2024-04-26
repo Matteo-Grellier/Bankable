@@ -10,9 +10,11 @@
 
 ### Les prérequis
 
-Il vous faudra la version 8 de .NET ainsi que potentiellement installer AvaloniaUI avec ce [lien](https://docs.avaloniaui.net/docs/get-started/install).
+Il vous faudra la **version 8 de .NET**. Pour installer voici le lien : [Download .NET 0.8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
-Rider possède un support built-in pour Avalonia, il ne devrait rien avoir à installer. Sinon il vous faudra regarder la [documentation](https://docs.avaloniaui.net/docs/get-started/set-up-an-editor) pour installer l'extension correpondante.
+Rider possède un support built-in pour Avalonia, il ne devrait rien avoir à installer. Sinon il vous faudra regarder la [documentation](https://docs.avaloniaui.net/docs/get-started/set-up-an-editor) pour installer l'extension correspondante.
+
+> :bulb: Si jamais il y a un problème avec Avalonia, voici la documentation pour potentiellement setup Avalonia, etc... [lien](https://docs.avaloniaui.net/docs/get-started/install).
 
 ### Avec Rider
 
@@ -30,3 +32,9 @@ Rider possède un support built-in pour Avalonia, il ne devrait rien avoir à in
     ```bash
     dotnet run
     ```
+
+
+## À noter
+
+Afin d'utiliser l'application, vous devez vous `register`.
+> :bulb: Une fois Register, vous devrez vous login (et vous serez enfin redirigé vers la View Home de l'app)
