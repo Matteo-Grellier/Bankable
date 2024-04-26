@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Bankable.Models;
@@ -14,6 +15,7 @@ public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewMo
 {
     private readonly SpendingService _spendingService = new();
     private readonly IncomingService _incomingService = new();
+    private readonly BankAccountService _bankAccountServiceService = new();
     
     private DateTimeOffset _selectedDate;
     private List<Spending> _spendings;
@@ -23,6 +25,8 @@ public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewMo
     {
         _selectedDate = new DateTimeOffset(DateTime.Now);
         SetValues(_selectedDate);
+        SetLast3spendingsAsync();
+        SetBalanceAsync();
     }
     
     
@@ -39,38 +43,92 @@ public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewMo
         get => _spendingLineViewModel;
         private set => this.RaiseAndSetIfChanged(ref _spendingLineViewModel, value);
     }
-    
-    private ViewModelBase _gaugeChartViewModel = new GaugeChartViewModel();
-    public ViewModelBase GaugeChartViewModel
-    {
-        get => _gaugeChartViewModel;
-        private set => this.RaiseAndSetIfChanged(ref _gaugeChartViewModel, value);
-    }
 
-    private double _totalIncomings = 1700;
     public string TotalIncomings 
     {
-        get => _totalIncomings + "€";
+        get
+        {
+            List<Incoming> allIncomings = _incomingService.GetItemsForUser();
+            double total = 0;
+            foreach (Incoming incoming in allIncomings)
+            {
+                total += incoming.Amount;
+            }
+            return total + "€";
+        }
     }
     
-    private double _totalUsefull = 650;
     public string TotalUsefull 
     {
-        get => _totalUsefull + "€";
+        get
+        {
+            List<Spending> allSpendings = _spendingService.GetItemsForUser();
+            double total = 0;
+            foreach (Spending spending in allSpendings)
+            {
+                if (spending.IsUseful)
+                {
+                    total += spending.Amount;
+                }
+            }
+            return total + "€";
+        }
     }
     
-    private double _totalUseless = 128.91;
     public string TotalUseless 
     {
-        get => _totalUseless + "€";
+        get
+        {
+            List<Spending> allSpendings = _spendingService.GetItemsForUser();
+            double total = 0;
+            foreach (Spending spending in allSpendings)
+            {
+                if (!spending.IsUseful)
+                {
+                    total += spending.Amount;
+                }
+            }
+            return total + "€";
+        }
     }
-    
-    private double[] _last3spendings = {13.99, 25.00, 102.75};
-    public List<string> Last3spendings 
+
+    private List<string> _last3spendings = new() {"none", "none", "none"};
+    public List<string> Last3spendings
     {
-        get => new List<string>() {"Courses" + " " + _last3spendings[0] + "€", "Boite de nuit" + " " + _last3spendings[1] + "€", "Medecin" + " " + _last3spendings[2] + "€" };
+        get => _last3spendings;
+        private set => this.RaiseAndSetIfChanged(ref _last3spendings, value);
+    }
+
+    private async void SetLast3spendingsAsync()
+    {
+        List<Spending> allSpendings = await _spendingService.GetAllInMonth(DateTime.UtcNow);
+        List<string> stringList = new();
+        if (allSpendings.Count() < 3) { throw new Exception("not enough elements in array"); }
+        int index = allSpendings.Count() - 1;
+        stringList.Add(allSpendings[index].Title + " - " + allSpendings[index].Amount + "€");
+        stringList.Add(allSpendings[index -1].Title + " - " + allSpendings[index -1].Amount + "€");
+        stringList.Add(allSpendings[index -2].Title + " - " + allSpendings[index -2].Amount + "€");
+        Last3spendings = stringList;
     }
     
+    private string _balance = "0€";
+    public string Balance
+    {
+        get => _balance;
+        private set => this.RaiseAndSetIfChanged(ref _balance, value);
+    }
+
+    private async void SetBalanceAsync()
+    {
+        List<BankAccount> allSpendings = await _bankAccountServiceService.GetItemsByUser();
+        double total = 0;
+        foreach (BankAccount bankAccount in allSpendings)
+        {
+            total += bankAccount.Amount;
+        }
+        Balance = total + "€";
+    }
+
     public DateTimeOffset SelectedDate 
     { 
         get => _selectedDate;
