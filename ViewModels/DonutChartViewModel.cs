@@ -32,6 +32,7 @@ public class DonutChartViewModel: ViewModelBase
     private async void GetDataFromServices()
     {
         List<Category> categories = await _categoryService.GetAllItems();
+        if (categories.Count() == 0) {return;}
 
         List<float> categoriesValues = new List<float>();
         List<string> categoriesNames = new List<string>();
@@ -40,7 +41,8 @@ public class DonutChartViewModel: ViewModelBase
         {
             float totalPrice = 0;
             IEnumerable<Spending> listMonthSpendings = await _spendingService.GetAllSpendingsByCategorInMonth(category, DateTime.UtcNow);
-            
+            if (listMonthSpendings.Count() == 0) {return;}
+                
             foreach (Spending spending in listMonthSpendings)
             {
                 totalPrice += spending.Amount;

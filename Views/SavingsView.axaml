@@ -13,7 +13,6 @@
             <Button Classes="icon" Command="{Binding List}"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
         </StackPanel>
         <StackPanel>
-            <TextBlock>Savings View!</TextBlock>
             <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
         </StackPanel>
     </DockPanel>
