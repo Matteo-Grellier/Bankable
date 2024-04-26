@@ -15,5 +15,5 @@ public class Saving
 
 	public float Amount { get; set; }
 
-	public SavingProject SavingProject { get; } = null!;
+	public SavingProject SavingProject { get; set; } = null!;
 }
