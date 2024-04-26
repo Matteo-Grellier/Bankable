@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="using:Bankable.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:BankAccountsViewModel"
+             x:Class="Bankable.Views.BankAccountsView">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" Background="{StaticResource White}" LastChildFill="True">
+            <DatePicker 
+                DockPanel.Dock="Right" 
+                DayVisible="False" 
+                Margin="0 10 40 10" 
+                SelectedDate="{Binding ContentViewModel.SelectedDate}" />
+            <StackPanel DockPanel.Dock="Left" ></StackPanel>
+        </DockPanel>
+        <StackPanel DockPanel.Dock="Right" Background="{StaticResource White}" Width="38">
+            <Button Classes="icon" Command="{Binding Dashboard}"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
+            <Button Classes="icon" Command="{Binding List}"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
+        </StackPanel>
+        <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
+    </DockPanel>
+</UserControl>

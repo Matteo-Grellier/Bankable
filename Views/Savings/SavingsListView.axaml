@@ -1,0 +1,89 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels.Savings"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Bankable.Views.Savings.SavingsListView"
+             x:DataType="vm:SavingsListViewModel">
+    <ListBox
+        ItemsSource="{Binding SavingProjects}"
+        SelectedItem=""
+        Background="{StaticResource White}"
+        Margin="10"
+        CornerRadius="30"
+        >
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel />
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Spacing="5" VerticalAlignment="Top"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Title}" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Black"></TextBlock>
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Deadline</TextBlock>
+                            <Border Background="{StaticResource Green}"
+                                    BorderBrush="{StaticResource Black}"
+                                    BorderThickness="1"
+                                    CornerRadius="15"
+                                    Margin="5 "
+                            >
+                                <TextBlock FontSize="10" Text="{Binding WillEndAt, StringFormat=d}" FontWeight="Bold"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Padding="5 " />
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Saved</TextBlock>
+                            <Border Background="{StaticResource Blue}"
+                                    BorderBrush="{StaticResource Black}"
+                                    BorderThickness="1"
+                                    CornerRadius="15"
+                                    Margin="5 "
+                            >
+                                <TextBlock FontSize="10" FontWeight="Bold"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           Padding="5 ">
+                                    <Run Text="{Binding CurrentAmountSaved}" />
+                                    <Run Text=" / " />
+                                    <Run Text="{Binding FinalAmount}" />
+                                </TextBlock>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                    <DataGrid Margin="20" ItemsSource="{Binding Savings}"
+                          Padding="10"
+                          AutoGenerateColumns="False" IsReadOnly="True"
+                          GridLinesVisibility="Horizontal"
+                          CanUserResizeColumns="True"
+                          CanUserReorderColumns="True"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                >
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=d}" FontSize="12" MinWidth="75" />
+            <DataGridTemplateColumn Header="Amount" SortMemberPath="Amount" MinWidth="90">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="10" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" >
+
+                            <Run Text="{Binding Amount, StringFormat={}{0:F2}}"/>
+                            <Run Text="€"/>
+                        </TextBlock>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+        </DataGrid.Columns>
+    </DataGrid>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+</UserControl>
