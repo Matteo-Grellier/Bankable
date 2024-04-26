@@ -32,3 +32,9 @@ Rider possède un support built-in pour Avalonia, il ne devrait rien avoir à in
     ```bash
     dotnet run
     ```
+
+
+## À noter
+
+Afin d'utiliser l'application, vous devez vous `register`.
+> :bulb: Une fois Register, vous devrez vous login (et vous serez enfin rediriger vers la View Home de l'app)
