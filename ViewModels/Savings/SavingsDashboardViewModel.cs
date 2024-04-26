@@ -130,10 +130,18 @@ public class SavingsDashboardViewModel: ViewModelBase, IDashboardListViewModel
         SavedThisYear = savingsThisYear.Sum(s => s.Amount).ToString();
 
         // get remaining months for the next project
-        NextSavingProject = allSavingProjects.OrderBy(p => p.WillEndAt).ToList()[0];
-
-        TimeSpan difference = NextSavingProject.WillEndAt - currentDate;
-        int remainingMonths = (int)(difference.TotalDays / (365.25 / 12));
-        RemainingMonths = Math.Max(0, remainingMonths).ToString();
+        var orderedSavingProjects = allSavingProjects.OrderBy(p => p.WillEndAt).ToList();
+        if (orderedSavingProjects.Count() > 0)
+        {
+            NextSavingProject = orderedSavingProjects[0];
+            TimeSpan difference = NextSavingProject.WillEndAt - currentDate;
+            int remainingMonths = (int)(difference.TotalDays / (365.25 / 12));
+            RemainingMonths = Math.Max(0, remainingMonths).ToString();
+        }
+        else
+        {
+            NextSavingProject = new SavingProject();
+            RemainingMonths = "No project";
+        }
     }
 }
