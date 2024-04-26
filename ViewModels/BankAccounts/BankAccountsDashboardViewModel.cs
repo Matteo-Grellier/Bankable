@@ -104,7 +104,7 @@ public class BankAccountsDashboardViewModel: ViewModelBase, IDashboardListViewMo
         List<Spending> allSpendings = await _spendingService.GetAllInMonth(DateTime.UtcNow);
         List<string> stringList = new();
         if (allSpendings.Count() < 3) { throw new Exception("not enough elements in array"); }
-        int index = allSpendings.Count() - 1;
+        int index = allSpendings.Count - 1;
         stringList.Add(allSpendings[index].Title + " - " + allSpendings[index].Amount + "€");
         stringList.Add(allSpendings[index -1].Title + " - " + allSpendings[index -1].Amount + "€");
         stringList.Add(allSpendings[index -2].Title + " - " + allSpendings[index -2].Amount + "€");

@@ -62,6 +62,20 @@ public class SpendingService
 			throw;
 		}
 	}
+	
+	public async Task<List<Spending>> GetAllSpendingsRecurentByMonth(bool isRecurent, DateTime? month)
+	{
+		try
+		{
+			var spending = await bankableContext.Spendings.Where(e => e.Date.Month == month.Value.Month && e.IsRecurring == isRecurent).ToListAsync();
+			return spending;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine(e);
+			throw;
+		}
+	}
 
 	public async Task<IEnumerable<Spending>> GetAllSpendingsInMonth(int month)
 	{
