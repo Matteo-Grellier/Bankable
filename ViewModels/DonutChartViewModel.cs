@@ -40,7 +40,7 @@ public class DonutChartViewModel: ViewModelBase
         {
             float totalPrice = 0;
             IEnumerable<Spending> listMonthSpendings = await _spendingService.GetAllSpendingsByCategorInMonth(category, DateTime.UtcNow);
-            
+                
             foreach (Spending spending in listMonthSpendings)
             {
                 totalPrice += spending.Amount;

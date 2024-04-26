@@ -2,7 +2,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Bankable.ViewModels.Home"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Bankable.Views.Home.HomeDashboardView">
-    Home dashboard view!
+             x:Class="Bankable.Views.Home.HomeDashboardView"
+             x:DataType="vm:HomeDashboardViewModel">
+    
+    <Design.DataContext>
+        <vm:HomeDashboardViewModel/>
+    </Design.DataContext>
+    
+    <Border Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Spacing="20">
+            <StackPanel Orientation="Vertical" Spacing="20">
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <Border Width="300" Height="200" CornerRadius="20" Background="{StaticResource White}" Padding="20">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Classes="h1" Foreground="{StaticResource Yellow}"> Last spendings</TextBlock>
+                            <TextBlock Classes="h2" Foreground="{StaticResource Green}" Text="{Binding Last3spendings[0]}"></TextBlock>
+                            <TextBlock Classes="h2" Foreground="{StaticResource Green}" Text="{Binding Last3spendings[1]}"></TextBlock>
+                            <TextBlock Classes="h2" Foreground="{StaticResource Green}" Text="{Binding Last3spendings[2]}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Width="200" Height="200" CornerRadius="20" Background="{StaticResource Pink}" Padding="20">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Classes="h1" Foreground="White"> Usefull</TextBlock>
+                            <TextBlock Classes="h1" Foreground="White" Text="{Binding TotalUsefull}"></TextBlock>
+                            <Sector></Sector>
+                            <TextBlock Classes="h1" Foreground="White"> Useless</TextBlock>
+                            <TextBlock Classes="h1" Foreground="White" Text="{Binding TotalUseless}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <Border Width="520" Height="300" CornerRadius="20" Background="{StaticResource White}" Padding="20">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Classes="h1" > Spending per category </TextBlock>
+                        <ContentControl Width="500" Height="260" Content="{Binding DonutChartViewModel}"></ContentControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Spacing="20">
+                <Border Width="520" Height="300" CornerRadius="20" Background="{StaticResource White}" Padding="20">
+                    <ContentControl Width="500" Height="300" Content="{Binding BarsChartViewModel}"></ContentControl>
+                </Border>
+                <StackPanel Orientation="Horizontal" Spacing="20">
+                    <Border Width="200" Height="200" CornerRadius="20" Background="{StaticResource Blue}" Padding="20">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Classes="h1" Foreground="White" TextWrapping="Wrap"> Recurrent</TextBlock>
+                            <TextBlock Classes="h1" Foreground="White" Text="{Binding Reccurent}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                    <Border Width="300" Height="200" CornerRadius="20" Background="{StaticResource Green}" Padding="20">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Classes="h1" Foreground="White"> Saved this month </TextBlock>
+                            <TextBlock Classes="h1" Foreground="White" Text="{Binding SavedMonth}"></TextBlock>
+                            <TextBlock Classes="h1" Foreground="White"> Saved this year </TextBlock>
+                            <TextBlock Classes="h1" Foreground="White" Text="{Binding SavedYear}"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+    
 </UserControl>
