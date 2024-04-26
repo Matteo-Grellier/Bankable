@@ -21,18 +21,6 @@
             <Button Classes="icon" Command="{Binding Dashboard}"><avalonia:MaterialIcon Kind="ViewDashboardOutline" Width="28" Height="28"/></Button>
             <Button Classes="icon" Command="{Binding List}"><avalonia:MaterialIcon Kind="ViewListOutline" Width="28" Height="28"/></Button>
         </StackPanel>
-        <StackPanel>
-            <!-- <TextBlock>BankAccounts View!</TextBlock> -->
-            <!-- <dialogHost:DialogHost CloseOnClickAway="True" IsOpen="True"> -->
-            <!--     <dialogHost:DialogHost.DialogContent> -->
-            <!--         <StackPanel Orientation="Horizontal" Spacing="10"> -->
-            <!--             <avalonia:MaterialIcon Kind="BankOutline" Width="24" Height="24"/> -->
-            <!--             <TextBlock Text="Bank Accounts"/> -->
-            <!--         </StackPanel> -->
-            <!--     </dialogHost:DialogHost.DialogContent> -->
-            <!--     ~1~ put the content over which the dialog is shown here (e.g. your main window grid)@1@ -->
-            <!-- </dialogHost:DialogHost> -->
-            <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
-        </StackPanel>
+        <ContentControl Content="{Binding ContentViewModel}"></ContentControl>
     </DockPanel>
 </UserControl>

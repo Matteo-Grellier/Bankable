@@ -11,11 +11,11 @@
         <vm:BankAccountsDashboardViewModel/>
     </Design.DataContext>
     
-    <Border Padding="20">
+    <Border Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal" Spacing="20">
             <StackPanel Orientation="Vertical" Spacing="20">
                 <StackPanel Orientation="Horizontal" Spacing="20">
-                    <Border Width="300" Height="200" CornerRadius="20" Background="{StaticResource White}">
+                    <Border Width="300" Height="200" CornerRadius="20" Background="{StaticResource White}" Padding="20">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Classes="h1" Foreground="{StaticResource Yellow}"> Last spendings</TextBlock>
                             <TextBlock Classes="h2" Foreground="{StaticResource Green}" Text="{Binding Last3spendings[0]}"></TextBlock>
@@ -23,7 +23,7 @@
                             <TextBlock Classes="h2" Foreground="{StaticResource Green}" Text="{Binding Last3spendings[2]}"></TextBlock>
                         </StackPanel>
                     </Border>
-                    <Border Width="200" Height="200" CornerRadius="20" Background="{StaticResource Pink}">
+                    <Border Width="200" Height="200" CornerRadius="20" Background="{StaticResource Pink}" Padding="20">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Classes="h1" Foreground="White"> Usefull</TextBlock>
                             <TextBlock Classes="h1" Foreground="White" Text="{Binding TotalUsefull}"></TextBlock>
@@ -33,7 +33,7 @@
                         </StackPanel>
                     </Border>
                 </StackPanel>
-                <Border Width="520" Height="300" CornerRadius="20" Background="{StaticResource White}">
+                <Border Width="520" Height="300" CornerRadius="20" Background="{StaticResource White}" Padding="20">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Classes="h1" > Spending per category </TextBlock>
                         <ContentControl Width="500" Height="260" Content="{Binding DonutChartViewModel}"></ContentControl>
@@ -41,17 +41,17 @@
                 </Border>
             </StackPanel>
             <StackPanel Orientation="Vertical" Spacing="20">
-                <Border Width="520" Height="300" CornerRadius="20" Background="{StaticResource White}">
+                <Border Width="520" Height="300" CornerRadius="20" Background="{StaticResource White}" Padding="20">
                     <ContentControl Width="500" Height="300" Content="{Binding SpendingLineViewModel}"></ContentControl>
                 </Border>
                 <StackPanel Orientation="Horizontal" Spacing="20">
-                    <Border Width="200" Height="200" CornerRadius="20" Background="{StaticResource Pink}">
+                    <Border Width="200" Height="200" CornerRadius="20" Background="{StaticResource Blue}" Padding="20">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Classes="h1" Foreground="White"> Total of incomings</TextBlock>
+                            <TextBlock Classes="h1" Foreground="White" TextWrapping="Wrap"> Total of incomings</TextBlock>
                             <TextBlock Classes="h1" Foreground="White" Text="{Binding TotalIncomings}"></TextBlock>
                         </StackPanel>
                     </Border>
-                    <Border Width="300" Height="200" CornerRadius="20" Background="{StaticResource Green}">
+                    <Border Width="300" Height="200" CornerRadius="20" Background="{StaticResource Green}" Padding="20">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Classes="h1" Foreground="White"> Balance </TextBlock>
                             <ContentControl Width="200" Height="150" Content="{Binding GaugeChartViewModel}"></ContentControl>
